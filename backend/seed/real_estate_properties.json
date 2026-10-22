@@ -1,0 +1,22 @@
+[
+  {"id": "r1", "name": "Lakeview Residency 2BHK", "category": "apartment", "price": 6500000, "features": ["2bhk", "near city", "lake view", "gated community"], "availability": "available"},
+  {"id": "r2", "name": "Palm Meadows 3BHK", "category": "apartment", "price": 9800000, "features": ["3bhk", "near city", "gym", "swimming pool"], "availability": "available"},
+  {"id": "r3", "name": "Green Valley 2BHK", "category": "apartment", "price": 5900000, "features": ["2bhk", "near school", "park facing"], "availability": "available"},
+  {"id": "r4", "name": "Sunrise Towers 1BHK", "category": "apartment", "price": 3800000, "features": ["1bhk", "near metro", "budget"], "availability": "available"},
+  {"id": "r5", "name": "Orchid Heights 2BHK", "category": "apartment", "price": 6900000, "features": ["2bhk", "near city", "modern amenities"], "availability": "available"},
+  {"id": "r6", "name": "Independent Villa - Whitefield", "category": "villa", "price": 21000000, "features": ["4bhk", "independent", "garden", "premium"], "availability": "available"},
+  {"id": "r7", "name": "Maple Residency 2BHK", "category": "apartment", "price": 6200000, "features": ["2bhk", "near city", "corner unit"], "availability": "available"},
+  {"id": "r8", "name": "City Central Studio", "category": "apartment", "price": 2900000, "features": ["studio", "near city", "budget", "compact"], "availability": "available"},
+  {"id": "r9", "name": "Riverside 3BHK Penthouse", "category": "apartment", "price": 15500000, "features": ["3bhk", "penthouse", "river view", "luxury"], "availability": "sold"},
+  {"id": "r10", "name": "Elm Street 2BHK", "category": "apartment", "price": 6750000, "features": ["2bhk", "near city", "near hospital"], "availability": "available"},
+  {"id": "r11", "name": "Golden Acres Plot 1200sqft", "category": "plot", "price": 4200000, "features": ["plot", "gated community", "investment"], "availability": "available"},
+  {"id": "r12", "name": "Cedar Park 2BHK", "category": "apartment", "price": 6100000, "features": ["2bhk", "near city", "clubhouse"], "availability": "available"},
+  {"id": "r13", "name": "Harborview 4BHK Duplex", "category": "apartment", "price": 18500000, "features": ["4bhk", "duplex", "sea view", "premium"], "availability": "available"},
+  {"id": "r14", "name": "Willow Court 2BHK", "category": "apartment", "price": 5800000, "features": ["2bhk", "near school", "family friendly"], "availability": "available"},
+  {"id": "r15", "name": "Metro Heights 1BHK", "category": "apartment", "price": 4100000, "features": ["1bhk", "near metro", "young professionals"], "availability": "available"},
+  {"id": "r16", "name": "Birchwood Villa", "category": "villa", "price": 26000000, "features": ["5bhk", "independent", "swimming pool", "luxury"], "availability": "available"},
+  {"id": "r17", "name": "Jasmine Enclave 2BHK", "category": "apartment", "price": 6450000, "features": ["2bhk", "near city", "vastu compliant"], "availability": "available"},
+  {"id": "r18", "name": "Downtown Loft 1BHK", "category": "apartment", "price": 4600000, "features": ["1bhk", "loft", "near city", "modern"], "availability": "available"},
+  {"id": "r19", "name": "Pinehill 3BHK", "category": "apartment", "price": 10200000, "features": ["3bhk", "hillside", "quiet neighborhood"], "availability": "available"},
+  {"id": "r20", "name": "Silver Oak 2BHK", "category": "apartment", "price": 6300000, "features": ["2bhk", "near city", "power backup"], "availability": "available"}
+]

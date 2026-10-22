@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:///./data/app.db
+      CHROMA_PERSIST_DIR: ./data/chroma
+      JWT_SECRET: ${JWT_SECRET:-change-me-to-a-long-random-string}
+      # Ollama runs on the host machine, not in this compose file (it needs direct GPU/CPU
+      # access and a one-time model pull). host.docker.internal reaches the host from a
+      # container on Docker Desktop (Windows/Mac); on Linux add extra_hosts below instead.
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_CHAT_MODEL: ${OLLAMA_CHAT_MODEL:-llama3.2}
+      OLLAMA_EMBED_MODEL: ${OLLAMA_EMBED_MODEL:-nomic-embed-text}
+      SIMLI_API_KEY: ${SIMLI_API_KEY:-}
+      CORS_ORIGINS: '["http://localhost:3000"]'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - backend_data:/app/data
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    depends_on:
+      - backend
+
+volumes:
+  backend_data:

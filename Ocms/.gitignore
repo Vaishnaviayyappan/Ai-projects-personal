@@ -1,0 +1,19 @@
+# Secrets
+.env
+!.env.example
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Runtime data
+backend/complaints_db.json
+
+# Node
+node_modules/
+dist/
+
+# Editor / tooling
+.vscode/
+.refact/

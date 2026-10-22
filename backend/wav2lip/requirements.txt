@@ -1,9 +1,0 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-torch
-torchvision
-numpy
-opencv-python-headless
-librosa
-numba
-tqdm
-git+https://github.com/elliottzheng/batch-face.git@master

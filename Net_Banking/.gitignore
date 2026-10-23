@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+cookies.txt
+
+# Playwright
+/e2e/test-results/
+/e2e/playwright-report/
+/e2e/playwright/.auth/
+/.playwright-mcp/

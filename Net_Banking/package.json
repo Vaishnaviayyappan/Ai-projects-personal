@@ -1,0 +1,16 @@
+{
+  "name": "netbank-transfer-poc",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend",
+    "e2e"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "test:e2e": "npm run test --workspace e2e"
+  }
+}

@@ -1,0 +1,15 @@
+export const MESSAGES = {
+  INVALID_CREDENTIALS: 'Invalid username or password',
+  UNAUTHORIZED: 'Please log in to continue',
+  INVALID_ACCOUNT: 'Invalid account',
+  AMOUNT_NOT_POSITIVE: 'Amount must be greater than zero',
+  INSUFFICIENT_BALANCE: 'Insufficient Balance',
+  DAILY_LIMIT_EXCEEDED: 'Daily transfer limit exceeded',
+  SERVER_ERROR: 'Something went wrong. Please try again.',
+  INVALID_OTP: 'Invalid OTP',
+  OTP_EXPIRED: 'OTP expired',
+  BENEFICIARY_ALREADY_ADDED: 'Beneficiary already added',
+  BENEFICIARY_NOT_FOUND: 'Beneficiary not found',
+  SESSION_EXPIRED: 'Session expired, please login again',
+  TOO_MANY_ATTEMPTS: 'Too many attempts, try later',
+} as const;

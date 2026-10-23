@@ -1,0 +1,14 @@
+{
+  "name": "@netbank/e2e",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@netbank/shared": "1.0.0",
+    "@playwright/test": "1.45.0",
+    "typescript": "5.4.5"
+  }
+}

@@ -1,0 +1,7 @@
+Flask
+twilio
+anthropic
+python-dotenv
+supabase
+requests
+Flask-Cors

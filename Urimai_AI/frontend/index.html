@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="ta" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>உரிமை AI | Tamil Nadu Government Scheme Discovery</title>
+    
+    <!-- PERFORMANCE OPTIMIZED FONT LOADING -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ═══ §1 DESIGN SYSTEM — TOKENS & FOUNDATIONS ═══ */
+        :root {
+            /* Primitive Palette */
+            --color-green-950: #021a13; --color-green-900: #042f23; --color-green-800: #0a4f3c;
+            --color-green-700: #0d6b52; --color-green-600: #128C7E; --color-green-500: #16a87a;
+            --color-green-400: #25D366; --color-green-300: #4ade80; --color-green-200: #86efac;
+            --color-green-100: #dcf8c6; --color-green-50:  #f0fdf4;
+            --color-amber-900: #78350f; --color-amber-700: #b45309; --color-amber-500: #e8780a;
+            --color-amber-300: #fcd34d; --color-amber-100: #fff3e0; --color-amber-50:  #fffbeb;
+            --color-red-700:   #b91c1c; --color-red-500:   #dc2626; --color-red-100:   #fee2e2;
+            --color-blue-800:  #1e40af; --color-blue-500:  #3b82f6; --color-blue-100:  #dbeafe;
+            --color-neutral-950: #0a0a0a; --color-neutral-900: #111827; --color-neutral-800: #1f2937;
+            --color-neutral-700: #374151; --color-neutral-600: #4b5563; --color-neutral-500: #6b7280;
+            --color-neutral-400: #9ca3af; --color-neutral-300: #d1d5db; --color-neutral-200: #e5e7eb;
+            --color-neutral-100: #f3f4f6; --color-neutral-50:  #f9fafb; --color-white:       #ffffff;
+
+            /* Stream Palette */
+            --stream-farmer: #10b981; --stream-student: #3b82f6; --stream-female: #ec4899;
+            --stream-senior: #f59e0b; --stream-worker: #f97316; --stream-health: #ef4444;
+            --stream-housing: #6366f1; --stream-social: #06b6d4; --stream-other: #64748b;
+
+            /* Semantic Tokens - Light */
+            --surface-page:         var(--color-neutral-50);
+            --surface-card:         var(--color-white);
+            --surface-card-hover:   var(--color-green-50);
+            --surface-nav:          var(--color-green-900);
+            --surface-nav-glass:    rgba(10, 79, 60, 0.92);
+            --surface-sidebar:      var(--color-neutral-100);
+            --surface-input:        var(--color-white);
+            --surface-overlay:      rgba(0, 0, 0, 0.48);
+            --surface-tooltip:      var(--color-neutral-900);
+            --surface-badge:        var(--color-green-400);
+
+            --text-primary:         var(--color-neutral-900);
+            --text-secondary:       var(--color-neutral-600);
+            --text-tertiary:        var(--color-neutral-400);
+            --text-on-dark:         var(--color-white);
+            --text-on-brand:        var(--color-white);
+            --text-brand:           var(--color-green-800);
+            --text-accent:          var(--color-amber-500);
+            --text-danger:          var(--color-red-700);
+            --text-success:         var(--color-green-600);
+
+            --border-subtle:        var(--color-neutral-200);
+            --border-default:       var(--color-neutral-300);
+            --border-strong:        var(--color-neutral-400);
+            --border-brand:         var(--color-green-600);
+            --border-accent:        var(--color-amber-500);
+
+            --interactive-primary:       var(--color-green-800);
+            --interactive-primary-hover: var(--color-green-700);
+            --interactive-primary-press: var(--color-green-900);
+            --interactive-secondary:     var(--color-green-100);
+            --interactive-danger:        var(--color-red-500);
+            --interactive-focus:         var(--color-green-400);
+
+            /* Typography */
+            --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
+            --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem;
+            --leading-none: 1; --leading-tight: 1.25; --leading-snug: 1.375;
+            --leading-normal: 1.5; --leading-relaxed: 1.625; --leading-loose: 2;
+            --weight-light: 300; --weight-regular: 400; --weight-medium: 500;
+            --weight-semibold: 600; --weight-bold: 700;
+
+            /* Spacing */
+            --sp-0: 0; --sp-px: 1px; --sp-1: 4px; --sp-2: 8px; --sp-3: 12px;
+            --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+            --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
+
+            /* Elevation */
+            --elevation-0: none;
+            --elevation-1: 0 1px 2px rgba(0,0,0,0.05);
+            --elevation-2: 0 2px 4px rgba(0,0,0,0.06);
+            --elevation-3: 0 4px 8px rgba(0,0,0,0.07);
+            --elevation-4: 0 8px 16px rgba(0,0,0,0.09);
+            --elevation-5: 0 16px 32px rgba(0,0,0,0.11);
+            --elevation-6: 0 24px 48px rgba(0,0,0,0.14);
+
+            /* Radius */
+            --radius-none: 0; --radius-xs: 4px; --radius-sm: 6px;
+            --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px;
+            --radius-2xl: 20px; --radius-3xl: 28px; --radius-full: 9999px;
+
+            /* Animation */
+            --duration-instant: 50ms; --duration-fast: 100ms; --duration-normal: 200ms;
+            --duration-moderate: 300ms; --duration-slow: 500ms; --duration-slower: 800ms;
+            --ease-linear: linear; --ease-in: cubic-bezier(0.4, 0, 1, 1);
+            --ease-out: cubic-bezier(0, 0, 0.2, 1); --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Semantic Tokens - Dark */
+        [data-theme="dark"] {
+            --surface-page:         #0d1f1a;
+            --surface-card:         #132e25;
+            --surface-card-hover:   #1a3d30;
+            --surface-nav:          #021a13;
+            --surface-nav-glass:    rgba(2, 26, 19, 0.95);
+            --surface-sidebar:      #0f2920;
+            --surface-input:        #1a3d30;
+            --text-primary:         #f0fdf4;
+            --text-secondary:       #86efac;
+            --text-tertiary:        #4ade80;
+            --text-brand:           #4ade80;
+            --text-on-brand:        #021a13;
+            --border-subtle:        #1e4436;
+            --border-default:       #2a5c45;
+            --border-brand:         #25D366;
+            --interactive-primary:  #25D366;
+            --interactive-primary-hover: #4ade80;
+            --interactive-secondary: #0a4f3c;
+        }
+
+        /* Reset & Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--surface-page);
+            color: var(--text-primary);
+            font-family: 'DM Sans', 'Noto Sans Tamil', sans-serif;
+            line-height: var(--leading-normal);
+            transition: background-color var(--duration-normal), color var(--duration-normal);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .display-font { font-family: 'Playfair Display', serif; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        a { text-decoration: none; color: inherit; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-4); }
+        .grid { display: grid; gap: var(--sp-6); }
+        .flex { display: flex; gap: var(--sp-4); align-items: center; }
+
+        /* ═══ F-01 ENTERPRISE NAVIGATION ═══ */
+        .app-nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+            background: var(--surface-nav); color: var(--text-on-dark);
+            z-index: 1000; transition: all var(--duration-moderate) var(--ease-out);
+            display: flex; align-items: center;
+        }
+        .app-nav.scrolled {
+            background: var(--surface-nav-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            height: 56px;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        
+        .brand { display: flex; align-items: center; gap: var(--sp-2); font-weight: var(--weight-bold); font-size: var(--text-xl); }
+        .brand-logo { width: 32px; height: 32px; fill: var(--color-green-400); }
+        .version-badge { font-size: 10px; background: var(--color-amber-500); color: var(--color-green-950); padding: 2px 6px; border-radius: var(--radius-full); margin-left: 4px; }
+
+        .nav-tabs { display: flex; gap: var(--sp-6); position: relative; }
+        .nav-tab { 
+            position: relative; font-size: var(--text-sm); font-weight: var(--weight-medium); opacity: 0.8; 
+            padding: var(--sp-2) 0; transition: opacity var(--duration-fast);
+        }
+        .nav-tab.active { opacity: 1; color: var(--color-green-300); }
+        .nav-tab-indicator {
+            position: absolute; bottom: 0; height: 3px; background: var(--color-green-400);
+            border-radius: var(--radius-full); transition: all var(--duration-moderate) var(--ease-in-out);
+        }
+        .badge-count { 
+            position: absolute; top: -4px; right: -12px; background: var(--color-red-500); 
+            color: white; font-size: 10px; padding: 1px 5px; border-radius: var(--radius-full); 
+        }
+
+        .nav-controls { display: flex; gap: var(--sp-4); }
+        .icon-btn { font-size: 20px; transition: transform var(--duration-fast); }
+        .icon-btn:hover { transform: scale(1.1); }
+
+        /* ═══ F-02 HERO SECTION ═══ */
+        .hero {
+            position: relative; min-height: 80vh; display: flex; align-items: center;
+            background: linear-gradient(160deg, var(--color-green-900), var(--color-green-700));
+            color: var(--text-on-dark); padding-top: 64px; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none;
+        }
+        .mesh-container { position: absolute; inset: 0; pointer-events: none; }
+        .particle { position: absolute; border-radius: 50%; background: radial-gradient(circle, var(--color-green-400) 0%, transparent 70%); }
+        
+        .hero-content { position: relative; z-index: 10; max-width: 800px; }
+        .hero-title { font-size: var(--text-5xl); line-height: 1.1; margin-bottom: var(--sp-4); }
+        .hero-subtitle { font-size: var(--text-2xl); opacity: 0.9; margin-bottom: var(--sp-8); min-height: 1.5em; }
+        .typewriter::after { content: '|'; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-stats { display: flex; gap: var(--sp-12); margin-top: var(--sp-12); }
+        .stat-card { border-left: 2px solid var(--color-green-400); padding-left: var(--sp-4); }
+        .stat-val { font-size: var(--text-4xl); font-weight: var(--weight-bold); display: block; }
+        .stat-lab { font-size: var(--text-sm); opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+
+        .cta-button {
+            display: inline-flex; align-items: center; gap: var(--sp-2);
+            background: var(--color-green-400); color: var(--color-green-950);
+            padding: var(--sp-4) var(--sp-8); border-radius: var(--radius-full);
+            font-weight: var(--weight-bold); font-size: var(--text-lg);
+            position: relative; overflow: hidden; transition: transform 0.2s;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: var(--elevation-5); }
+        .cta-button::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .cta-button:hover::after { left: 100%; }
+
+        /* ═══ F-03 CHATBOT ═══ */
+        .chat-view { height: calc(100vh - 64px); display: flex; flex-direction: column; background: var(--surface-page); }
+        .chat-container { flex: 1; overflow-y: auto; padding: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-4); scroll-behavior: smooth; }
+        
+        .chat-progress-container { height: 4px; background: var(--border-subtle); position: sticky; top: 0; z-index: 10; }
+        .chat-progress-bar { height: 100%; background: var(--color-green-400); transition: width var(--duration-slow); }
+
+        .message { display: flex; gap: var(--sp-3); max-width: 85%; animation: msgEntry 0.3s var(--ease-out) forwards; opacity: 0; transform: translateY(12px); }
+        @keyframes msgEntry { to { opacity: 1; transform: translateY(0); } }
+        
+        .message.bot { align-self: flex-start; }
+        .message.user { align-self: flex-end; flex-direction: row-reverse; }
+
+        .bot-avatar {
+            width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+            background: var(--color-green-800); color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: bold;
+            position: relative; border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        .bot-avatar::before {
+            content: ''; position: absolute; inset: -2px; border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--color-green-400), transparent);
+            animation: rotate 2s linear infinite; z-index: -1;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .bubble { padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-xl); font-size: var(--text-base); box-shadow: var(--elevation-2); position: relative; }
+        .bot .bubble { background: var(--surface-card); border-bottom-left-radius: var(--radius-xs); color: var(--text-primary); }
+        .user .bubble { background: var(--interactive-primary); color: white; border-bottom-right-radius: var(--radius-xs); }
+        
+        .msg-time { font-size: 10px; color: var(--text-tertiary); margin-top: 4px; display: block; text-align: right; }
+
+        .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; background: var(--surface-card); border-radius: 20px; width: fit-content; }
+        .dot { width: 6px; height: 6px; background: var(--text-tertiary); border-radius: 50%; animation: bounce 0.6s infinite alternate; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+
+        .quick-replies { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-2); padding-left: 48px; }
+        .chip { 
+            padding: 6px 16px; border-radius: var(--radius-full); border: 1px solid var(--border-brand); 
+            background: var(--surface-card); color: var(--text-brand); font-size: 13px; font-weight: 500;
+            transition: all 0.2s;
+        }
+        .chip:hover { background: var(--interactive-primary); color: white; }
+
+        .chat-input-row { padding: var(--sp-4); background: var(--surface-card); border-top: 1px solid var(--border-subtle); display: flex; gap: var(--sp-3); align-items: center; }
+        .chat-input { flex: 1; padding: 12px 20px; border-radius: var(--radius-full); border: 1px solid var(--border-default); background: var(--surface-input); color: var(--text-primary); outline: none; transition: border-color 0.2s; }
+        .chat-input:focus { border-color: var(--border-brand); }
+        .send-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--interactive-primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+
+        /* ═══ F-04 SCHEME DIRECTORY ═══ */
+        .directory-view { display: flex; height: calc(100vh - 64px); }
+        .sidebar { width: 280px; background: var(--surface-sidebar); border-right: 1px solid var(--border-subtle); padding: var(--sp-6); overflow-y: auto; transition: transform 0.3s; }
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        
+        .toolbar { padding: var(--sp-4) var(--sp-6); border-bottom: 1px solid var(--border-subtle); display: flex; gap: var(--sp-4); align-items: center; background: var(--surface-card); }
+        .search-wrap { flex: 1; position: relative; }
+        .search-input { width: 100%; padding: 10px 40px; border-radius: var(--radius-md); border: 1px solid var(--border-default); background: var(--surface-input); color: var(--text-primary); }
+        .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); }
+        
+        .scheme-grid { flex: 1; overflow-y: auto; padding: var(--sp-6); display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--sp-6); }
+        .scheme-grid.list { grid-template-columns: 1fr; }
+
+        .card { 
+            background: var(--surface-card); border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);
+            padding: var(--sp-5); position: relative; transition: all 0.3s var(--ease-out); display: flex; flex-direction: column;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--elevation-4); border-color: var(--border-brand); }
+        
+        /* Stream Accents */
+        .card.stream-farmer { border-left: 4px solid var(--stream-farmer); }
+        .card.stream-student { border-left: 4px solid var(--stream-student); }
+        .card.stream-female { border-left: 4px solid var(--stream-female); }
+        .card.stream-senior { border-left: 4px solid var(--stream-senior); }
+        .card.stream-worker { border-left: 4px solid var(--stream-worker); }
+        .card.stream-health { border-left: 4px solid var(--stream-health); }
+        .card.stream-housing { border-left: 4px solid var(--stream-housing); }
+        .card.stream-social { border-left: 4px solid var(--stream-social); }
+        
+        .card-header { display: flex; justify-content: space-between; margin-bottom: var(--sp-3); }
+        .govt-tag { font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; background: var(--color-green-100); color: var(--color-green-800); }
+        .card-actions { display: flex; gap: 8px; }
+        
+        .card-emoji { font-size: 32px; margin-bottom: var(--sp-2); }
+        .card-title { font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--text-brand); line-height: 1.2; margin-bottom: 4px; }
+        .card-subtitle { font-size: 12px; color: var(--text-secondary); margin-bottom: var(--sp-4); }
+        
+        .benefit-box { background: var(--color-green-50); padding: 12px; border-radius: var(--radius-md); border: 1px dashed var(--color-green-200); margin-bottom: var(--sp-4); }
+        .benefit-val { display: block; font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--text-success); }
+        .benefit-desc { font-size: 13px; color: var(--text-secondary); }
+
+        .tag-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: var(--sp-4); }
+        .tag { font-size: 10px; background: var(--neutral-100); padding: 2px 8px; border-radius: var(--radius-full); color: var(--text-secondary); font-weight: 600; }
+        .tag.farmer { background: #d1fae5; color: #065f46; }
+        .tag.student { background: #dbeafe; color: #1e40af; }
+        .tag.female { background: #fce7f3; color: #9d174d; }
+        .tag.senior { background: #fef3c7; color: #92400e; }
+        .tag.worker { background: #ffedd5; color: #9a3412; }
+        .tag.health { background: #fee2e2; color: #991b1b; }
+        .tag.housing { background: #e0e7ff; color: #3730a3; }
+        .tag.social { background: #cffafe; color: #0e7490; }
+
+        .expand-toggle { width: 100%; padding: 8px; font-size: 12px; color: var(--text-brand); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; border-top: 1px solid var(--border-subtle); margin-top: auto; }
+        .card-details { overflow: hidden; max-height: 0; transition: max-height 0.4s; font-size: 13px; }
+        .card.expanded .card-details { max-height: 500px; padding-top: 12px; }
+
+        /* ═══ F-05 ELIGIBILITY CHECKER ═══ */
+        .checker-view { padding: var(--sp-12) 0; max-width: 700px; margin: 0 auto; }
+        .wizard-card { background: var(--surface-card); border-radius: var(--radius-3xl); box-shadow: var(--elevation-6); overflow: hidden; }
+        .wizard-header { padding: var(--sp-8); background: var(--color-green-900); color: white; text-align: center; }
+        .step-progress { display: flex; justify-content: center; gap: 40px; margin-top: 20px; position: relative; }
+        .step-progress::before { content: ''; position: absolute; top: 12px; left: 15%; width: 70%; height: 2px; background: rgba(255,255,255,0.1); z-index: 1; }
+        .step-node { width: 24px; height: 24px; border-radius: 50%; background: #0a4f3c; border: 2px solid rgba(255,255,255,0.2); z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; transition: all 0.3s; }
+        .step-node.active { background: var(--color-green-400); color: var(--color-green-950); border-color: var(--color-green-400); box-shadow: 0 0 15px var(--color-green-400); }
+        .step-node.done { background: white; color: var(--color-green-950); border-color: white; }
+
+        .wizard-body { padding: var(--sp-10); position: relative; min-height: 400px; }
+        .wizard-step { transition: all 0.4s var(--ease-in-out); width: 100%; }
+        .wizard-step.hidden { display: none; opacity: 0; transform: translateX(50px); }
+
+        .option-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+        .opt-card { 
+            padding: var(--sp-5); border: 2px solid var(--border-subtle); border-radius: var(--radius-xl); 
+            text-align: center; transition: all 0.2s; cursor: pointer;
+        }
+        .opt-card:hover { border-color: var(--border-brand); background: var(--surface-card-hover); }
+        .opt-card.selected { border-color: var(--border-brand); background: var(--color-green-50); transform: scale(1.03); }
+        .opt-icon { font-size: 32px; display: block; margin-bottom: 8px; }
+        .opt-label { font-size: 14px; font-weight: 600; display: block; }
+        .opt-sub { font-size: 11px; color: var(--text-tertiary); }
+
+        .form-row { margin-bottom: var(--sp-6); }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .input-control { width: 100%; padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-default); background: var(--surface-input); color: var(--text-primary); font-size: 16px; }
+        
+        .wizard-footer { padding: var(--sp-6) var(--sp-10); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; }
+
+        /* ═══ F-06 DASHBOARD ═══ */
+        .dashboard-view { padding: var(--sp-8) 0; }
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); margin-bottom: var(--sp-10); }
+        .kpi-card { background: var(--surface-card); padding: var(--sp-6); border-radius: var(--radius-2xl); box-shadow: var(--elevation-2); text-align: center; }
+        .kpi-val { display: block; font-size: 32px; font-weight: 800; color: var(--text-brand); margin-bottom: 4px; }
+        .kpi-lab { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--sp-8); }
+        .dash-section { background: var(--surface-card); padding: var(--sp-8); border-radius: var(--radius-3xl); box-shadow: var(--elevation-2); }
+        .section-title { font-size: var(--text-xl); margin-bottom: var(--sp-6); display: flex; align-items: center; gap: 8px; }
+
+        .bar-container { display: flex; flex-direction: column; gap: 16px; }
+        .bar-row { display: flex; align-items: center; gap: 16px; }
+        .bar-label { width: 140px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+        .bar-track { flex: 1; height: 10px; background: var(--neutral-100); border-radius: 5px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; background: var(--color-green-500); width: 0; transition: width 1s var(--ease-out); }
+        .bar-fill.insurance { background: var(--color-blue-500); }
+        .bar-fill.kind { background: var(--color-amber-500); }
+
+        .timeline { position: relative; padding-left: 24px; border-left: 2px solid var(--border-subtle); }
+        .timeline-item { position: relative; margin-bottom: 24px; }
+        .timeline-dot { position: absolute; left: -31px; width: 12px; height: 12px; border-radius: 50%; background: var(--border-default); border: 2px solid var(--surface-card); }
+        .timeline-dot.urgent { background: var(--color-red-500); animation: alertPulse 1.5s infinite; }
+        @keyframes alertPulse { 0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); } }
+        .timeline-content { font-size: 13px; }
+        .timeline-date { font-weight: bold; color: var(--text-accent); }
+
+        /* ═══ F-07 FAB SYSTEM ═══ */
+        .fab-container { position: fixed; bottom: 24px; right: 24px; z-index: 4000; }
+        .fab-main { 
+            width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--color-green-800), var(--color-green-600));
+            color: white; font-size: 24px; box-shadow: var(--elevation-5); transition: all var(--ease-spring);
+        }
+        .fab-main.active { transform: rotate(45deg); background: var(--neutral-900); }
+        .fab-menu { 
+            position: absolute; bottom: 70px; right: 0; display: flex; flex-direction: column; gap: 12px; 
+            pointer-events: none; opacity: 0; transform: translateY(20px); transition: all 0.3s var(--ease-spring);
+        }
+        .fab-menu.active { pointer-events: auto; opacity: 1; transform: translateY(0); }
+        .fab-item { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .fab-label { background: var(--surface-card); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; box-shadow: var(--elevation-2); white-space: nowrap; }
+        .fab-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-card); color: var(--text-brand); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: var(--elevation-3); border: 1px solid var(--border-subtle); }
+
+        /* ═══ F-08 NOTIFICATION BANNER ═══ */
+        .notif-banner {
+            position: fixed; top: 64px; left: 0; width: 100%; height: 44px;
+            background: linear-gradient(90deg, var(--color-amber-700), var(--color-amber-500));
+            color: white; z-index: 999; display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 600; transform: translateY(-100%);
+            transition: transform 0.4s var(--ease-out);
+        }
+        .notif-banner.show { transform: translateY(0); }
+        .notif-close { position: absolute; right: 16px; font-size: 20px; cursor: pointer; }
+
+        /* ═══ TOAST SYSTEM ═══ */
+        .toast-container { position: fixed; bottom: 90px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+        .toast { 
+            width: 300px; background: var(--surface-card); border-radius: var(--radius-lg); padding: 16px;
+            box-shadow: var(--elevation-4); display: flex; align-items: center; gap: 12px;
+            transform: translateX(120%); transition: all 0.3s var(--ease-out); border-left: 4px solid var(--color-green-500);
+        }
+        .toast.show { transform: translateX(0); }
+        .toast.error { border-left-color: var(--color-red-500); }
+        .toast-msg { font-size: 13px; font-weight: 500; }
+
+        /* ═══ COMPARISON MODAL ═══ */
+        .modal-overlay { position: fixed; inset: 0; background: var(--surface-overlay); backdrop-filter: blur(2px); z-index: 3000; display: none; opacity: 0; transition: opacity 0.3s; }
+        .modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); width: 90%; max-width: 1000px; background: var(--surface-page); border-radius: 20px; box-shadow: var(--elevation-6); transition: all 0.3s var(--ease-spring); overflow: hidden; }
+        .modal.open { transform: translate(-50%, -50%) scale(1); }
+        .modal-header { padding: 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; background: var(--surface-card); }
+        .modal-body { padding: 24px; overflow-x: auto; max-height: 80vh; }
+        
+        .compare-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .compare-table th { padding: 16px; text-align: center; background: var(--surface-card); border-bottom: 2px solid var(--border-brand); }
+        .compare-table td { padding: 12px; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+        .row-label { font-weight: bold; background: var(--neutral-50); width: 120px; }
+        .best-val { background: var(--color-green-100) !important; color: var(--color-green-800); font-weight: bold; }
+
+        /* Tablet/Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .chart-grid { grid-template-columns: 1fr; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .sidebar { position: fixed; left: 0; top: 64px; height: calc(100vh - 64px); z-index: 500; transform: translateX(-100%); width: 260px; }
+            .sidebar.active { transform: translateX(0); box-shadow: 10px 0 20px rgba(0,0,0,0.1); }
+            .hero-title { font-size: var(--text-3xl); }
+            .hero-stats { gap: var(--sp-4); flex-direction: column; }
+            .option-grid { grid-template-columns: 1fr 1fr; }
+            .nav-tabs { gap: var(--sp-4); overflow-x: auto; scrollbar-width: none; }
+            .nav-tabs::-webkit-scrollbar { display: none; }
+            .nav-tab { white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NOTIFICATION BAR -->
+    <div id="notif-banner" class="notif-banner">
+        <span id="notif-text">⚠️ PM Jeevan Jyoti Bima: மே 31 கடைசி தேதி — இன்றே பதிவு செய்யுங்கள்!</span>
+        <span class="notif-close" onclick="NotificationSystem.dismiss()">×</span>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="app-nav" id="app-nav">
+        <div class="container nav-inner">
+            <div class="brand">
+                <svg class="brand-logo" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm4 8h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                உரிமை AI
+                <span class="version-badge">v2.0</span>
+            </div>
+
+            <div class="nav-tabs" id="nav-tabs">
+                <button class="nav-tab active" data-tab="chat">💬 சாட்</button>
+                <button class="nav-tab" data-tab="directory">📋 திட்டங்கள் <span class="badge-count" id="fav-badge">0</span></button>
+                <button class="nav-tab" data-tab="checker">✅ தகுதி</button>
+                <button class="nav-tab" data-tab="dashboard">📊 நிலவரம்</button>
+                <button class="nav-tab" data-tab="about">ℹ️ பற்றி</button>
+                <div class="nav-tab-indicator" id="nav-indicator"></div>
+            </div>
+
+            <div class="nav-controls">
+                <button class="icon-btn" id="theme-toggle" onclick="Store.toggleTheme()">🌙</button>
+                <button class="icon-btn" id="lang-toggle">En</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-root">
+        
+        <!-- SECTION: HERO (Static Overlay) -->
+        <section id="hero-section" class="hero">
+            <div class="mesh-container" id="mesh-container"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">அனைவருக்கும் அரசுத் திட்டங்கள்</h1>
+                    <p class="hero-subtitle typewriter" id="hero-subtitle"></p>
+                    <button class="cta-button" onclick="Store.set('activeTab', 'chat')">
+                        இப்போதே தொடங்குங்கள் 
+                        <span>→</span>
+                    </button>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-val counter" data-target="15">0</span>
+                            <span class="stat-lab">திட்டங்கள்</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-val counter" data-target="38">0</span>
+                            <span class="stat-lab">மாவட்டங்கள்</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-val counter" data-target="100">0</span>
+                            <span class="stat-lab">இலவசம்</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: CHAT -->
+        <section id="view-chat" class="tab-view active">
+            <div class="chat-view">
+                <div class="chat-progress-container"><div class="chat-progress-bar" id="chat-progress"></div></div>
+                <div class="chat-container" id="chat-messages">
+                    <!-- Messages populated by JS -->
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" class="chat-input" id="chat-input" placeholder="செய்தியைத் தட்டச்சு செய்க..." disabled>
+                    <button class="send-btn" id="chat-send">➤</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: DIRECTORY -->
+        <section id="view-directory" class="tab-view" style="display: none;">
+            <div class="directory-view">
+                <aside class="sidebar" id="sidebar">
+                    <h3 style="margin-bottom: 20px; font-size: 16px;">வடிப்பான்கள் (Filters)</h3>
+                    
+                    <div class="filter-section">
+                        <h4 class="form-label">பிரிவு (Category)</h4>
+                        <div id="filter-categories" class="grid" style="gap: 8px;">
+                            <!-- Categories JS -->
+                        </div>
+                    </div>
+
+                    <div class="filter-section" style="margin-top: 24px;">
+                        <h4 class="form-label">அரசு (Government)</h4>
+                        <label class="flex"><input type="radio" name="govt" value="all" checked> எல்லாம்</label>
+                        <label class="flex"><input type="radio" name="govt" value="State"> TN அரசு</label>
+                        <label class="flex"><input type="radio" name="govt" value="Central"> மத்திய அரசு</label>
+                    </div>
+
+                    <div class="filter-section" style="margin-top: 24px;">
+                        <h4 class="form-label">மாவட்ட அலுவலகங்கள்</h4>
+                        <select id="district-res-select" class="input-control" style="font-size: 12px;">
+                            <option value="">தேர்ந்தெடுக்கவும்</option>
+                            <!-- Districts JS -->
+                        </select>
+                        <div id="district-res-info" style="margin-top: 12px; font-size: 11px; color: var(--text-secondary);"></div>
+                    </div>
+                </aside>
+
+                <div class="main-content">
+                    <div class="toolbar">
+                        <div class="search-wrap">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" id="dir-search" placeholder="திட்டத்தைத் தேடுக...">
+                        </div>
+                        <div class="flex" style="gap: 8px;">
+                            <button class="icon-btn" onclick="Directory.setView('grid')">⊞</button>
+                            <button class="icon-btn" onclick="Directory.setView('list')">☰</button>
+                        </div>
+                        <select class="input-control" id="dir-sort" style="width: auto;">
+                            <option value="relevance">பொருத்தம்</option>
+                            <option value="benefit">அதிக பயன்</option>
+                            <option value="deadline">கடைசி தேதி</option>
+                        </select>
+                    </div>
+                    <div class="scheme-grid" id="scheme-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: ELIGIBILITY CHECKER -->
+        <section id="view-checker" class="tab-view" style="display: none;">
+            <div class="checker-view">
+                <div class="wizard-card">
+                    <div class="wizard-header">
+                        <h2>தகுதி சரிபார்ப்பு (Checker)</h2>
+                        <div class="step-progress">
+                            <div class="step-node active" data-step="1">1</div>
+                            <div class="step-node" data-step="2">2</div>
+                            <div class="step-node" data-step="3">3</div>
+                            <div class="step-node" data-step="4">✓</div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-body" id="wizard-body">
+                        <!-- Step 1 -->
+                        <div class="wizard-step" id="step-1">
+                            <h3 style="margin-bottom: 20px; text-align: center;">நீங்கள் யார்?</h3>
+                            <div class="option-grid" id="checker-occ-grid">
+                                <div class="opt-card" data-val="Farmer">
+                                    <span class="opt-icon">🌾</span>
+                                    <span class="opt-label">விவசாயி</span>
+                                    <span class="opt-sub">Farmer</span>
+                                </div>
+                                <div class="opt-card" data-val="Student">
+                                    <span class="opt-icon">📚</span>
+                                    <span class="opt-label">மாணவர்</span>
+                                    <span class="opt-sub">Student</span>
+                                </div>
+                                <div class="opt-card" data-val="Female">
+                                    <span class="opt-icon">👩</span>
+                                    <span class="opt-label">பெண்</span>
+                                    <span class="opt-sub">Female</span>
+                                </div>
+                                <div class="opt-card" data-val="Senior">
+                                    <span class="opt-icon">👴</span>
+                                    <span class="opt-label">முதியவர்</span>
+                                    <span class="opt-sub">Senior</span>
+                                </div>
+                                <div class="opt-card" data-val="Worker">
+                                    <span class="opt-icon">👷</span>
+                                    <span class="opt-label">தொழிலாளி</span>
+                                    <span class="opt-sub">Worker</span>
+                                </div>
+                                <div class="opt-card" data-val="Other">
+                                    <span class="opt-icon">👤</span>
+                                    <span class="opt-label">மற்றவர்</span>
+                                    <span class="opt-sub">Other</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="wizard-step hidden" id="step-2">
+                            <div class="form-row">
+                                <label class="form-label">வயது (Age)</label>
+                                <input type="number" class="input-control" id="check-age" placeholder="25">
+                            </div>
+                            <div class="form-row">
+                                <label class="form-label">பாலினம் (Gender)</label>
+                                <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                                    <button class="pill-select" data-val="Male">♂ ஆண்</button>
+                                    <button class="pill-select" data-val="Female">♀ பெண்</button>
+                                    <button class="pill-select" data-val="Other">⚧ மற்றவர்</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="wizard-step hidden" id="step-3">
+                            <div class="form-row">
+                                <label class="form-label">ஆண்டு வருமானம் (Annual Income)</label>
+                                <select class="input-control" id="check-income">
+                                    <option value="60000">₹60,000 கீழ்</option>
+                                    <option value="100000">₹60,000 - ₹1 லட்சம்</option>
+                                    <option value="250000">₹1 லட்சம் - ₹2.5 லட்சம்</option>
+                                    <option value="500000">₹2.5 லட்சம் - ₹5 லட்சம்</option>
+                                    <option value="9999999">₹5 லட்சத்திற்கு மேல்</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label class="form-label">சாதி பிரிவு (Caste)</label>
+                                <div class="flex" style="flex-wrap: wrap;">
+                                    <button class="pill-select" data-val="SC">SC</button>
+                                    <button class="pill-select" data-val="ST">ST</button>
+                                    <button class="pill-select" data-val="BC">BC</button>
+                                    <button class="pill-select" data-val="MBC">MBC</button>
+                                    <button class="pill-select" data-val="OC">OC</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Results -->
+                        <div class="wizard-step hidden" id="step-4">
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <h2 id="checker-result-count">0 திட்டங்கள் பொருந்துகின்றன!</h2>
+                                <h1 id="checker-result-value" style="color: var(--text-success); font-size: 40px; margin: 10px 0;">₹0</h1>
+                                <div class="flex" style="justify-content: center;">
+                                    <button class="chip" onclick="Checker.copyResults()">📋 நகலெடு</button>
+                                    <button class="chip" style="background: #25D366; color: white; border: none;" onclick="Checker.shareWA()">📱 WhatsApp</button>
+                                    <button class="chip" onclick="Checker.reset()">🔄 மீண்டும்</button>
+                                </div>
+                            </div>
+                            <div id="checker-results-list" class="grid"></div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-footer" id="wizard-footer">
+                        <button class="icon-btn" style="font-size: 14px; font-weight: bold;" id="prev-step">← முந்தைய</button>
+                        <button class="cta-button" style="padding: 10px 30px; font-size: 14px;" id="next-step">அடுத்து →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: DASHBOARD -->
+        <section id="view-dashboard" class="tab-view" style="display: none;">
+            <div class="dashboard-view container">
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <span class="kpi-val counter" data-target="15">0</span>
+                        <span class="kpi-lab">மொத்த திட்டங்கள்</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-val" id="dash-total-val">₹0</span>
+                        <span class="kpi-lab">வருடாந்திர பயன்</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-val" id="dash-urgent-count">0</span>
+                        <span class="kpi-lab">முக்கிய கெடு</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-val" id="dash-session-saved">0</span>
+                        <span class="kpi-lab">சேமிக்கப்பட்டவை</span>
+                    </div>
+                </div>
+
+                <div class="chart-grid">
+                    <div class="dash-section">
+                        <h3 class="section-title">📊 பயன் ஒப்பீடு (Benefit Comparison)</h3>
+                        <div class="bar-container" id="dash-bar-chart">
+                            <!-- Bars JS -->
+                        </div>
+                    </div>
+                    <div class="dash-section">
+                        <h3 class="section-title">⏰ காலக்கெடு (Timeline)</h3>
+                        <div class="timeline" id="dash-timeline">
+                            <!-- Timeline JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dash-section" style="margin-top: 32px;">
+                    <h3 class="section-title">📄 தரவு அறிக்கை (Export Data)</h3>
+                    <button class="chip" onclick="Dashboard.exportCSV()">CSV ஆக பதிவிறக்கு (Download CSV)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: ABOUT -->
+        <section id="view-about" class="tab-view" style="display: none;">
+            <div class="container" style="padding: 60px 0; max-width: 800px;">
+                <h1 class="display-font" style="font-size: 48px; margin-bottom: 24px;">உரிமை AI பற்றி</h1>
+                <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 40px;">
+                    தமிழ்நாடு அரசின் நலத்திட்டங்களை ஒவ்வொரு குடிமகனும் எளிதில் கண்டறிய உதவும் ஒரு நவீனத் தளம். 
+                    எங்கள் நோக்கம் வெளிப்படையான மற்றும் எளிமையான அரசுச் சேவை.
+                </p>
+
+                <div class="grid" style="gap: 40px;">
+                    <div class="dash-section">
+                        <h4>அடிக்கடி கேட்கப்படும் கேள்விகள் (FAQ)</h4>
+                        <div id="faq-list" style="margin-top: 20px;">
+                            <!-- FAQ JS -->
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; opacity: 0.5; font-size: 12px;">
+                        Built with ❤️ for Tamil Nadu | Claude AI | v2.0 Enterprise
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FAB SYSTEM -->
+    <div id="fab-overlay" class="modal-overlay" onclick="FAB.toggle()"></div>
+    <div class="fab-container">
+        <div class="fab-menu" id="fab-menu">
+            <div class="fab-item" onclick="Store.set('activeTab', 'chat'); FAB.toggle()">
+                <span class="fab-label">சாட் தொடங்கு</span>
+                <div class="fab-icon">💬</div>
+            </div>
+            <div class="fab-item" onclick="Store.set('activeTab', 'checker'); FAB.toggle()">
+                <span class="fab-label">தகுதி சோதனை</span>
+                <div class="fab-icon">✅</div>
+            </div>
+            <div class="fab-item" onclick="window.location.href='tel:14567'; FAB.toggle()">
+                <span class="fab-label">உதவி (Helpline)</span>
+                <div class="fab-icon">📞</div>
+            </div>
+        </div>
+        <button class="fab-main" id="fab-main" onclick="FAB.toggle()">🤖</button>
+    </div>
+
+    <!-- TOASTS -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- COMPARISON MODAL -->
+    <div class="modal-overlay" id="compare-overlay" onclick="CompareTool.close()">
+        <div class="modal" id="compare-modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>திட்டங்கள் ஒப்பீடு (Comparison)</h3>
+                <button onclick="CompareTool.close()">×</button>
+            </div>
+            <div class="modal-body" id="compare-body"></div>
+        </div>
+    </div>
+
+    <!-- ═══ §2 SCHEMES DATA LAYER ═══ -->
+    <script>
+        const SCHEMES = [
+            {
+                id: "TN001", emoji: "👩", name_ta: "கலைஞர் மகளிர் உரிமைத் தொகை திட்டம்", name_ta_short: "மகளிர் உரிமைத் தொகை", name_en: "Kalaignar Magalir Urimai Thittam",
+                govt: "State", dept: "சமூக நலத்துறை", dept_ta: "Social Welfare Department", category: ["Female", "Social Welfare"], tags: ["பெண்", "பணம்", "வறுமை"],
+                eligibility: { age_min: 21, age_max: null, gender: "Female", caste: ["Any"], income_max: 250000, occupation: ["Housewife", "Worker", "Other"], ration_card_required: true, conditions_ta: ["குடும்ப வருமானம் ₹2.5 லட்சத்திற்கு கீழ் இருக்க வேண்டும்", "ஆண்டுக்கு 3600 யூனிட்டிற்கு குறைவாக மின்சாரம் பயன்படுத்த வேண்டும்"], conditions_en: ["Income < 2.5L", "Electricity < 3600 units"] },
+                benefit: { type: "Cash", amount_raw: "1000/month", amount_display: "₹1,000 / மாதம்", annual_value: 12000, desc_ta: "தகுதியுள்ள குடும்பத் தலைவிகளுக்கு மாதம் ₹1,000 வங்கி கணக்கில் நேரடியாக செலுத்தப்படும்.", desc_en: "Rs 1000 per month directly to eligible female heads of families." },
+                documents: [{name_ta: "ஆதார் அட்டை", name_en: "Aadhar"}, {name_ta: "ரேஷன் கார்டு", name_en: "Ration Card"}],
+                process: { how_to_apply_ta: "இ-சேவை மையம் அல்லது சிறப்பு முகாம்கள் மூலம் விண்ணப்பிக்கலாம்.", how_to_apply_en: "Apply via e-Seva centers or special camps.", steps_ta: ["வண்ணப்பப் படிவம் பெறவும்", "ஆவணங்களை இணைக்கவும்", "முகாமில் சமர்ப்பிக்கவும்"], apply_url: "https://edistricts.tn.gov.in/", apply_mode: ["Offline", "CSC"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 30 },
+                contact: { helpline: "1800-425-1600", website: "https://tn.gov.in", dept_office: "District Social Welfare Office" },
+                meta: { launched_year: 2023, last_updated: "2024-01", beneficiaries_tn: "1.06 Cr", budget_annual: "₹12,000 Cr" }
+            },
+            {
+                id: "TN002", emoji: "📚", name_ta: "புதுமைப் பெண் திட்டம்", name_ta_short: "புதுமைப் பெண்", name_en: "Pudhumai Penn Scheme (Moovalur Ramamirtham Ammaiyar)",
+                govt: "State", dept: "உயர்கல்வித் துறை", dept_ta: "Higher Education Department", category: ["Student", "Female", "Education"], tags: ["மாணவர்", "கல்லூரி", "உதவித்தொகை"],
+                eligibility: { age_min: 17, age_max: 24, gender: "Female", caste: ["Any"], income_max: -1, occupation: ["Student"], ration_card_required: false, conditions_ta: ["6 முதல் 12 ஆம் வகுப்பு வரை அரசு பள்ளியில் படித்திருக்க வேண்டும்"], conditions_en: ["Studied 6-12 in Govt School"] },
+                benefit: { type: "Cash", amount_raw: "1000/month", amount_display: "₹1,000 / மாதம்", annual_value: 12000, desc_ta: "அரசு பள்ளிகளில் படித்து உயர்கல்வி பயிலும் மாணவிகளுக்கு மாதம் ₹1,000 வழங்கப்படுகிறது.", desc_en: "Rs 1000/month for female students who studied 6-12 in Govt schools." },
+                documents: [{name_ta: "பள்ளி சான்றிதழ்", name_en: "School TC"}, {name_ta: "கல்லூரி சேர்க்கை", name_en: "College ID"}],
+                process: { how_to_apply_ta: "கல்லூரி வாயிலாகவே விண்ணப்பிக்கலாம்.", how_to_apply_en: "Apply through your college nodal officer.", steps_ta: ["கல்லூரி அதிகாரியை அணுகவும்", "விவரங்களை போர்ட்டலில் ஏற்றவும்"], apply_url: "https://penkalvi.tn.gov.in/", apply_mode: ["Online"] },
+                timing: { deadline: "Annual (Aug/Sep)", deadline_type: "annual", processing_days: 15 },
+                contact: { helpline: "14417", website: "https://tn.gov.in", dept_office: "Directorate of Collegiate Education" },
+                meta: { launched_year: 2022, last_updated: "2023-12", beneficiaries_tn: "2.5 Lakh+", budget_annual: "₹350 Cr" }
+            },
+            {
+                id: "CN001", emoji: "🌾", name_ta: "பி.எம் கிசான் சம்மான் நிதி", name_ta_short: "பி.எம் கிசான்", name_en: "PM Kisan Samman Nidhi",
+                govt: "Central", dept: "வேளாண்மைத் துறை", dept_ta: "Agriculture Department", category: ["Farmer"], tags: ["விவசாயி", "நிலம்", "நிதியுதவி"],
+                eligibility: { age_min: 18, age_max: null, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Farmer"], ration_card_required: false, conditions_ta: ["சிறு மற்றும் குறு விவசாயிகள்", "சொந்தமாக விவசாய நிலம் இருக்க வேண்டும்"], conditions_en: ["Small/Marginal Farmers", "Land ownership required"] },
+                benefit: { type: "Cash", amount_raw: "6000/year", amount_display: "₹6,000 / ஆண்டு", annual_value: 6000, desc_ta: "விவசாயிகளுக்கு ஆண்டுக்கு ₹6,000 மூன்று தவணைகளாக (₹2,000 வீதம்) வழங்கப்படுகிறது.", desc_en: "Rs 6000 per year in three installments of Rs 2000 each." },
+                documents: [{name_ta: "பட்டா / சிட்டா", name_en: "Land Records"}, {name_ta: "ஆதார்", name_en: "Aadhar"}],
+                process: { how_to_apply_ta: "PM-Kisan இணையதளத்தில் சுயமாக அல்லது இ-சேவை மூலம் விண்ணப்பிக்கலாம்.", how_to_apply_en: "Self-registration on portal or via e-Seva.", steps_ta: ["இணையதளத்தில் பதிவு செய்யவும்", "ஆவணங்களை பதிவேற்றவும்", "சரிபார்ப்பு காத்திருக்கவும்"], apply_url: "https://pmkisan.gov.in/", apply_mode: ["Online", "CSC"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 60 },
+                contact: { helpline: "155261", website: "https://pmkisan.gov.in", dept_office: "Agricultural Extension Center" },
+                meta: { launched_year: 2019, last_updated: "2024-02", beneficiaries_tn: "45 Lakh+", budget_annual: "₹60,000 Cr (National)" }
+            },
+            {
+                id: "TN003", emoji: "🏥", name_ta: "முதலமைச்சரின் விரிவான மருத்துவக் காப்பீடு", name_ta_short: "முதல்வர் காப்பீடு", name_en: "Chief Minister's Comprehensive Health Insurance Scheme",
+                govt: "State", dept: "மருத்துவத் துறை", dept_ta: "Health and Family Welfare Department", category: ["Health", "Insurance"], tags: ["மருத்துவம்", "ஆபரேஷன்", "இலவசம்"],
+                eligibility: { age_min: 0, age_max: null, gender: "Any", caste: ["Any"], income_max: 120000, occupation: ["Any"], ration_card_required: true, conditions_ta: ["குடும்ப ஆண்டு வருமானம் ₹1.2 லட்சத்திற்கு கீழ் இருக்க வேண்டும்"], conditions_en: ["Income < 1.2L"] },
+                benefit: { type: "Insurance", amount_raw: "500000/year", amount_display: "₹5,00,000 / ஆண்டு", annual_value: 500000, desc_ta: "குறிப்பிட்ட மருத்துவ சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளுக்கு ஆண்டுக்கு ₹5 லட்சம் வரை காப்பீடு.", desc_en: "Health insurance coverage up to Rs 5 Lakh per year for specified procedures." },
+                documents: [{name_ta: "வருமான சான்றிதழ்", name_en: "Income Certificate"}, {name_ta: "ரேஷன் கார்டு", name_en: "Ration Card"}],
+                process: { how_to_apply_ta: "மாவட்ட ஆட்சியர் அலுவலகத்தில் உள்ள காப்பீடு மையத்தை அணுகவும்.", how_to_apply_en: "Contact the insurance cell at District Collectorate.", steps_ta: ["படிவம் சமர்ப்பிக்கவும்", "புகைப்படம் எடுக்கவும்", "அட்டை பெறவும்"], apply_url: "https://www.cmchistn.com/", apply_mode: ["Offline"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 10 },
+                contact: { helpline: "1800-425-3993", website: "https://cmchistn.com", dept_office: "CMCHIS Cell, Collectorate" },
+                meta: { launched_year: 2012, last_updated: "2023-11", beneficiaries_tn: "1.4 Cr families", budget_annual: "₹1,248 Cr" }
+            },
+            {
+                id: "CN002", emoji: "🏠", name_ta: "பிரதம மந்திரி ஆவாஸ் யோஜனா (வீடு)", name_ta_short: "பி.எம் ஆவாஸ் (வீடு)", name_en: "Pradhan Mantri Awas Yojana (PMAY-G)",
+                govt: "Central", dept: "ஊரக வளர்ச்சித் துறை", dept_ta: "Rural Development Department", category: ["Housing", "Infrastructure"], tags: ["வீடு", "கட்டுமானம்", "மானியம்"],
+                eligibility: { age_min: 18, age_max: null, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Any"], ration_card_required: false, conditions_ta: ["சொந்தமாக கான்கிரீட் வீடு இருக்கக்கூடாது", "வறுமைக் கோட்டிற்கு கீழ் உள்ளவர்கள்"], conditions_en: ["Kutcha house owners only", "BPL category"] },
+                benefit: { type: "Subsidy", amount_raw: "120000", amount_display: "₹1,20,000 மானியம்", annual_value: 120000, desc_ta: "சொந்தமாக வீடு கட்டிக்கொள்ள நிதியுதவி மற்றும் கழிப்பறை கட்ட கூடுதல் மானியம்.", desc_en: "Financial assistance for house construction and toilet subsidy." },
+                documents: [{name_ta: "வீட்டுப் பட்டா", name_en: "Land Patta"}, {name_ta: "ஜோப் கார்டு", name_en: "Job Card"}],
+                process: { how_to_apply_ta: "பஞ்சாயத்து அலுவலகத்தை அணுகவும் அல்லது சென்சஸ் மூலம் தேர்ந்தெடுக்கப்படுவீர்கள்.", how_to_apply_en: "Contact Panchayat office or selected via SECC data.", steps_ta: ["விண்ணப்பம் சமர்ப்பிக்கவும்", "தள ஆய்வு", "தவணைத் தொகை பெறுதல்"], apply_url: "https://pmayg.nic.in/", apply_mode: ["Offline"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 90 },
+                contact: { helpline: "1800-11-6446", website: "https://pmayg.nic.in", dept_office: "Block Development Office (BDO)" },
+                meta: { launched_year: 2016, last_updated: "2024-01", beneficiaries_tn: "8 Lakh+", budget_annual: "₹50,000 Cr (National)" }
+            },
+            {
+                id: "TN004", emoji: "🍱", name_ta: "முதலமைச்சரின் காலை உணவுத் திட்டம்", name_ta_short: "காலை உணவுத் திட்டம்", name_en: "Chief Minister's Breakfast Scheme",
+                govt: "State", dept: "சமூக நலத்துறை", dept_ta: "Social Welfare Department", category: ["Student", "Education"], tags: ["மாணவர்", "பள்ளி", "உணவு"],
+                eligibility: { age_min: 5, age_max: 10, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Student"], ration_card_required: false, conditions_ta: ["அரசு பள்ளிகளில் 1 முதல் 5 ஆம் வகுப்பு வரை பயில வேண்டும்"], conditions_en: ["Standard 1-5 in Govt Schools"] },
+                benefit: { type: "Kind", amount_raw: "5000", amount_display: "சத்தான காலை உணவு", annual_value: 5000, desc_ta: "அனைத்து அரசு தொடக்கப் பள்ளி மாணவர்களுக்கும் பள்ளி நாட்களில் சத்தான காலை உணவு வழங்கப்படுகிறது.", desc_en: "Nutritious breakfast for all Govt primary school students on school days." },
+                documents: [{name_ta: "தேவையில்லை", name_en: "N/A"}],
+                process: { how_to_apply_ta: "பள்ளியில் சேர்ந்தாலே தானாகவே பயன் பெறலாம்.", how_to_apply_en: "Automatic enrollment on school admission.", steps_ta: ["பள்ளியில் சேரவும்"], apply_url: "N/A", apply_mode: ["Automatic"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 1 },
+                contact: { helpline: "14417", website: "https://tn.gov.in", dept_office: "Local Govt Primary School" },
+                meta: { launched_year: 2022, last_updated: "2023-09", beneficiaries_tn: "17 Lakh+", budget_annual: "₹404 Cr" }
+            },
+            {
+                id: "CN003", emoji: "🛡️", name_ta: "மகாத்மா காந்தி ஊரக வேலைவாய்ப்புத் திட்டம்", name_ta_short: "100 நாள் வேலை", name_en: "MGNREGS (100 Days Work)",
+                govt: "Central", dept: "ஊரக வளர்ச்சித் துறை", dept_ta: "Rural Development Department", category: ["Worker", "Social Welfare"], tags: ["கூலி", "வேலை", "கிராமப்புறம்"],
+                eligibility: { age_min: 18, age_max: null, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Worker", "Other"], ration_card_required: false, conditions_ta: ["கிராமப்புறத்தில் வசிக்க வேண்டும்", "உடல் உழைப்பு செய்யத் தயாராக இருக்க வேண்டும்"], conditions_en: ["Rural resident", "Ready for manual labor"] },
+                benefit: { type: "Cash", amount_raw: "319/day", amount_display: "₹319 / நாள்", annual_value: 31900, desc_ta: "ஆண்டுக்கு 100 நாட்கள் வேலை உத்தரவாதம் மற்றும் தினசரி ஊதியம்.", desc_en: "100 days of guaranteed wage employment per year." },
+                documents: [{name_ta: "ஆதார்", name_en: "Aadhar"}, {name_ta: "வங்கி கணக்கு", name_en: "Bank Passbook"}],
+                process: { how_to_apply_ta: "பஞ்சாயத்து அலுவலகத்தில் ஜோப் கார்டு விண்ணப்பிக்கவும்.", how_to_apply_en: "Apply for Job Card at Panchayat office.", steps_ta: ["ஜோப் கார்டு பெறவும்", "வேலை கோரவும்", "வங்கி கணக்கில் ஊதியம்"], apply_url: "https://nrega.nic.in/", apply_mode: ["Offline"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 15 },
+                contact: { helpline: "1800-11-1555", website: "https://nrega.nic.in", dept_office: "Panchayat Secretary" },
+                meta: { launched_year: 2005, last_updated: "2024-04", beneficiaries_tn: "90 Lakh families", budget_annual: "₹86,000 Cr (National)" }
+            },
+            {
+                id: "TN005", emoji: "🚲", name_ta: "இலவச மிதிவண்டி வழங்கும் திட்டம்", name_ta_short: "இலவச மிதிவண்டி", name_en: "Free Bicycle Scheme",
+                govt: "State", dept: "பிற்படுத்தப்பட்டோர் நலத்துறை", dept_ta: "BC, MBC & Minorities Welfare Department", category: ["Student", "Education"], tags: ["மாணவர்", "சைக்கிள்", "பள்ளி"],
+                eligibility: { age_min: 14, age_max: 16, gender: "Any", caste: ["BC", "MBC", "SC", "ST"], income_max: -1, occupation: ["Student"], ration_card_required: false, conditions_ta: ["அரசு அல்லது அரசு உதவிபெறும் பள்ளியில் 11 ஆம் வகுப்பு பயில வேண்டும்"], conditions_en: ["Standard 11 in Govt/Aided Schools"] },
+                benefit: { type: "Kind", amount_raw: "4000", amount_display: "இலவச மிதிவண்டி", annual_value: 4000, desc_ta: "மாணவர்கள் பள்ளிக்கு எளிதாகச் செல்ல இலவசமாக மிதிவண்டி வழங்கப்படுகிறது.", desc_en: "Free bicycles for students to commute to school." },
+                documents: [{name_ta: "பள்ளி சான்றிதழ்", name_en: "School Records"}],
+                process: { how_to_apply_ta: "பள்ளி நிர்வாகமே விண்ணப்பிக்கும்.", how_to_apply_en: "Handled by school administration.", steps_ta: ["பள்ளியில் விவரம் வழங்கவும்"], apply_url: "N/A", apply_mode: ["Automatic"] },
+                timing: { deadline: "Ongoing", deadline_type: "seasonal", processing_days: 30 },
+                contact: { helpline: "14417", website: "https://tn.gov.in", dept_office: "Headmaster of School" },
+                meta: { launched_year: 2001, last_updated: "2023-10", beneficiaries_tn: "6 Lakh+ / year", budget_annual: "₹300 Cr" }
+            },
+            {
+                id: "CN004", emoji: "💡", name_ta: "பிரதம மந்திரி ஜீவன் ஜோதி பீமா (காப்பீடு)", name_ta_short: "பி.எம் காப்பீடு", name_en: "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+                govt: "Central", dept: "நிதித் துறை", dept_ta: "Department of Financial Services", category: ["Health", "Insurance"], tags: ["காப்பீடு", "ஆயுள்", "பாதுகாப்பு"],
+                eligibility: { age_min: 18, age_max: 50, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Any"], ration_card_required: false, conditions_ta: ["வங்கிக் கணக்கு இருக்க வேண்டும்", "ஆண்டு பிரீமியம் ₹436 செலுத்த வேண்டும்"], conditions_en: ["Bank account required", "Annual premium Rs 436"] },
+                benefit: { type: "Insurance", amount_raw: "200000", amount_display: "₹2,00,000 ஆயுள் காப்பீடு", annual_value: 200000, desc_ta: "எந்த ஒரு காரணத்தினால் உயிரிழப்பு ஏற்பட்டாலும் குடும்பத்திற்கு ₹2 லட்சம் காப்பீடு.", desc_en: "Life insurance cover of Rs 2 Lakh for death due to any cause." },
+                documents: [{name_ta: "ஆதார்", name_en: "Aadhar"}, {name_ta: "வங்கி கணக்கு", name_en: "Bank Account"}],
+                process: { how_to_apply_ta: "உங்கள் வங்கிக் கிளையில் அல்லது மொபைல் பேங்கிங் மூலம் இணையலாம்.", how_to_apply_en: "Join via your bank branch or mobile banking app.", steps_ta: ["வங்கியை அணுகவும்", "ஒப்புதல் படிவம் வழங்கவும்", "பிரீமியம் ஆட்டோ டெபிட்"], apply_url: "https://jansuraksha.gov.in/", apply_mode: ["Online", "Offline"] },
+                timing: { deadline: "May 31 (Renew)", deadline_type: "annual", processing_days: 7 },
+                contact: { helpline: "1800-180-1111", website: "https://jansuraksha.gov.in", dept_office: "Your Bank Branch" },
+                meta: { launched_year: 2015, last_updated: "2024-05", beneficiaries_tn: "50 Lakh+", budget_annual: "N/A" }
+            },
+            {
+                id: "TN006", emoji: "💻", name_ta: "இலவச மடிக்கணினி வழங்கும் திட்டம்", name_ta_short: "இலவச மடிக்கணினி", name_en: "Free Laptop Scheme",
+                govt: "State", dept: "சிறப்புத் திட்ட செயலாக்கத் துறை", dept_ta: "Special Programme Implementation Department", category: ["Student", "Education"], tags: ["மாணவர்", "லேப்டாப்", "கல்வி"],
+                eligibility: { age_min: 15, age_max: 19, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Student"], ration_card_required: false, conditions_ta: ["அரசு அல்லது அரசு உதவிபெறும் பள்ளியில் 12 ஆம் வகுப்பு படித்திருக்க வேண்டும்"], conditions_en: ["Studied 12th in Govt/Aided schools"] },
+                benefit: { type: "Kind", amount_raw: "25000", amount_display: "இலவச மடிக்கணினி", annual_value: 25000, desc_ta: "மாணவர்களின் டிஜிட்டல் கல்விக்காக விலையில்லா மடிக்கணினி வழங்கப்படுகிறது.", desc_en: "Free laptops for students for digital learning." },
+                documents: [{name_ta: "கல்வி சான்றிதழ்", name_en: "Marksheet"}],
+                process: { how_to_apply_ta: "பள்ளி மூலமாக வழங்கப்படும்.", how_to_apply_en: "Distributed via schools.", steps_ta: ["பள்ளியில் பதிவு செய்யவும்"], apply_url: "N/A", apply_mode: ["Automatic"] },
+                timing: { deadline: "Ongoing", deadline_type: "seasonal", processing_days: 30 },
+                contact: { helpline: "14417", website: "https://tn.gov.in", dept_office: "School HM" },
+                meta: { launched_year: 2011, last_updated: "2023-08", beneficiaries_tn: "50 Lakh+ total", budget_annual: "₹900 Cr" }
+            },
+            {
+                id: "TN007", emoji: "👵", name_ta: "முதியோர் உதவித்தொகை திட்டம் (OAP)", name_ta_short: "முதியோர் ஓய்வூதியம்", name_en: "Old Age Pension (OAP) Scheme",
+                govt: "State", dept: "வருவாய்த் துறை", dept_ta: "Revenue Department", category: ["Senior", "Social Welfare"], tags: ["முதியவர்", "ஓய்வூதியம்", "பணம்"],
+                eligibility: { age_min: 60, age_max: null, gender: "Any", caste: ["Any"], income_max: 100000, occupation: ["Other"], ration_card_required: true, conditions_ta: ["ஆதரவற்ற முதியவராக இருக்க வேண்டும்", "குடும்ப வருமானம் குறிப்பிட்ட வரம்பிற்குள் இருக்க வேண்டும்"], conditions_en: ["Destitute senior", "Income < 1L"] },
+                benefit: { type: "Cash", amount_raw: "1000/month", amount_display: "₹1,000 / மாதம்", annual_value: 12000, desc_ta: "ஆதரவற்ற முதியவர்களுக்கு அவர்களின் வாழ்வாதாரத்திற்காக மாதம் ₹1,000 வழங்கப்படுகிறது.", desc_en: "Monthly pension of Rs 1000 for destitute senior citizens." },
+                documents: [{name_ta: "ஆதார்", name_en: "Aadhar"}, {name_ta: "வாக்காளர் அடையாள அட்டை", name_en: "Voter ID"}],
+                process: { how_to_apply_ta: "வட்டாட்சியர் (Tahsildar) அலுவலகத்தில் விண்ணப்பிக்கலாம்.", how_to_apply_en: "Apply at Tahsildar office.", steps_ta: ["விண்ணப்பம் சமர்ப்பிக்கவும்", "VAO சரிபார்ப்பு", "வட்டாட்சியர் ஒப்புதல்"], apply_url: "https://edistricts.tn.gov.in/", apply_mode: ["Offline", "CSC"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 45 },
+                contact: { helpline: "1800-425-1600", website: "https://tn.gov.in", dept_office: "Taluk Office" },
+                meta: { launched_year: 1962, last_updated: "2023-12", beneficiaries_tn: "30 Lakh+", budget_annual: "₹4,000 Cr" }
+            },
+            {
+                id: "CN005", emoji: "🏥", name_ta: "பிரதம மந்திரி ஜன ஆரோக்கிய யோஜனா", name_ta_short: "பி.எம் ஜன ஆரோக்கிய", name_en: "Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+                govt: "Central", dept: "மருத்துவத் துறை", dept_ta: "Health & Family Welfare", category: ["Health", "Insurance"], tags: ["மருத்துவம்", "காப்பீடு", "இலவசம்"],
+                eligibility: { age_min: 0, age_max: null, gender: "Any", caste: ["Any"], income_max: -1, occupation: ["Any"], ration_card_required: true, conditions_ta: ["SECC 2011 தரவுப்பட்டியலில் இடம் பெற்றிருக்க வேண்டும்"], conditions_en: ["Listed in SECC 2011 data"] },
+                benefit: { type: "Insurance", amount_raw: "500000/year", amount_display: "₹5,00,000 / ஆண்டு", annual_value: 500000, desc_ta: "அரசு மற்றும் தனியார் மருத்துவமனைகளில் ₹5 லட்சம் வரை இலவச சிகிச்சை.", desc_en: "Cashless health cover up to Rs 5 Lakh per family per year." },
+                documents: [{name_ta: "ரேஷன் கார்டு", name_en: "Ration Card"}],
+                process: { how_to_apply_ta: "இ-சேவை மையத்தில் தகுதி சரிபார்த்து கார்டு பெறலாம்.", how_to_apply_en: "Verify eligibility at e-Seva and get card.", steps_ta: ["தகுதி சரிபார்க்கவும்", "ஆதார் இணைப்பு", "காப்பீடு அட்டை பெறுதல்"], apply_url: "https://pmjay.gov.in/", apply_mode: ["Online", "CSC"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 7 },
+                contact: { helpline: "14555", website: "https://pmjay.gov.in", dept_office: "Government Hospital" },
+                meta: { launched_year: 2018, last_updated: "2024-03", beneficiaries_tn: "Linked with CMCHIS", budget_annual: "₹10,000 Cr (National)" }
+            },
+            {
+                id: "TN008", emoji: "🍲", name_ta: "டாக்டர் முத்துலட்சுமி ரெட்டி மகப்பேறு நிதியுதவி", name_ta_short: "மகப்பேறு நிதியுதவி", name_en: "Dr. Muthulakshmi Reddy Maternity Benefit Scheme",
+                govt: "State", dept: "மருத்துவத் துறை", dept_ta: "Health and Family Welfare", category: ["Female", "Health"], tags: ["பெண்", "கர்ப்பிணி", "நிதியுதவி"],
+                eligibility: { age_min: 19, age_max: null, gender: "Female", caste: ["Any"], income_max: -1, occupation: ["Any"], ration_card_required: false, conditions_ta: ["அரசு மருத்துவமனையில் சிகிச்சை பெற வேண்டும்", "முதல் இரண்டு பிரசவங்களுக்கு மட்டும்"], conditions_en: ["Govt hospital delivery", "First 2 pregnancies only"] },
+                benefit: { type: "Cash", amount_raw: "18000", amount_display: "₹18,00,000 நிதியுதவி", annual_value: 18000, desc_ta: "கர்ப்பிணி பெண்களுக்கு 5 தவணைகளாக மொத்தம் ₹18,000 நிதியுதவி மற்றும் ஊட்டச்சத்து பெட்டகம்.", desc_en: "Financial assistance of Rs 18,000 in 5 installments for pregnant women." },
+                documents: [{name_ta: "PICME பதிவு", name_en: "PICME Registration"}, {name_ta: "ஆதார்", name_en: "Aadhar"}],
+                process: { how_to_apply_ta: "ஆரம்ப சுகாதார நிலையத்தில் கர்ப்பமான உடன் பதிவு செய்யவும்.", how_to_apply_en: "Register at PHC during early pregnancy.", steps_ta: ["PHC-ல் பதிவு செய்யவும்", "ஆவணங்கள் வழங்கவும்", "தவணைத் தொகை பெறுதல்"], apply_url: "https://picme.tn.gov.in/", apply_mode: ["Offline"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 180 },
+                contact: { helpline: "102 / 104", website: "https://tn.gov.in", dept_office: "Primary Health Center (PHC)" },
+                meta: { launched_year: 1987, last_updated: "2023-11", beneficiaries_tn: "6 Lakh+ / year", budget_annual: "₹900 Cr" }
+            },
+            {
+                id: "CN006", emoji: "🛵", name_ta: "அம்மா இருசக்கர வாகனத் திட்டம்", name_ta_short: "அம்மா ஸ்கூட்டர்", name_en: "Amma Two Wheeler Scheme",
+                govt: "State", dept: "சமூக நலத்துறை", dept_ta: "Social Welfare Department", category: ["Female", "Worker"], tags: ["பெண்", "ஸ்கூட்டர்", "மானியம்"],
+                eligibility: { age_min: 18, age_max: 40, gender: "Female", caste: ["Any"], income_max: 250000, occupation: ["Worker", "Other"], ration_card_required: false, conditions_ta: ["பணிக்குச் செல்லும் பெண்களாக இருக்க வேண்டும்", "இருசக்கர வாகன ஓட்டுநர் உரிமம் வைத்திருக்க வேண்டும்"], conditions_en: ["Working women", "Driving license required"] },
+                benefit: { type: "Subsidy", amount_raw: "25000", amount_display: "₹25,000 மானியம்", annual_value: 25000, desc_ta: "உழைக்கும் பெண்கள் இருசக்கர வாகனம் வாங்க 50% அல்லது அதிகபட்சம் ₹25,000 மானியம்.", desc_en: "50% or max Rs 25,000 subsidy for working women to buy two-wheelers." },
+                documents: [{name_ta: "ஓட்டுநர் உரிமம்", name_en: "Driving License"}, {name_ta: "பணிச் சான்றிதழ்", name_en: "Work Certificate"}],
+                process: { how_to_apply_ta: "வட்டார வளர்ச்சி அலுவலகம் அல்லது மாநகராட்சி அலுவலகத்தில் விண்ணப்பிக்கவும்.", how_to_apply_en: "Apply at BDO or Corporation office.", steps_ta: ["விண்ணப்பம் சமர்ப்பிக்கவும்", "சரிபார்ப்பு", "மானியம் அனுமதி"], apply_url: "https://tn.gov.in", apply_mode: ["Offline"] },
+                timing: { deadline: "Seasonal", deadline_type: "seasonal", processing_days: 60 },
+                contact: { helpline: "1800-425-1600", website: "https://tn.gov.in", dept_office: "Corporation / BDO Office" },
+                meta: { launched_year: 2018, last_updated: "2023-05", beneficiaries_tn: "1 Lakh+ / year", budget_annual: "₹250 Cr" }
+            },
+            {
+                id: "CN007", emoji: "🍲", name_ta: "அன்னபூர்ணா - அந்தியோதயா அன்ன யோஜனா", name_ta_short: "இலவச அரிசி", name_en: "Antyodaya Anna Yojana (AAY)",
+                govt: "Central", dept: "உணவுத் துறை", dept_ta: "Civil Supplies Department", category: ["Social Welfare"], tags: ["உணவு", "அரிசி", "இலவசம்"],
+                eligibility: { age_min: 18, age_max: null, gender: "Any", caste: ["Any"], income_max: 50000, occupation: ["Any"], ration_card_required: true, conditions_ta: ["மிகவும் ஏழ்மையான குடும்பங்கள்", "ஆதரவற்ற நிலையில் இருப்பவர்கள்"], conditions_en: ["Poorest of poor", "Destitute"] },
+                benefit: { type: "Kind", amount_raw: "0", amount_display: "35 கிலோ அரிசி இலவசம்", annual_value: 15000, desc_ta: "குடும்ப அட்டையில் AAY முத்திரை உள்ளவர்களுக்கு மாதம் 35 கிலோ அரிசி இலவசமாக வழங்கப்படுகிறது.", desc_en: "35kg free rice per month for AAY card holders." },
+                documents: [{name_ta: "ஸ்மார்ட் கார்டு", name_en: "Smart Card"}],
+                process: { how_to_apply_ta: "ஸ்மார்ட் கார்டில் AAY பிரிவில் இணைக்க வட்டாட்சியர் அலுவலகம் செல்லவும்.", how_to_apply_en: "Apply at Taluk office for AAY category in Smart Card.", steps_ta: ["விவரம் சரிபார்க்கவும்", "AAY கார்டு பெறவும்", "ரேஷன் கடையில் பெறவும்"], apply_url: "https://www.tnpds.gov.in/", apply_mode: ["Offline", "CSC"] },
+                timing: { deadline: "Ongoing", deadline_type: "ongoing", processing_days: 30 },
+                contact: { helpline: "1967", website: "https://tnpds.gov.in", dept_office: "Taluk Civil Supplies Office" },
+                meta: { launched_year: 2000, last_updated: "2024-01", beneficiaries_tn: "18 Lakh families", budget_annual: "N/A" }
+            }
+        ];
+    </script>
+
+    <!-- ═══ §3 STATE MANAGEMENT ═══ -->
+    <script>
+        const Store = (() => {
+            const _state = {
+                theme: localStorage.getItem('urimai:theme') || 'light',
+                activeTab: 'chat',
+                previousTab: null,
+                chat: { state: 'IDLE', step: 0, profile: {}, messages: [], isTyping: false },
+                directory: { view: 'grid', searchQuery: '', activeFilters: [], sortBy: 'relevance', expandedCard: null, showSavedOnly: false },
+                checker: { step: 1, profile: { occupation: null, age: null, gender: null, caste: null, income: 60000 }, results: [], totalBenefitValue: 0 },
+                savedSchemes: JSON.parse(localStorage.getItem('urimai:saved') || '[]'),
+                analytics: { chatCompleted: 0, checksCompleted: 0, schemesSaved: 0, searchesPerformed: 0 },
+                notificationDismissed: sessionStorage.getItem('urimai:notif') === 'true',
+                fabExpanded: false
+            };
+
+            const _listeners = {};
+
+            function get(key) { return key ? _state[key] : { ..._state }; }
+
+            function set(key, value) {
+                const prev = _state[key];
+                _state[key] = (typeof value === 'object' && value !== null && !Array.isArray(value)) ? { ...prev, ...value } : value;
+                if (_listeners[key]) _listeners[key].forEach(fn => fn(_state[key], prev));
+            }
+
+            function subscribe(key, fn) {
+                if (!_listeners[key]) _listeners[key] = [];
+                _listeners[key].push(fn);
+                return () => { _listeners[key] = _listeners[key].filter(l => l !== fn); };
+            }
+
+            function toggleTheme() {
+                const newTheme = _state.theme === 'light' ? 'dark' : 'light';
+                set('theme', newTheme);
+            }
+
+            // Initialization logic for subscribers
+            subscribe('theme', val => {
+                localStorage.setItem('urimai:theme', val);
+                document.documentElement.setAttribute('data-theme', val);
+            });
+
+            subscribe('savedSchemes', val => {
+                localStorage.setItem('urimai:saved', JSON.stringify(val));
+                Events.emit('fav:updated', val);
+            });
+
+            subscribe('activeTab', (val, prev) => {
+                document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
+                document.getElementById(`view-${val}`).style.display = 'block';
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === val));
+                UI.updateNavIndicator();
+                // Special handling for dashboard animation
+                if(val === 'dashboard') Dashboard.render();
+                // Close FAB
+                FAB.toggle(false);
+            });
+
+            return { get, set, subscribe, toggleTheme };
+        })();
+    </script>
+
+    <!-- ═══ §4 UTILITY FUNCTIONS ═══ -->
+    <script>
+        const Utils = {
+            formatINR(amount) {
+                if (amount >= 10000000) return `₹${(amount / 10000000).toFixed(1)} கோடி`;
+                if (amount >= 100000) return `₹${(amount / 100000).toFixed(1)} லட்சம்`;
+                return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+            },
+
+            formatDate(date) {
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                return date.toLocaleDateString('ta-IN', options);
+            },
+
+            timeAgo(date) {
+                const seconds = Math.floor((new Date() - date) / 1000);
+                if (seconds < 30) return "இப்போது";
+                if (seconds < 60) return `${seconds} விநாடிகளுக்கு முன்`;
+                const minutes = Math.floor(seconds / 60);
+                if (minutes < 60) return `${minutes} நிமிடங்களுக்கு முன்`;
+                return "இன்று";
+            },
+
+            debounce(fn, ms) {
+                let timeout;
+                return function() {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => fn.apply(this, arguments), ms);
+                };
+            },
+
+            uuid() { return Date.now().toString(36) + Math.random().toString(36).substr(2); },
+
+            async copyToClipboard(text) {
+                try { await navigator.clipboard.writeText(text); return true; }
+                catch (e) {
+                    const el = document.createElement('textarea');
+                    el.value = text; document.body.appendChild(el);
+                    el.select(); document.execCommand('copy');
+                    document.body.removeChild(el); return true;
+                }
+            },
+
+            shareWA(text) { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`); },
+
+            calculateMatchScore(scheme, profile) {
+                let score = 0;
+                // Occupation
+                if (scheme.eligibility.occupation.includes('Any') || scheme.eligibility.occupation.includes(profile.occupation)) score += 30;
+                // Age
+                const age = parseInt(profile.age);
+                if (age) {
+                    const min = scheme.eligibility.age_min || 0;
+                    const max = scheme.eligibility.age_max || 100;
+                    if (age >= min && age <= max) score += 20;
+                }
+                // Gender
+                if (scheme.eligibility.gender === 'Any' || scheme.eligibility.gender === profile.gender) score += 20;
+                // Income
+                const income = parseInt(profile.income);
+                if (scheme.eligibility.income_max === -1 || income <= scheme.eligibility.income_max) score += 15;
+                // Caste
+                if (scheme.eligibility.caste.includes('Any') || scheme.eligibility.caste.includes(profile.caste)) score += 15;
+                
+                return score;
+            },
+
+            readAloud(text) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'ta-IN';
+                utter.rate = 0.9;
+                window.speechSynthesis.speak(utter);
+            }
+        };
+
+        const Events = {
+            emit(name, data) { document.dispatchEvent(new CustomEvent(`urimai:${name}`, { detail: data })); },
+            on(name, fn) { document.addEventListener(`urimai:${name}`, e => fn(e.detail)); }
+        };
+
+        const Toast = {
+            show(msg, type = 'success') {
+                const container = document.getElementById('toast-container');
+                const t = document.createElement('div');
+                t.className = `toast ${type}`;
+                t.innerHTML = `<span class="toast-msg">${msg}</span>`;
+                container.appendChild(t);
+                setTimeout(() => t.classList.add('show'), 10);
+                setTimeout(() => {
+                    t.classList.remove('show');
+                    setTimeout(() => t.remove(), 300);
+                }, 3000);
+            }
+        };
+    </script>
+
+    <!-- ═══ §5 ROUTING & NAVIGATION ═══ -->
+    <script>
+        const UI = {
+            init() {
+                window.addEventListener('scroll', () => {
+                    const nav = document.getElementById('app-nav');
+                    nav.classList.toggle('scrolled', window.scrollY > 20);
+                }, { passive: true });
+
+                document.querySelectorAll('.nav-tab').forEach(t => {
+                    t.addEventListener('click', () => Store.set('activeTab', t.dataset.tab));
+                });
+
+                this.updateNavIndicator();
+                window.addEventListener('resize', () => this.updateNavIndicator());
+                
+                Store.subscribe('savedSchemes', (val) => {
+                    document.getElementById('fav-badge').innerText = val.length;
+                    document.getElementById('fav-badge').style.display = val.length > 0 ? 'block' : 'none';
+                    document.getElementById('dash-session-saved').innerText = val.length;
+                });
+                
+                this.initDistricts();
+            },
+
+            updateNavIndicator() {
+                const active = document.querySelector('.nav-tab.active');
+                const indicator = document.getElementById('nav-indicator');
+                if (active) {
+                    indicator.style.width = `${active.offsetWidth}px`;
+                    indicator.style.left = `${active.offsetLeft}px`;
+                }
+            },
+
+            initDistricts() {
+                const districts = ["அரியலூர்", "செங்கல்பட்டு", "சென்னை", "கோயம்புத்தூர்", "கடலூர்", "தர்மபுரி", "திண்டுக்கல்", "ஈரோடு", "கள்ளக்குறிச்சி", "காஞ்சிபுரம்", "கன்னியாகுமரி", "கரூர்", "கிருஷ்ணகிரி", "மதுரை", "மயிலாடுதுறை", "நாகப்பட்டினம்", "நாமக்கல்", "நீலகிரி", "பெரம்பலூர்", "புதுக்கோட்டை", "ராமநாதபுரம்", "ராணிப்பேட்டை", "சேலம்", "சிவகங்கை", "தென்காசி", "தஞ்சாவூர்", "தேனி", "தூத்துக்குடி", "திருச்சிராப்பள்ளி", "திருநெல்வேலி", "திருப்பத்தூர்", "திருப்பூர்", "திருவள்ளூர்", "திருவண்ணாமலை", "திருவாரூர்", "வேலூர்", "விழுப்புரம்", "விருதுநகர்"];
+                const sel = document.getElementById('district-res-select');
+                districts.forEach(d => {
+                    const opt = document.createElement('option');
+                    opt.value = d; opt.innerText = d; sel.appendChild(opt);
+                });
+                sel.addEventListener('change', (e) => Directory.showDistrictRes(e.target.value));
+            }
+        };
+    </script>
+
+    <!-- ═══ §6 CHATBOT ENGINE ═══ -->
+    <script>
+        const Chatbot = {
+            init() {
+                this.start();
+                document.getElementById('chat-send').addEventListener('click', () => this.handleUserSend());
+                document.getElementById('chat-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') this.handleUserSend(); });
+            },
+
+            async start() {
+                Store.set('chat', { state: 'WELCOME', step: 1, messages: [] });
+                this.renderMessage('bot', "வணக்கம்! நான் உரிமை AI. உங்களுக்குப் பொருத்தமான அரசுத் திட்டங்களைக் கண்டறிய நான் உதவுகிறேன்.");
+                await this.delay(1000);
+                this.askOccupation();
+            },
+
+            askOccupation() {
+                this.renderMessage('bot', "முதலில், நீங்கள் என்ன செய்கிறீர்கள்?", ["விவசாயி", "மாணவர்", "பெண்கள்", "தொழிலாளி", "முதியவர்"]);
+                Store.set('chat', { state: 'ASK_OCCUPATION', step: 1 });
+            },
+
+            handleUserSend() {
+                const input = document.getElementById('chat-input');
+                const val = input.value.trim();
+                if (!val) return;
+                this.processInput(val);
+                input.value = '';
+            },
+
+            handleChipClick(val) {
+                this.processInput(val);
+            },
+
+            async processInput(val) {
+                this.renderMessage('user', val);
+                const chat = Store.get('chat');
+                const profile = chat.profile;
+
+                if (chat.state === 'ASK_OCCUPATION') {
+                    profile.occupation = this.mapOccupation(val);
+                    Store.set('chat', { profile, state: 'ASK_AGE', step: 2 });
+                    await this.delay(1000);
+                    this.renderMessage('bot', "நன்று. உங்கள் வயது என்ன?");
+                    document.getElementById('chat-input').disabled = false;
+                    document.getElementById('chat-input').focus();
+                } else if (chat.state === 'ASK_AGE') {
+                    if (isNaN(val) || val < 1 || val > 100) {
+                        this.renderMessage('bot', "தயவுசெய்து சரியான வயதை எண்களில் உள்ளிடவும்.");
+                        return;
+                    }
+                    profile.age = val;
+                    Store.set('chat', { profile, state: 'ASK_GENDER', step: 3 });
+                    await this.delay(1000);
+                    this.renderMessage('bot', "உங்கள் பாலினம் என்ன?", ["ஆண்", "பெண்", "மற்றவர்"]);
+                } else if (chat.state === 'ASK_GENDER') {
+                    profile.gender = this.mapGender(val);
+                    Store.set('chat', { profile, state: 'ASK_INCOME', step: 4 });
+                    await this.delay(1000);
+                    this.renderMessage('bot', "உங்கள் குடும்ப ஆண்டு வருமானம் எவ்வளவு?", ["< 1 லட்சம்", "1-2.5 லட்சம்", "> 2.5 லட்சம்"]);
+                } else if (chat.state === 'ASK_INCOME') {
+                    profile.income = this.mapIncome(val);
+                    Store.set('chat', { profile, state: 'ASK_CASTE', step: 5 });
+                    await this.delay(1000);
+                    this.renderMessage('bot', "உங்கள் சாதிப் பிரிவு எது?", ["SC/ST", "BC", "MBC", "OC"]);
+                } else if (chat.state === 'ASK_CASTE') {
+                    profile.caste = val;
+                    Store.set('chat', { profile, state: 'PROCESSING', step: 6 });
+                    await this.delay(800);
+                    this.showTyping();
+                    await this.delay(1500);
+                    this.hideTyping();
+                    this.showResults(profile);
+                }
+                
+                this.updateProgress();
+            },
+
+            mapOccupation(v) {
+                if (v === "விவசாயி") return "Farmer";
+                if (v === "மாணவர்") return "Student";
+                if (v === "பெண்கள்") return "Female";
+                if (v === "தொழிலாளி") return "Worker";
+                if (v === "முதியவர்") return "Senior";
+                return "Other";
+            },
+            mapGender(v) {
+                if (v === "ஆண்") return "Male";
+                if (v === "பெண்") return "Female";
+                return "Other";
+            },
+            mapIncome(v) {
+                if (v.includes("<")) return 60000;
+                if (v.includes("1-2.5")) return 200000;
+                return 500000;
+            },
+
+            renderMessage(role, content, chips = []) {
+                const container = document.getElementById('chat-messages');
+                const msg = document.createElement('div');
+                msg.className = `message ${role}`;
+                
+                const avatar = role === 'bot' ? `<div class="bot-avatar">AI</div>` : '';
+                const time = Utils.timeAgo(new Date());
+                
+                msg.innerHTML = `
+                    ${avatar}
+                    <div>
+                        <div class="bubble">${content}</div>
+                        <span class="msg-time">${time}</span>
+                    </div>
+                `;
+                container.appendChild(msg);
+                
+                if (chips.length > 0) {
+                    const row = document.createElement('div');
+                    row.className = 'quick-replies';
+                    chips.forEach(c => {
+                        const chip = document.createElement('button');
+                        chip.className = 'chip';
+                        chip.innerText = c;
+                        chip.onclick = () => this.handleChipClick(c);
+                        row.appendChild(chip);
+                    });
+                    container.appendChild(row);
+                }
+                
+                container.scrollTop = container.scrollHeight;
+            },
+
+            showTyping() {
+                const container = document.getElementById('chat-messages');
+                const div = document.createElement('div');
+                div.id = 'typing-indicator';
+                div.className = 'message bot';
+                div.innerHTML = `<div class="bot-avatar">AI</div><div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+                container.appendChild(div);
+                container.scrollTop = container.scrollHeight;
+            },
+
+            hideTyping() { const el = document.getElementById('typing-indicator'); if(el) el.remove(); },
+
+            showResults(profile) {
+                const matches = SCHEMES.map(s => ({ scheme: s, score: Utils.calculateMatchScore(s, profile) }))
+                    .filter(m => m.score > 50)
+                    .sort((a,b) => b.score - a.score);
+
+                this.renderMessage('bot', `மிக்க நன்றி! உங்கள் விவரங்களின்படி உங்களுக்கு **${matches.length}** திட்டங்கள் பொருத்தமாக உள்ளன.`);
+                
+                matches.slice(0, 3).forEach(m => {
+                    const s = m.scheme;
+                    const card = document.createElement('div');
+                    card.className = 'message bot';
+                    card.innerHTML = `
+                        <div class="bot-avatar">AI</div>
+                        <div class="card" style="width: 100%; max-width: 300px;">
+                            <div class="card-header"><span class="govt-tag">${s.score}% Match</span></div>
+                            <div class="card-emoji">${s.emoji}</div>
+                            <div class="card-title">${s.name_ta_short}</div>
+                            <div class="benefit-box"><span class="benefit-val">${s.benefit.amount_display}</span></div>
+                            <button class="expand-toggle" onclick="Store.set('activeTab', 'directory'); Directory.render('${s.id}')">முழு விவரம் →</button>
+                        </div>
+                    `;
+                    document.getElementById('chat-messages').appendChild(card);
+                });
+                
+                this.renderMessage('bot', "மேலும் விவரங்களுக்கு 'திட்டங்கள்' பக்கத்திற்குச் செல்லவும்.", ["மீண்டும் தொடங்கவும்"]);
+                Store.set('chat', { state: 'RESULTS', step: 7 });
+            },
+
+            updateProgress() {
+                const step = Store.get('chat').step;
+                document.getElementById('chat-progress').style.width = `${(step / 7) * 100}%`;
+            },
+
+            delay(ms) { return new Promise(res => setTimeout(res, ms)); }
+        };
+    </script>
+
+    <!-- ═══ §7 SCHEME DIRECTORY ═══ -->
+    <script>
+        const Directory = {
+            init() {
+                this.render();
+                this.initCategories();
+                document.getElementById('dir-search').addEventListener('input', Utils.debounce((e) => this.render(e.target.value), 300));
+                document.getElementById('dir-sort').addEventListener('change', () => this.render());
+            },
+
+            initCategories() {
+                const cats = ["Farmer", "Student", "Female", "Senior", "Worker", "Social Welfare", "Health", "Housing"];
+                const icons = ["🌾", "📚", "👩", "👴", "👷", "🛡️", "🏥", "🏠"];
+                const labels = ["விவசாயி", "மாணவர்", "பெண்கள்", "முதியவர்", "தொழிலாளி", "சமூக நலம்", "மருத்துவம்", "வீடு"];
+                
+                const container = document.getElementById('filter-categories');
+                cats.forEach((c, i) => {
+                    const count = SCHEMES.filter(s => s.category.includes(c)).length;
+                    const btn = document.createElement('label');
+                    btn.className = 'flex';
+                    btn.style.fontSize = '12px';
+                    btn.innerHTML = `<input type="checkbox" value="${c}"> ${icons[i]} ${labels[i]} (${count})`;
+                    btn.querySelector('input').addEventListener('change', () => {
+                        const active = Array.from(container.querySelectorAll('input:checked')).map(i => i.value);
+                        const dir = Store.get('directory');
+                        dir.activeFilters = active;
+                        Store.set('directory', dir);
+                        this.render();
+                    });
+                    container.appendChild(btn);
+                });
+            },
+
+            setView(v) {
+                const dir = Store.get('directory');
+                dir.view = v;
+                Store.set('directory', dir);
+                document.getElementById('scheme-grid').className = `scheme-grid ${v}`;
+            },
+
+            render(query = '') {
+                const grid = document.getElementById('scheme-grid');
+                grid.innerHTML = '';
+                
+                const dir = Store.get('directory');
+                const govtFilter = document.querySelector('input[name="govt"]:checked').value;
+                
+                let filtered = SCHEMES.filter(s => {
+                    const matchQ = s.name_ta.includes(query) || s.name_en.toLowerCase().includes(query.toLowerCase()) || s.id === query;
+                    const matchF = dir.activeFilters.length === 0 || dir.activeFilters.some(f => s.category.includes(f));
+                    const matchG = govtFilter === 'all' || s.govt === govtFilter;
+                    return matchQ && matchF && matchG;
+                });
+
+                // Sorting
+                const sortBy = document.getElementById('dir-sort').value;
+                if (sortBy === 'benefit') filtered.sort((a,b) => b.benefit.annual_value - a.benefit.annual_value);
+                else if (sortBy === 'deadline') filtered.sort((a,b) => (a.timing.deadline === 'Ongoing' ? 1 : -1));
+
+                filtered.forEach(s => {
+                    const card = this.renderCard(s);
+                    grid.appendChild(card);
+                });
+            },
+
+            renderCard(s) {
+                const card = document.createElement('div');
+                const primaryCat = s.category[0].toLowerCase();
+                card.className = `card stream-${primaryCat}`;
+                card.id = `card-${s.id}`;
+                const isFav = Store.get('savedSchemes').includes(s.id);
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="govt-tag">${s.govt === 'State' ? 'TN அரசு' : 'மத்திய அரசு'}</span>
+                        <div class="card-actions">
+                            <button class="icon-btn" onclick="Utils.readAloud('${s.name_ta}. ${s.benefit.desc_ta}')">🔊</button>
+                            <button class="icon-btn fav-btn ${isFav?'active':''}" onclick="Directory.toggleFav('${s.id}', this)" style="color: ${isFav?'var(--color-red-50)':'inherit'}">${isFav?'❤️':'🤍'}</button>
+                        </div>
+                    </div>
+                    <div class="card-emoji">${s.emoji}</div>
+                    <div class="card-title">${s.name_ta_short}</div>
+                    <div class="card-subtitle">${s.name_en}</div>
+                    
+                    <div class="benefit-box">
+                        <span class="benefit-val">${s.benefit.amount_display}</span>
+                        <p class="benefit-desc">${s.benefit.desc_ta}</p>
+                    </div>
+
+                    <div class="tag-row">
+                        ${s.category.map(c => {
+                            const catKey = c.toLowerCase();
+                            return `<span class="tag ${catKey}">${c}</span>`;
+                        }).join('')}
+                    </div>
+
+                    <button class="expand-toggle" onclick="this.parentElement.classList.toggle('expanded')">
+                        விவரங்கள் <span class="chevron">▼</span>
+                    </button>
+                    
+                    <div class="card-details">
+                        <div style="margin-bottom: 12px;"><b>தேவையானவை:</b> ${s.documents.map(d => d.name_ta).join(', ')}</div>
+                        <div style="margin-bottom: 12px;"><b>விண்ணப்பிக்கும் முறை:</b> ${s.process.how_to_apply_ta}</div>
+                        <div style="margin-bottom: 12px;"><b>காலக்கெடு:</b> ${s.timing.deadline}</div>
+                        <div class="flex" style="margin-top: 16px;">
+                            <button class="chip" onclick="Store.set('activeTab', 'checker')">தகுதி சோதனை</button>
+                            <a href="${s.process.apply_url}" target="_blank" class="chip" style="background: var(--color-green-800); color: white;">விண்ணப்பிக்க</a>
+                        </div>
+                    </div>
+                `;
+                return card;
+            },
+
+            toggleFav(id, btn) {
+                let saved = Store.get('savedSchemes');
+                if (saved.includes(id)) {
+                    saved = saved.filter(i => i !== id);
+                    btn.innerText = '🤍'; btn.style.color = 'inherit';
+                    Toast.show("அகற்றப்பட்டது");
+                } else {
+                    saved.push(id);
+                    btn.innerText = '❤️'; btn.style.color = 'var(--color-red-500)';
+                    Toast.show("சேமிக்கப்பட்டது!");
+                }
+                Store.set('savedSchemes', saved);
+            },
+
+            showDistrictRes(d) {
+                const info = document.getElementById('district-res-info');
+                if (!d) { info.innerHTML = ''; return; }
+                info.innerHTML = `
+                    <div class="dash-section" style="padding: 12px; background: var(--color-green-50);">
+                        <b>${d} மாவட்ட அலுவலகங்கள்:</b><br>
+                        🏢 சமூக நலத்துறை: கலெக்டர் அலுவலகம், ${d}. (📞 044-XXXXXX)<br>
+                        🌾 வேளாண்மைத்துறை: தாலுகா அலுவலகம், ${d}.<br>
+                        📚 கல்வித்துறை: முதன்மை கல்வி அலுவலர், ${d}.
+                    </div>
+                `;
+            }
+        };
+    </script>
+
+    <!-- ═══ §8 ELIGIBILITY CHECKER ═══ -->
+    <script>
+        const Checker = {
+            init() {
+                document.getElementById('next-step').addEventListener('click', () => this.next());
+                document.getElementById('prev-step').addEventListener('click', () => this.prev());
+                
+                // Occ grid selection
+                document.querySelectorAll('#checker-occ-grid .opt-card').forEach(c => {
+                    c.addEventListener('click', () => {
+                        document.querySelectorAll('#checker-occ-grid .opt-card').forEach(x => x.classList.remove('selected'));
+                        c.classList.add('selected');
+                        const prof = Store.get('checker').profile;
+                        prof.occupation = c.dataset.val;
+                        Store.set('checker', { profile: prof });
+                    });
+                });
+
+                // Pill selections
+                document.querySelectorAll('.pill-select').forEach(p => {
+                    p.addEventListener('click', () => {
+                        p.parentElement.querySelectorAll('.pill-select').forEach(x => x.style.background = 'none');
+                        p.style.background = 'var(--color-green-400)';
+                        const key = p.parentElement.parentElement.querySelector('label').innerText.includes('பாலினம்') ? 'gender' : 'caste';
+                        const prof = Store.get('checker').profile;
+                        prof[key] = p.dataset.val;
+                        Store.set('checker', { profile: prof });
+                    });
+                });
+            },
+
+            next() {
+                const checker = Store.get('checker');
+                if (checker.step === 1 && !checker.profile.occupation) { Toast.show("தொழிலைத் தேர்ந்தெடுக்கவும்", "error"); return; }
+                if (checker.step === 3) { this.calculate(); return; }
+                
+                checker.step++;
+                Store.set('checker', checker);
+                this.updateUI();
+            },
+
+            prev() {
+                const checker = Store.get('checker');
+                if (checker.step === 1) return;
+                checker.step--;
+                Store.set('checker', checker);
+                this.updateUI();
+            },
+
+            updateUI() {
+                const step = Store.get('checker').step;
+                document.querySelectorAll('.wizard-step').forEach(s => s.classList.add('hidden'));
+                document.getElementById(`step-${step}`).classList.remove('hidden');
+                
+                document.querySelectorAll('.step-node').forEach((n, i) => {
+                    n.classList.toggle('active', i + 1 === step);
+                    n.classList.toggle('done', i + 1 < step);
+                });
+
+                document.getElementById('wizard-footer').style.display = step === 4 ? 'none' : 'flex';
+                document.getElementById('prev-step').style.visibility = step === 1 ? 'hidden' : 'visible';
+                document.getElementById('next-step').innerText = step === 3 ? 'முடிவுகளைக் காண்க' : 'அடுத்து →';
+            },
+
+            calculate() {
+                const prof = Store.get('checker').profile;
+                prof.age = document.getElementById('check-age').value;
+                prof.income = document.getElementById('check-income').value;
+
+                if (!prof.age) { Toast.show("வயதை உள்ளிடவும்", "error"); return; }
+
+                const results = SCHEMES.map(s => ({ scheme: s, score: Utils.calculateMatchScore(s, prof) }))
+                    .filter(m => m.score > 40)
+                    .sort((a,b) => b.score - a.score);
+
+                const totalVal = results.reduce((acc, curr) => acc + curr.scheme.benefit.annual_value, 0);
+                
+                document.getElementById('checker-result-count').innerText = `${results.length} திட்டங்கள் பொருந்துகின்றன!`;
+                document.getElementById('checker-result-value').innerText = Utils.formatINR(totalVal);
+                
+                const list = document.getElementById('checker-results-list');
+                list.innerHTML = '';
+                results.forEach(m => {
+                    const s = m.scheme;
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-header"><span class="govt-tag" style="background: ${m.score>80?'#dcf8c6':'#fff3e0'}">${m.score}% பொருந்துகிறது</span></div>
+                        <div class="card-title">${s.name_ta_short}</div>
+                        <div class="benefit-box"><span class="benefit-val">${s.benefit.amount_display}</span></div>
+                    `;
+                    list.appendChild(card);
+                });
+
+                Store.set('checker', { step: 4, results, totalBenefitValue: totalVal });
+                this.updateUI();
+            },
+
+            reset() {
+                Store.set('checker', { step: 1, profile: { occupation: null, age: null, gender: null, caste: null, income: 60000 } });
+                document.getElementById('check-age').value = '';
+                this.updateUI();
+            },
+
+            copyResults() {
+                const checker = Store.get('checker');
+                const text = `உரிமை AI தகுதி சோதனை முடிவுகள்:\nபொருத்தமான திட்டங்கள்: ${checker.results.length}\nமொத்த மதிப்பு: ${Utils.formatINR(checker.totalBenefitValue)}\n\nகண்டறிய: https://urimai.ai`;
+                Utils.copyToClipboard(text);
+                Toast.show("நகலெடுக்கப்பட்டது!");
+            },
+
+            shareWA() {
+                const checker = Store.get('checker');
+                const text = `வணக்கம்! உரிமை AI மூலம் எனக்கு ${checker.results.length} அரசுத் திட்டங்கள் கிடைத்தன. மொத்த மதிப்பு: ${Utils.formatINR(checker.totalBenefitValue)}. நீங்களும் சோதிக்க: https://urimai.ai`;
+                Utils.shareWA(text);
+            }
+        };
+    </script>
+
+    <!-- ═══ §9 DASHBOARD ═══ -->
+    <script>
+        const Dashboard = {
+            render() {
+                // KPI
+                const totalVal = SCHEMES.reduce((acc, s) => acc + s.benefit.annual_value, 0);
+                document.getElementById('dash-total-val').innerText = Utils.formatINR(totalVal);
+                
+                const urgent = SCHEMES.filter(s => s.timing.deadline !== 'Ongoing' && s.timing.deadline !== 'Automatic').length;
+                document.getElementById('dash-urgent-count').innerText = urgent;
+
+                // Bar Chart
+                const chart = document.getElementById('dash-bar-chart');
+                chart.innerHTML = '';
+                const sorted = [...SCHEMES].sort((a,b) => b.benefit.annual_value - a.benefit.annual_value).slice(0, 8);
+                const maxVal = sorted[0].benefit.annual_value;
+
+                sorted.forEach(s => {
+                    const row = document.createElement('div');
+                    row.className = 'bar-row';
+                    const primaryCat = s.category[0].toLowerCase();
+                    row.innerHTML = `
+                        <div class="bar-label" title="${s.name_ta}">${s.name_ta_short}</div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: 0; background-color: var(--stream-${primaryCat})"></div>
+                        </div>
+                        <div style="font-size: 10px; width: 60px;">${Utils.formatINR(s.benefit.annual_value)}</div>
+                    `;
+                    chart.appendChild(row);
+                    setTimeout(() => {
+                        row.querySelector('.bar-fill').style.width = `${(s.benefit.annual_value / maxVal) * 100}%`;
+                    }, 100);
+                });
+
+                // Timeline
+                const tl = document.getElementById('dash-timeline');
+                tl.innerHTML = '';
+                const deadlines = SCHEMES.filter(s => s.timing.deadline !== 'Ongoing').sort((a,b) => a.timing.deadline.localeCompare(b.timing.deadline));
+                deadlines.forEach(s => {
+                    const item = document.createElement('div');
+                    item.className = 'timeline-item';
+                    const isUrgent = s.timing.deadline.includes('May') || s.timing.deadline.includes('Aug');
+                    item.innerHTML = `
+                        <div class="timeline-dot ${isUrgent?'urgent':''}"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">${s.timing.deadline}</div>
+                            <div style="font-weight: 600;">${s.name_ta_short}</div>
+                        </div>
+                    `;
+                    tl.appendChild(item);
+                });
+            },
+
+            exportCSV() {
+                let csv = "ID,Name (Ta),Name (En),Govt,Benefit,Annual Value (INR)\n";
+                SCHEMES.forEach(s => {
+                    csv += `${s.id},"${s.name_ta}","${s.name_en}",${s.govt},"${s.benefit.amount_display}",${s.benefit.annual_value}\n`;
+                });
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.setAttribute('hidden', ''); a.setAttribute('href', url); a.setAttribute('download', 'urimai_schemes.csv');
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            }
+        };
+    </script>
+
+    <!-- ═══ §10 NOTIFICATION SYSTEM ═══ -->
+    <script>
+        const NotificationSystem = {
+            init() {
+                if (!Store.get('notificationDismissed')) {
+                    setTimeout(() => document.getElementById('notif-banner').classList.add('show'), 1000);
+                }
+            },
+            dismiss() {
+                document.getElementById('notif-banner').classList.remove('show');
+                sessionStorage.setItem('urimai:notif', 'true');
+                Store.set('notificationDismissed', true);
+            }
+        };
+    </script>
+
+    <!-- ═══ §11 FAB SYSTEM ═══ -->
+    <script>
+        const FAB = {
+            toggle(force) {
+                const active = force !== undefined ? force : !Store.get('fabExpanded');
+                Store.set('fabExpanded', active);
+                document.getElementById('fab-main').classList.toggle('active', active);
+                document.getElementById('fab-menu').classList.toggle('active', active);
+                document.getElementById('fab-overlay').style.display = active ? 'block' : 'none';
+                setTimeout(() => document.getElementById('fab-overlay').style.opacity = active ? '1' : '0', 10);
+            }
+        };
+    </script>
+
+    <!-- ═══ §12 COMPARISON TOOL ═══ -->
+    <script>
+        const CompareTool = {
+            selected: [],
+            add(id) {
+                if (this.selected.includes(id)) {
+                    this.selected = this.selected.filter(i => i !== id);
+                } else {
+                    if (this.selected.length >= 3) { Toast.show("அதிகபட்சம் 3 திட்டங்கள்", "warning"); return; }
+                    this.selected.push(id);
+                }
+                this.renderModal();
+            },
+            open() {
+                if (this.selected.length < 2) { Toast.show("ஒப்பிட குறைந்தது 2 தேவை", "info"); return; }
+                document.getElementById('compare-overlay').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('compare-overlay').style.opacity = '1';
+                    document.getElementById('compare-modal').classList.add('open');
+                }, 10);
+            },
+            close() {
+                document.getElementById('compare-modal').classList.remove('open');
+                document.getElementById('compare-overlay').style.opacity = '0';
+                setTimeout(() => document.getElementById('compare-overlay').style.display = 'none', 300);
+            },
+            renderModal() {
+                // Simplified for this demo
+            }
+        };
+    </script>
+
+    <!-- ═══ §13 ACCESSIBILITY & FAQ ═══ -->
+    <script>
+        const About = {
+            init() {
+                const faqs = [
+                    { q: "இந்த சேவை முற்றிலும் இலவசமா?", a: "ஆம், இது பொதுமக்களுக்காக உருவாக்கப்பட்ட ஒரு இலவச சேவை." },
+                    { q: "எனது விவரங்கள் பாதுகாப்பாக இருக்குமா?", a: "ஆம், உங்கள் விவரங்கள் உங்கள் மொபைலில் மட்டுமே இருக்கும். நாங்கள் அவற்றைச் சேமிப்பதில்லை." },
+                    { q: "திட்டங்களுக்கு எப்படி விண்ணப்பிப்பது?", a: "ஒவ்வொரு திட்டத்திற்கும் விண்ணப்பிக்கும் இணையதள முகவரி அல்லது அலுவலக விவரங்கள் வழங்கப்பட்டுள்ளன." },
+                    { q: "இது அரசாங்கத்தின் அதிகாரப்பூர்வ செயலியா?", a: "இல்லை, இது அரசுத் திட்டங்களை மக்கள் எளிதில் அறிய உருவாக்கப்பட்ட ஒரு உதவித் தளம்." }
+                ];
+                const list = document.getElementById('faq-list');
+                faqs.forEach(f => {
+                    const item = document.createElement('div');
+                    item.style.marginBottom = '16px';
+                    item.innerHTML = `<details><summary style="font-weight:600; cursor:pointer;">${f.q}</summary><p style="margin-top:8px; font-size:14px; opacity:0.8;">${f.a}</p></details>`;
+                    list.appendChild(item);
+                });
+            }
+        };
+    </script>
+
+    <!-- ═══ §14 APPLICATION BOOTSTRAP ═══ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            UI.init();
+            Chatbot.init();
+            Directory.init();
+            Checker.init();
+            NotificationSystem.init();
+            About.init();
+            
+            // Hero particles
+            const mesh = document.getElementById('mesh-container');
+            for(let i=0; i<15; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 15 + 5;
+                p.style.width = `${size}px`; p.style.height = `${size}px`;
+                p.style.left = `${Math.random() * 100}%`; p.style.top = `${Math.random() * 100}%`;
+                p.style.animation = `float ${Math.random()*10 + 10}s infinite linear`;
+                mesh.appendChild(p);
+            }
+
+            // Typewriter
+            const sub = document.getElementById('hero-subtitle');
+            const phrases = ["விவசாயிகளுக்கான திட்டங்கள்", "மாணவர்களுக்கான திட்டங்கள்", "பெண்களுக்கான திட்டங்கள்"];
+            let pIdx = 0, charIdx = 0, delta = 100;
+            const type = () => {
+                const current = phrases[pIdx % phrases.length];
+                sub.innerText = current.substr(0, charIdx++);
+                if (charIdx > current.length) { charIdx = 0; pIdx++; setTimeout(type, 2000); }
+                else setTimeout(type, delta);
+            };
+            type();
+
+            // Counters
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.querySelectorAll('.counter').forEach(c => {
+                            const target = +c.dataset.target;
+                            let count = 0;
+                            const intv = setInterval(() => {
+                                count += Math.ceil(target / 50);
+                                if (count >= target) { c.innerText = target; clearInterval(intv); }
+                                else c.innerText = count;
+                            }, 30);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(document.getElementById('hero-section'));
+        });
+    </script>
+</body>
+</html>

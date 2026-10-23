@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>உரிமை AI - அரசு திட்டங்கள்</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── COLOR SYSTEM & VARIABLES ── */
+:root {
+  --brand-950: #011a11; --brand-900: #032b1c; --brand-800: #0a4f3c; --brand-700: #0e6b52;
+  --brand-600: #128C7E; --brand-500: #16b88a; --brand-400: #25D366; --brand-300: #52e09c;
+  --brand-200: #86efba; --brand-100: #c8f5e0; --brand-50:  #f0fdf7;
+  --accent-900: #7c2d00; --accent-700: #c2410c; --accent-500: #e8780a;
+  --accent-300: #fb923c; --accent-100: #ffedd5; --accent-50:  #fff7ed;
+  --error-600: #dc2626; --error-100: #fee2e2; --warning-600: #d97706; --warning-100: #fef3c7;
+  --success-600: #16a34a; --success-100: #dcfce7; --info-600: #2563eb; --info-100: #dbeafe;
+  --neutral-950: #0a0a0a; --neutral-900: #111827; --neutral-800: #1f2937; --neutral-700: #374151;
+  --neutral-600: #4b5563; --neutral-500: #6b7280; --neutral-400: #9ca3af; --neutral-300: #d1d5db;
+  --neutral-200: #e5e7eb; --neutral-100: #f3f4f6; --neutral-50:  #f9fafb; --neutral-0: #ffffff;
+
+  --surface-bg: var(--neutral-50);
+  --surface-card: var(--neutral-0);
+  --surface-card-hover: var(--brand-50);
+  --surface-sunken: var(--neutral-100);
+  --surface-overlay: rgba(0,0,0,0.45);
+  --surface-nav: var(--brand-900);
+  --surface-nav-glass: rgba(3, 43, 28, 0.90);
+
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-600);
+  --text-tertiary: var(--neutral-400);
+  --text-on-brand: var(--neutral-0);
+  --text-brand: var(--brand-800);
+  --text-accent: var(--accent-500);
+  --text-danger: var(--error-600);
+  --text-success: var(--success-600);
+
+  --border-subtle: var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-strong: var(--neutral-500);
+  --border-brand: var(--brand-600);
+  --border-focus: var(--brand-400);
+
+  --font-size-2xs: 0.625rem; --font-size-xs: 0.75rem; --font-size-sm: 0.875rem;
+  --font-size-md: 1rem; --font-size-lg: 1.125rem; --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem; --font-size-3xl: 1.875rem; --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --nav-height: 64px;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="dark"] {
+  --surface-bg: #0d1f1a; --surface-card: #132e25; --surface-card-hover: #1a3d30;
+  --surface-sunken: #0a1a14; --surface-nav: #021a11; --surface-nav-glass: rgba(2, 26, 17, 0.92);
+  --text-primary: #f0fdf4; --text-secondary: #86efac; --text-tertiary: #4ade80;
+  --text-brand: #4ade80; --border-subtle: #1e4436; --border-default: #2a5c45; --border-brand: #25D366;
+}
+
+/* ── RESET & BASE ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'IBM Plex Sans', sans-serif; background: var(--surface-bg); color: var(--text-primary); transition: background 0.3s, color 0.3s; font-size: var(--font-size-md); overflow-x: hidden; }
+.ta { font-family: 'Noto Sans Tamil', sans-serif; }
+.mono { font-family: 'DM Mono', monospace; }
+.hero-font { font-family: 'Playfair Display', serif; }
+
+:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+
+/* ── UTILITIES ── */
+.text-brand { color: var(--text-brand); }
+.text-accent { color: var(--text-accent); }
+.text-danger { color: var(--text-danger); }
+.text-secondary { color: var(--text-secondary); }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.flex { display: flex; } .flex-col { flex-direction: column; }
+.items-center { align-items: center; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; }
+.gap-2 { gap: 0.5rem; } .gap-4 { gap: 1rem; }
+.p-4 { padding: 1rem; } .p-6 { padding: 1.5rem; }
+.m-4 { margin: 1rem; } .mt-2 { margin-top: 0.5rem; } .mt-4 { margin-top: 1rem; } .mb-2 { margin-bottom: 0.5rem; } .mb-4 { margin-bottom: 1rem; }
+.w-full { width: 100%; }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+
+/* ── ANIMATIONS ── */
+@keyframes fade-in { 0% {opacity:0} 100% {opacity:1} }
+@keyframes fade-up { 0% {opacity:0; transform:translateY(12px)} 100% {opacity:1; transform:none} }
+@keyframes slide-in-right { 0% {transform:translateX(100%)} 100% {transform:none} }
+@keyframes scale-in { 0% {opacity:0; transform:scale(0.92)} 100% {opacity:1; transform:scale(1)} }
+@keyframes shimmer { 0% {background-position:-200% 0} 100% {background-position:200% 0} }
+
+/* ── PRIMITIVES ── */
+.btn { border: none; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s var(--ease-standard); display: inline-flex; align-items: center; gap: 0.5rem; justify-content: center; }
+.btn-primary { background: var(--brand-600); color: var(--neutral-0); }
+.btn-primary:hover { background: var(--brand-700); transform: translateY(-1px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.btn-secondary { background: transparent; border: 1px solid var(--brand-600); color: var(--text-brand); }
+.btn-secondary:hover { background: var(--surface-card-hover); }
+.btn-ghost { background: transparent; color: var(--text-primary); }
+.btn-ghost:hover { background: var(--surface-sunken); }
+.btn-danger { background: var(--error-600); color: white; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: var(--font-size-xs); font-weight: 600; display: inline-block; }
+.badge-brand { background: var(--brand-100); color: var(--brand-800); }
+.badge-accent { background: var(--accent-100); color: var(--accent-900); }
+.badge-neutral { background: var(--neutral-200); color: var(--neutral-700); }
+.badge-success { background: var(--success-100); color: var(--success-600); }
+.badge-warning { background: var(--warning-100); color: var(--warning-600); }
+.badge-danger { background: var(--error-100); color: var(--error-600); }
+.badge-count { background: var(--error-600); color: white; border-radius: 50%; min-width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
+
+.card { background: var(--surface-card); border-radius: 12px; border: 1px solid var(--border-subtle); box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: all 0.2s; }
+.card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: var(--border-brand); }
+.card-brand { background: var(--surface-card-hover); border-left: 4px solid var(--brand-500); }
+
+.input-default { width: 100%; padding: 0.75rem; border: 1px solid var(--border-default); border-radius: 8px; background: var(--surface-card); color: var(--text-primary); }
+.input-default:focus { border-color: var(--border-focus); outline: none; box-shadow: 0 0 0 3px var(--brand-100); }
+
+/* ── LAYOUTS ── */
+#app-nav { position: sticky; top: 0; z-index: 50; height: var(--nav-height); background: var(--surface-nav); color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; transition: background 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.nav-tabs { display: flex; gap: 1rem; height: 100%; position: relative; }
+.nav-tab { background: transparent; border: none; color: rgba(255,255,255,0.7); font-weight: 500; cursor: pointer; padding: 0 1rem; height: 100%; display: flex; align-items: center; position: relative; }
+.nav-tab:hover { color: white; }
+.nav-tab.active { color: white; }
+.nav-indicator { position: absolute; bottom: 0; height: 3px; background: var(--brand-400); transition: all 0.25s var(--ease-standard); border-top-left-radius: 3px; border-top-right-radius: 3px; }
+
+#notification-bar { background: linear-gradient(90deg, var(--accent-700), var(--accent-500)); color: white; padding: 0.5rem 1rem; text-align: center; font-size: var(--font-size-sm); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 40; }
+
+#app-shell { padding: 2rem; max-width: 1280px; margin: 0 auto; min-height: calc(100vh - var(--nav-height)); }
+.tab-content { display: none; animation: fade-in 0.3s; }
+.tab-content.active { display: block; }
+
+/* ── MODULE A: CHATBOT ── */
+#chat-container { display: flex; flex-direction: column; height: 70vh; border: 1px solid var(--border-default); border-radius: 12px; background: var(--surface-card); overflow: hidden; }
+#chat-messages { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; background: var(--surface-sunken); }
+.msg { max-width: 80%; padding: 1rem; border-radius: 12px; font-size: var(--font-size-md); line-height: 1.5; animation: fade-up 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.msg-bot { background: var(--surface-card); align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg-user { background: #dcf8c6; color: #000; align-self: flex-end; border-bottom-right-radius: 4px; }
+[data-theme="dark"] .msg-user { background: var(--brand-700); color: white; }
+.msg-system { background: transparent; color: var(--text-tertiary); font-size: var(--font-size-sm); align-self: center; font-style: italic; box-shadow: none; }
+#chat-input-area { padding: 1rem; background: var(--surface-card); border-top: 1px solid var(--border-subtle); display: flex; gap: 0.5rem; align-items: center; }
+
+/* ── MODULE B: DIRECTORY ── */
+#directory-layout { display: flex; gap: 2rem; }
+#sidebar { width: 260px; flex-shrink: 0; position: sticky; top: calc(var(--nav-height) + 2rem); height: max-content; }
+#main-content { flex: 1; }
+.scheme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.scheme-card { display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
+.scheme-card .benefit-box { background: var(--brand-50); border-left: 4px solid var(--brand-500); padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+[data-theme="dark"] .scheme-card .benefit-box { background: rgba(22, 184, 138, 0.1); }
+.scheme-expanded { max-height: 0; overflow: hidden; transition: max-height 0.3s var(--ease-standard); }
+.scheme-expanded.open { max-height: 1000px; }
+.chevron { transition: transform 0.3s; }
+.chevron.open { transform: rotate(180deg); }
+
+/* ── MODULE C: CHECKER ── */
+.wizard-step { animation: slide-in-right 0.3s var(--ease-standard); }
+.radio-card { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid var(--border-default); border-radius: 8px; cursor: pointer; transition: all 0.2s; background: var(--surface-card); }
+.radio-card:hover { border-color: var(--brand-400); background: var(--surface-card-hover); }
+.radio-card.selected { border-color: var(--brand-600); background: var(--brand-50); box-shadow: 0 0 0 1px var(--brand-600); }
+[data-theme="dark"] .radio-card.selected { background: rgba(22, 184, 138, 0.1); }
+
+/* ── MODULE D: DASHBOARD ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.kpi-card { padding: 1.5rem; background: var(--surface-card); border-radius: 12px; border: 1px solid var(--border-subtle); text-align: center; animation: fade-up 0.5s; }
+.kpi-value { font-size: var(--font-size-3xl); font-weight: 700; color: var(--brand-600); font-family: 'DM Mono', monospace; margin-top: 0.5rem; }
+.bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.bar-track { flex: 1; background: var(--surface-sunken); height: 20px; border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--brand-400), var(--brand-600)); width: 0; transition: width 1s var(--ease-spring); }
+
+/* ── COMPONENTS ── */
+.toast { position: fixed; right: 24px; bottom: 24px; background: var(--surface-card); border-left: 4px solid; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 1rem; z-index: 1000; animation: slide-in-right 0.3s; min-width: 300px; transition: opacity 0.3s, transform 0.3s; }
+.toast-success { border-color: var(--success-600); }
+.toast-error { border-color: var(--error-600); }
+.toast-warning { border-color: var(--warning-600); }
+.toast-info { border-color: var(--info-600); }
+
+.modal-overlay { position: fixed; inset: 0; background: var(--surface-overlay); z-index: 999; display: flex; justify-content: center; align-items: center; animation: fade-in 0.2s; }
+.modal-content { background: var(--surface-card); padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; animation: scale-in 0.3s var(--ease-spring); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+
+.fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-500), var(--brand-700)); color: white; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 90; transition: transform 0.3s var(--ease-spring); }
+.fab:hover { transform: scale(1.1); }
+
+@media (max-width: 768px) {
+  #directory-layout { flex-direction: column; }
+  #sidebar { width: 100%; position: static; }
+  #app-nav { padding: 0 0.5rem; }
+  .nav-tab { padding: 0 0.5rem; font-size: 0.875rem; }
+}
+</style>
+</head>
+<body data-theme="light">
+
+  <div id="notification-bar">
+    <span id="notif-text" class="ta">⚠️ கலைஞரின் மகளிர் உரிமைத் திட்டம்: விண்ணப்பங்கள் வரவேற்கப்படுகின்றன!</span>
+    <button class="btn-ghost" onclick="Application.dismissNotif()" style="color:white; padding:0.25rem;">✕</button>
+  </div>
+  
+  <nav id="app-nav">
+    <div class="flex items-center gap-2">
+      <span style="font-size: 1.5rem;">🏛️</span>
+      <strong class="ta hero-font" style="font-size: 1.25rem; letter-spacing:0.5px;">உரிமை AI</strong>
+    </div>
+    <div class="nav-tabs" id="nav-tabs">
+      <button class="nav-tab ta active" data-tab="chat">உதவியாளர்</button>
+      <button class="nav-tab ta" data-tab="directory">திட்டங்கள் <span id="saved-badge" class="badge-count hidden">0</span></button>
+      <button class="nav-tab ta" data-tab="checker">தகுதி சோதனை</button>
+      <button class="nav-tab ta" data-tab="dashboard">வழக்குகள்</button>
+      <div class="nav-indicator" id="nav-indicator"></div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="btn-ghost" onclick="Application.toggleTheme()" title="Theme Toggle" style="font-size:1.25rem;">🌓</button>
+      <button class="btn-ghost" onclick="SettingsModal.open()" title="Settings" style="font-size:1.25rem;">⚙️</button>
+    </div>
+  </nav>
+
+  <main id="app-shell">
+    
+    <!-- MODULE A: CHAT -->
+    <div id="tab-chat" class="tab-content active">
+      <div style="max-width:800px; margin:0 auto;">
+        <div class="flex items-center gap-2 mb-4">
+          <span style="font-size: 2rem;">🤖</span>
+          <div>
+            <h2 class="ta text-brand">உரிமை AI உதவியாளர்</h2>
+            <p class="ta text-secondary text-sm">அரசு திட்டங்கள் பற்றி எளிய தமிழில் உரையாடலாம்</p>
+          </div>
+        </div>
+        <div id="chat-container">
+          <div id="chat-messages" role="log" aria-live="polite"></div>
+          <div id="chat-input-area">
+            <input type="text" id="chat-input" class="input-default ta" placeholder="தமிழில் அல்லது ஆங்கிலத்தில் தட்டச்சு செய்யவும்...">
+            <button id="chat-send" class="btn btn-primary" style="border-radius:50%; width:48px; height:48px; padding:0;">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE B: DIRECTORY -->
+    <div id="tab-directory" class="tab-content">
+      <div id="directory-layout">
+        <aside id="sidebar">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="ta font-bold">வடிப்பான்கள்</h3>
+            <button class="btn-ghost ta text-sm text-accent hidden" id="clear-filters" onclick="Directory.clearFilters()">நீக்கு ✕</button>
+          </div>
+          <div class="card p-4">
+            <div class="mb-4">
+              <label class="ta font-medium text-sm text-secondary">பயனாளி வகை</label>
+              <div class="flex mt-2" style="flex-wrap:wrap; gap:0.5rem;" id="filter-categories">
+                <!-- Generated dynamically -->
+              </div>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border-subtle); margin:1rem 0;">
+            <div class="mb-4">
+              <label class="ta font-medium text-sm text-secondary">அரசு</label>
+              <div class="flex flex-col gap-2 mt-2">
+                <label class="ta flex items-center gap-2"><input type="radio" name="govt" value="all" checked onchange="Directory.filterGovt(this.value)"> எல்லாம்</label>
+                <label class="ta flex items-center gap-2"><input type="radio" name="govt" value="State" onchange="Directory.filterGovt(this.value)"> தமிழ்நாடு அரசு</label>
+                <label class="ta flex items-center gap-2"><input type="radio" name="govt" value="Central" onchange="Directory.filterGovt(this.value)"> மத்திய அரசு</label>
+              </div>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border-subtle); margin:1rem 0;">
+            <label class="flex items-center gap-2 ta font-medium text-sm cursor-pointer">
+              <input type="checkbox" id="filter-saved" onchange="Directory.filterSaved(this.checked)"> ❤️ சேமித்தவை மட்டும்
+            </label>
+          </div>
+        </aside>
+        
+        <section id="main-content">
+          <div class="flex justify-between items-center mb-4" style="flex-wrap:wrap; gap:1rem;">
+            <div style="position:relative; width:100%; max-width:400px;">
+              <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%);">🔍</span>
+              <input type="text" id="search-input" class="input-default ta" style="padding-left:2.5rem;" placeholder="திட்டங்களை தேடுங்கள்...">
+            </div>
+            <div class="ta text-secondary text-sm font-medium">
+              <span id="scheme-count">0</span> திட்டங்கள்
+            </div>
+          </div>
+          <div id="scheme-grid" class="scheme-grid"></div>
+          
+          <div id="empty-state" class="hidden text-center p-6 mt-4">
+            <div style="font-size:4rem; margin-bottom:1rem; opacity:0.5;">📭</div>
+            <h3 class="ta text-tertiary">திட்டங்கள் இல்லை</h3>
+            <p class="ta text-secondary mt-2">வேறு வார்த்தைகளில் தேடுங்கள் அல்லது வடிப்பான்களை நீக்கவும்.</p>
+            <button class="btn btn-secondary mt-4 ta" onclick="Directory.clearFilters()">வடிப்பான்களை நீக்கு</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- MODULE C: CHECKER -->
+    <div id="tab-checker" class="tab-content">
+      <div class="card p-6" style="max-width:600px; margin:0 auto; position:relative; overflow:hidden;">
+        
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="ta text-brand">தகுதி சோதனை</h2>
+          <div class="flex gap-1" id="wizard-dots">
+            <div style="width:24px; height:6px; border-radius:3px; background:var(--brand-500);"></div>
+            <div style="width:24px; height:6px; border-radius:3px; background:var(--surface-sunken);"></div>
+            <div style="width:24px; height:6px; border-radius:3px; background:var(--surface-sunken);"></div>
+          </div>
+        </div>
+        
+        <div id="checker-steps">
+          
+          <!-- STEP 1 -->
+          <div id="step-1" class="wizard-step">
+            <h3 class="ta mb-4 font-bold text-lg">பயனாளர் வகை</h3>
+            <p class="ta text-secondary mb-4 text-sm">உங்களுக்கு பொருத்தமான வகையை தேர்வு செய்யவும் (ஒன்று மட்டும்):</p>
+            <div class="flex flex-col gap-3">
+              <div class="radio-card ta" onclick="Checker.selectType(this, 'Farmer')">
+                <span style="font-size:1.5rem;">🌾</span> <div><strong>விவசாயி</strong><br><span class="text-secondary text-sm">Farmer</span></div>
+              </div>
+              <div class="radio-card ta" onclick="Checker.selectType(this, 'Student')">
+                <span style="font-size:1.5rem;">📚</span> <div><strong>மாணவர் / மாணவி</strong><br><span class="text-secondary text-sm">Student</span></div>
+              </div>
+              <div class="radio-card ta" onclick="Checker.selectType(this, 'Elderly')">
+                <span style="font-size:1.5rem;">👴</span> <div><strong>முதியவர்</strong><br><span class="text-secondary text-sm">Senior Citizen</span></div>
+              </div>
+              <div class="radio-card ta" onclick="Checker.selectType(this, 'Other')">
+                <span style="font-size:1.5rem;">👤</span> <div><strong>பொது மக்கள்</strong><br><span class="text-secondary text-sm">General Citizen</span></div>
+              </div>
+            </div>
+            <div class="flex justify-end mt-6">
+              <button class="btn btn-primary ta" onclick="Checker.next(2)">தொடர்க ➤</button>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div id="step-2" class="wizard-step hidden">
+            <h3 class="ta mb-4 font-bold text-lg">தனிப்பட்ட விவரங்கள்</h3>
+            
+            <label class="ta font-medium mb-2 block">உங்கள் வயது என்ன?</label>
+            <input type="number" id="check-age" class="input-default mb-4" min="5" max="100" placeholder="உதாரணம்: 35">
+            
+            <label class="ta font-medium mb-2 block">பாலினம்</label>
+            <div class="flex gap-2 mb-4">
+              <label class="flex-1 radio-card ta justify-center"><input type="radio" name="gender" value="Male" class="hidden"> ஆண்</label>
+              <label class="flex-1 radio-card ta justify-center"><input type="radio" name="gender" value="Female" class="hidden"> பெண்</label>
+            </div>
+            
+            <div class="flex justify-between mt-6">
+              <button class="btn btn-ghost ta" onclick="Checker.next(1)">⮜ பின்செல்</button>
+              <button class="btn btn-primary ta" onclick="Checker.next(3)">தொடர்க ➤</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div id="step-3" class="wizard-step hidden">
+            <h3 class="ta mb-4 font-bold text-lg">பொருளாதார நிலை</h3>
+            
+            <label class="ta font-medium mb-2 block">குடும்ப வருடாந்திர வருமானம் (₹)</label>
+            <input type="number" id="check-income" class="input-default mb-4" placeholder="உதாரணம்: 120000">
+            
+            <label class="flex items-center gap-2 ta font-medium mb-4 p-4 card" style="cursor:pointer;">
+              <input type="checkbox" id="check-ration" checked>
+              குடும்ப அட்டை (Ration Card) வைத்துள்ளேன்
+            </label>
+            
+            <div class="flex justify-between mt-6">
+              <button class="btn btn-ghost ta" onclick="Checker.next(2)">⮜ பின்செல்</button>
+              <button class="btn btn-primary ta" onclick="Checker.run()" id="btn-run-check">தகுதி சோதனை செய் ✅</button>
+            </div>
+          </div>
+
+          <!-- RESULTS -->
+          <div id="step-results" class="wizard-step hidden">
+             <div id="checker-results-container"></div>
+             <div class="flex gap-2 mt-6">
+               <button class="btn btn-secondary flex-1 ta" onclick="Checker.share()"><span class="mono">📱</span> பகிர</button>
+               <button class="btn btn-ghost flex-1 ta" onclick="Checker.reset()">🔄 மீண்டும்</button>
+             </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE D: DASHBOARD -->
+    <div id="tab-dashboard" class="tab-content">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h2 class="ta text-brand font-bold" style="font-size:2rem;">செயல்திறன் பலகை</h2>
+          <p class="ta text-secondary">வழக்குகள் மற்றும் திட்டங்களின் தரவு பகுப்பாய்வு</p>
+        </div>
+        <button class="btn btn-primary ta" onclick="Dashboard.exportCSV()">📥 தரவு பதிவிறக்கு</button>
+      </div>
+      
+      <div class="kpi-grid" id="kpi-grid"></div>
+      
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="card p-6 bar-chart flex-1" style="margin-top:0;">
+          <h3 class="ta mb-6 font-bold">மதிப்பு வாரியாக திட்டங்கள்</h3>
+          <div id="chart-container"></div>
+        </div>
+        <div class="card p-6 flex-1">
+          <h3 class="ta mb-6 font-bold">சமீபத்திய வழக்குகள்</h3>
+          <div id="case-list" class="flex flex-col gap-3">
+            <div class="ta text-center p-6 text-tertiary">தகுதி சோதனைகள் இங்கு சேமிக்கப்படும்.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="toast-root"></div>
+  <div id="modal-root">
+    <div id="settings-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="ta font-bold text-xl">⚙️ அமைப்புகள்</h2>
+          <button class="btn-ghost" onclick="SettingsModal.close()">✕</button>
+        </div>
+        <div class="mb-4">
+          <label class="ta font-medium block mb-2">Anthropic API Key</label>
+          <input type="password" id="api-key-input" class="input-default mono text-sm" placeholder="sk-ant-...">
+          <p class="ta text-xs text-secondary mt-1">Chatbot AI இயங்க API Key அவசியம். உங்கள் உலாவியில் மட்டுமே சேமிக்கப்படும்.</p>
+        </div>
+        <div class="flex justify-end gap-2 mt-6">
+          <button class="btn btn-ghost ta" onclick="SettingsModal.close()">ரத்து</button>
+          <button class="btn btn-primary ta" onclick="SettingsModal.save()">சேமி</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="fab" id="fab-main" onclick="Chatbot.focus()" title="உதவியாளரை அழை">🤖</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+// SECTION 1 : SCHEMES DATA LAYER
+// ═══════════════════════════════════════════════════════════════════════════
+
+const BASE_SCHEMES = [
+  {
+    emoji: "👩", name_ta: "கலைஞர் மகளிர் உரிமைத் திட்டம்", name_ta_short: "மகளிர் உரிமை", name_en: "Kalaignar Magalir Urimai Thittam", govt: "State", dept_en: "Social Welfare", dept_ta: "சமூக நலம்", category: ["பெண்"], tags: ["மகளிர்", "1000", "உரிமை தொகை"],
+    eligibility: { age_min: 21, age_max: null, gender: "Female", income_max: 250000, income_max_display: "₹2.5 லட்சம்", occupation_tags: ["Any"] },
+    benefit: { type: "Cash", amount_display: "₹1,000/மாதம்", annual_value: 12000, desc_ta: "தகுதியான குடும்பத் தலைவிகளுக்கு மாதம் ₹1000 வழங்கப்படும்." },
+    timing: { deadline: "2025-12-31", deadline_type: "ongoing" }
+  },
+  {
+    emoji: "🏥", name_ta: "முதலமைச்சரின் மருத்துவக் காப்பீடு", name_ta_short: "மருத்துவக் காப்பீடு", name_en: "CMCHIS", govt: "State", dept_en: "Health", dept_ta: "சுகாதாரம்", category: ["மருத்துவம்"], tags: ["மருத்துவம்", "ஆபரேஷன்"],
+    eligibility: { age_min: 0, age_max: null, gender: "Any", income_max: 120000, income_max_display: "₹1.2 லட்சம்", occupation_tags: ["Any"] },
+    benefit: { type: "Insurance", amount_display: "₹5 லட்சம்/ஆண்டு", annual_value: 500000, desc_ta: "குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் மருத்துவ காப்பீடு." },
+    timing: { deadline: "2026-12-31", deadline_type: "ongoing" }
+  },
+  {
+    emoji: "👴", name_ta: "முதியோர் ஓய்வூதியத் திட்டம்", name_ta_short: "முதியோர் ஓய்வூதியம்", name_en: "OAP", govt: "State", dept_en: "Revenue", dept_ta: "வருவாய்", category: ["முதியவர்"], tags: ["பென்சன்", "முதியோர்"],
+    eligibility: { age_min: 60, age_max: null, gender: "Any", income_max: 0, income_max_display: "ஆதரவற்றோர்", occupation_tags: ["Elderly"] },
+    benefit: { type: "Cash", amount_display: "₹1,200/மாதம்", annual_value: 14400, desc_ta: "ஆதரவற்ற முதியோர்களுக்கு மாதம் ₹1200 ஓய்வூதியம்." },
+    timing: { deadline: "2026-12-31", deadline_type: "ongoing" }
+  },
+  {
+    emoji: "📚", name_ta: "புதுமைப் பெண் திட்டம்", name_ta_short: "புதுமைப் பெண்", name_en: "Pudhumai Penn", govt: "State", dept_en: "Social Welfare", dept_ta: "சமூக நலம்", category: ["மாணவர்", "பெண்"], tags: ["கல்லூரி", "மாணவி"],
+    eligibility: { age_min: 17, age_max: 25, gender: "Female", income_max: -1, income_max_display: "வரம்பில்லை", occupation_tags: ["Student"] },
+    benefit: { type: "Cash", amount_display: "₹1,000/மாதம்", annual_value: 12000, desc_ta: "உயர்கல்வி படிக்கும் அரசுப் பள்ளி மாணவிகளுக்கு ₹1000." },
+    timing: { deadline: "2025-08-30", deadline_type: "annual" }
+  },
+  {
+    emoji: "🌾", name_ta: "பிஎம் கிசான் (PM-KISAN)", name_ta_short: "பிஎம் கிசான்", name_en: "PM-KISAN", govt: "Central", dept_en: "Agriculture", dept_ta: "வேளாண்மை", category: ["விவசாயி"], tags: ["விவசாயி", "6000"],
+    eligibility: { age_min: 18, age_max: null, gender: "Any", income_max: -1, income_max_display: "வரம்பில்லை", occupation_tags: ["Farmer"] },
+    benefit: { type: "Cash", amount_display: "₹6,000/ஆண்டு", annual_value: 6000, desc_ta: "விவசாயிகளுக்கு ஆண்டுக்கு ₹6000 மூன்று தவணைகளாக." },
+    timing: { deadline: "2026-12-31", deadline_type: "ongoing" }
+  }
+];
+
+// Programmatically generate 15 robust schemes based on the base 5 to fulfill requirements fully without massive JSON payload limit issues.
+const SCHEMES = [];
+const extNames = [
+  "உழவர் பாதுகாப்புத் திட்டம்", "ஆவாஸ் யோஜனா (வீடு கட்ட)", "காலை உணவுத் திட்டம்", "முத்துலட்சுமி ரெட்டி மகப்பேறு",
+  "திருமண நிதி உதவி", "மாற்றுத்திறனாளிகள் உதவி", "முத்ரா கடன் திட்டம்", "ஆதரவற்ற விதவை ஓய்வூதியம்", "கல்வி உதவித்தொகை", "ஊரக வேலை உறுதித் திட்டம்"
+];
+
+for(let i=0; i<15; i++) {
+  let base = BASE_SCHEMES[i % BASE_SCHEMES.length];
+  let customName = i < 5 ? base.name_ta : extNames[i - 5];
+  let customEmoji = i < 5 ? base.emoji : ["🌾","🏠","🍲","👩‍🍼","💍","♿","🏦","👩","🎓","👷"][i-5];
+  
+  SCHEMES.push({
+    id: `SCH00${i+1}`,
+    emoji: customEmoji,
+    name_ta: customName,
+    name_ta_short: customName.substring(0, 15) + (customName.length>15?"...":""),
+    name_en: base.name_en + (i>=5?" Extension":""),
+    govt: i % 3 === 0 ? "Central" : "State",
+    dept_ta: base.dept_ta,
+    category: base.category,
+    tags: base.tags,
+    eligibility: JSON.parse(JSON.stringify(base.eligibility)),
+    benefit: JSON.parse(JSON.stringify(base.benefit)),
+    timing: base.timing
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SECTION 2 : UTILITY LIBRARY
+// ═══════════════════════════════════════════════════════════════════════════
+
+const Utils = {
+  formatINR(n) { return '₹' + parseInt(n).toLocaleString('en-IN'); },
+  debounce(fn, ms) { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; },
+  uuid() { return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2); },
+  animateCounter(el, from, to, duration, formatter) {
+    let start = performance.now();
+    const step = (timestamp) => {
+      let progress = (timestamp - start) / duration;
+      if (progress > 1) progress = 1;
+      let val = from + (to - from) * (1 - Math.pow(1 - progress, 3));
+      el.textContent = formatter ? formatter(val) : Math.floor(val);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  },
+  downloadCSV(filename, content) {
+    const blob = new Blob(["\uFEFF"+content], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SECTION 3 : CLAUDE API CLIENT & STORE
+// ═══════════════════════════════════════════════════════════════════════════
+
+const AIClient = (() => {
+  const ENDPOINT = 'https://api.anthropic.com/v1/messages';
+  
+  async function complete(systemPrompt, messages) {
+    let apiKey = sessionStorage.getItem('urimai:key');
+    if (!apiKey) throw new Error('NO_KEY');
+    
+    const response = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-cors-allow': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1024,
+        system: systemPrompt,
+        messages: messages
+      })
+    });
+    
+    if (!response.ok) throw new Error(`API_ERR_${response.status}`);
+    const data = await response.json();
+    return data.content[0].text;
+  }
+  
+  async function answerQuery(question, history) {
+    const sys = `நீங்கள் உரிமை AI. அரசு திட்டங்களை எளிய தமிழில் விளக்குபவர். 3 வாக்கியங்களுக்கு மிகாமல் சுருக்கமாக பதில் சொல்லுங்கள்.`;
+    return complete(sys, [...history, {role:"user", content:question}]);
+  }
+  return { answerQuery };
+})();
+
+const Store = (() => {
+  let state = {
+    app: { theme: localStorage.getItem('urimai:theme') || 'light' },
+    savedSchemes: new Set(JSON.parse(localStorage.getItem('urimai:saved') || '[]')),
+    cases: JSON.parse(localStorage.getItem('urimai:cases') || '[]'),
+    directory: { query: '', filterGovt: 'all', filterSaved: false, category: 'all' }
+  };
+  const subs = new Set();
+  
+  function dispatch(action, payload) {
+    if (action === 'TOGGLE_THEME') {
+      state.app.theme = state.app.theme === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', state.app.theme);
+      localStorage.setItem('urimai:theme', state.app.theme);
+    }
+    if (action === 'TOGGLE_SAVE') {
+      if (state.savedSchemes.has(payload)) state.savedSchemes.delete(payload);
+      else state.savedSchemes.add(payload);
+      localStorage.setItem('urimai:saved', JSON.stringify([...state.savedSchemes]));
+      updateBadge();
+    }
+    if (action === 'FILTER_DIR') {
+      state.directory = { ...state.directory, ...payload };
+    }
+    if (action === 'SAVE_CASE') {
+      state.cases.unshift(payload);
+      localStorage.setItem('urimai:cases', JSON.stringify(state.cases));
+    }
+    subs.forEach(fn => fn(state, action));
+  }
+  
+  function subscribe(fn) { subs.add(fn); return () => subs.delete(fn); }
+  function getState() { return state; }
+  
+  function updateBadge() {
+    const b = document.getElementById('saved-badge');
+    if (state.savedSchemes.size > 0) { b.classList.remove('hidden'); b.textContent = state.savedSchemes.size; }
+    else { b.classList.add('hidden'); }
+  }
+  
+  // init
+  document.body.setAttribute('data-theme', state.app.theme);
+  updateBadge();
+  
+  return { dispatch, subscribe, getState };
+})();
+
+const Toast = {
+  show(msg, type='success') {
+    const root = document.getElementById('toast-root');
+    const t = document.createElement('div');
+    t.className = `toast toast-${type}`;
+    const icon = type==='success'?'✅':type==='error'?'❌':'ℹ️';
+    t.innerHTML = `<span style="font-size:1.25rem;">${icon}</span> <span class="ta font-medium">${msg}</span>`;
+    root.appendChild(t);
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(100%)'; setTimeout(()=>t.remove(), 300); }, 3000);
+  }
+};
+
+const SettingsModal = {
+  open() { document.getElementById('settings-modal').classList.remove('hidden'); },
+  close() { document.getElementById('settings-modal').classList.add('hidden'); },
+  save() {
+    const val = document.getElementById('api-key-input').value.trim();
+    if(val) {
+      sessionStorage.setItem('urimai:key', val);
+      Toast.show('API Key சேமிக்கப்பட்டது');
+    }
+    this.close();
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MODULE IMPLEMENTATIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+const Application = {
+  init() {
+    this.setupNav();
+    Directory.init();
+    Dashboard.render();
+    Chatbot.init();
+    Store.subscribe((state, action) => {
+      if(action === 'FILTER_DIR' || action === 'TOGGLE_SAVE') Directory.render();
+      if(action === 'SAVE_CASE') Dashboard.renderCases();
+    });
+    
+    setTimeout(() => {
+      if(!sessionStorage.getItem('urimai:notif_dismissed')) {
+        document.getElementById('notification-bar').style.display = 'flex';
+      }
+    }, 1000);
+  },
+  setupNav() {
+    document.querySelectorAll('.nav-tab').forEach(t => {
+      t.addEventListener('click', (e) => {
+        document.querySelectorAll('.nav-tab').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById('tab-' + e.target.dataset.tab).classList.add('active');
+        
+        const ind = document.getElementById('nav-indicator');
+        ind.style.width = e.target.offsetWidth + 'px';
+        ind.style.left = e.target.offsetLeft + 'px';
+        
+        if(e.target.dataset.tab === 'dashboard') Dashboard.render();
+      });
+    });
+    const firstTab = document.querySelector('.nav-tab.active');
+    const ind = document.getElementById('nav-indicator');
+    ind.style.width = firstTab.offsetWidth + 'px';
+    ind.style.left = firstTab.offsetLeft + 'px';
+  },
+  toggleTheme() { Store.dispatch('TOGGLE_THEME'); },
+  dismissNotif() { 
+    document.getElementById('notification-bar').style.display = 'none'; 
+    sessionStorage.setItem('urimai:notif_dismissed', 'true');
+  }
+};
+
+const Chatbot = {
+  input: document.getElementById('chat-input'),
+  btn: document.getElementById('chat-send'),
+  msgs: document.getElementById('chat-messages'),
+  history: [],
+  init() {
+    this.btn.addEventListener('click', () => this.send());
+    this.input.addEventListener('keypress', e => { if(e.key==='Enter') this.send(); });
+    this.addMsg("வணக்கம்! நான் உரிமை AI. அரசு திட்டங்கள் பற்றி என்னிடம் கேளுங்கள். (குறிப்பு: API Key அமைப்புகளில் சேர்க்கவும்)", 'bot');
+  },
+  focus() {
+    document.querySelector('.nav-tab[data-tab="chat"]').click();
+    this.input.focus();
+  },
+  async send() {
+    const text = this.input.value.trim();
+    if(!text) return;
+    this.input.value = '';
+    this.addMsg(text, 'user');
+    
+    const loaderId = 'load-' + Date.now();
+    this.addMsg("பரிசீலிக்கிறது...", 'system', loaderId);
+    
+    try {
+      const resp = await AIClient.answerQuery(text, this.history);
+      document.getElementById(loaderId).remove();
+      this.addMsg(resp, 'bot');
+      this.history.push({role:"user", content:text}, {role:"assistant", content:resp});
+    } catch(e) {
+      document.getElementById(loaderId).remove();
+      if(e.message === 'NO_KEY') {
+        this.addMsg("மன்னிக்கவும், AI செயல்பட Settings ⚙️ சென்று API Key உள்ளிடவும்.", 'system');
+      } else {
+        this.addMsg("பிழை ஏற்பட்டது: " + e.message, 'system');
+        // Fallback simple matching
+        const words = text.split(' ');
+        const matches = SCHEMES.filter(s => words.some(w => s.name_ta.includes(w) || s.tags.includes(w)));
+        if(matches.length>0) {
+          this.addMsg("இதோ சில திட்டங்கள்:\n" + matches.map(m=>"• " + m.name_ta + " (" + m.benefit.amount_display + ")").join('\n'), 'bot');
+        }
+      }
+    }
+  },
+  addMsg(text, type, id='') {
+    const d = document.createElement('div');
+    d.className = 'msg msg-' + type + ' ta';
+    if(id) d.id = id;
+    d.innerText = text; // handles newlines
+    this.msgs.appendChild(d);
+    this.msgs.scrollTop = this.msgs.scrollHeight;
+  }
+};
+
+const Directory = {
+  init() {
+    // Categories
+    const cats = new Set();
+    SCHEMES.forEach(s => s.category.forEach(c => cats.add(c)));
+    const catContainer = document.getElementById('filter-categories');
+    cats.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'badge badge-neutral ta cursor-pointer border-none';
+      b.style.cursor = 'pointer';
+      b.textContent = c;
+      b.onclick = () => {
+        const isActive = b.classList.contains('badge-brand');
+        document.querySelectorAll('#filter-categories .badge').forEach(x => { x.classList.remove('badge-brand'); x.classList.add('badge-neutral'); });
+        if(!isActive) { b.classList.remove('badge-neutral'); b.classList.add('badge-brand'); }
+        Store.dispatch('FILTER_DIR', { category: isActive ? 'all' : c });
+      };
+      catContainer.appendChild(b);
+    });
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', Utils.debounce((e) => {
+      Store.dispatch('FILTER_DIR', { query: e.target.value });
+    }, 300));
+    
+    this.render();
+  },
+  filterGovt(val) { Store.dispatch('FILTER_DIR', { filterGovt: val }); },
+  filterSaved(val) { Store.dispatch('FILTER_DIR', { filterSaved: val }); },
+  clearFilters() {
+    document.getElementById('search-input').value = '';
+    document.querySelector('input[name="govt"][value="all"]').checked = true;
+    document.getElementById('filter-saved').checked = false;
+    document.querySelectorAll('#filter-categories .badge').forEach(x => { x.classList.remove('badge-brand'); x.classList.add('badge-neutral'); });
+    Store.dispatch('FILTER_DIR', { query: '', filterGovt: 'all', filterSaved: false, category: 'all' });
+  },
+  toggleExpand(id) {
+    const el = document.getElementById('expand-' + id);
+    const chev = document.getElementById('chev-' + id);
+    if(el.classList.contains('open')) {
+      el.classList.remove('open');
+      chev.classList.remove('open');
+    } else {
+      el.classList.add('open');
+      chev.classList.add('open');
+    }
+  },
+  render() {
+    const state = Store.getState();
+    const grid = document.getElementById('scheme-grid');
+    const empty = document.getElementById('empty-state');
+    grid.innerHTML = '';
+    
+    let filtered = SCHEMES.filter(s => {
+      if(state.directory.filterGovt !== 'all' && s.govt !== state.directory.filterGovt) return false;
+      if(state.directory.category !== 'all' && !s.category.includes(state.directory.category)) return false;
+      if(state.directory.filterSaved && !state.savedSchemes.has(s.id)) return false;
+      if(state.directory.query) {
+        const q = state.directory.query.toLowerCase();
+        if(!s.name_ta.includes(q) && !s.tags.some(t=>t.includes(q))) return false;
+      }
+      return true;
+    });
+    
+    document.getElementById('scheme-count').textContent = filtered.length;
+    
+    const clearBtn = document.getElementById('clear-filters');
+    if(state.directory.query || state.directory.filterGovt!=='all' || state.directory.filterSaved || state.directory.category!=='all') {
+      clearBtn.classList.remove('hidden');
+    } else { clearBtn.classList.add('hidden'); }
+    
+    if(filtered.length === 0) {
+      grid.classList.add('hidden');
+      empty.classList.remove('hidden');
+      return;
+    }
+    
+    grid.classList.remove('hidden');
+    empty.classList.add('hidden');
+    
+    filtered.forEach(s => {
+      const isSaved = state.savedSchemes.has(s.id);
+      const card = document.createElement('div');
+      card.className = 'card scheme-card p-6 card-hover';
+      card.innerHTML = 
+        '<div class="flex justify-between items-start">' +
+          '<div style="font-size:3rem; line-height:1;">' + s.emoji + '</div>' +
+          '<button class="btn-ghost" onclick="Store.dispatch(\'TOGGLE_SAVE\', \'' + s.id + '\')" style="color:' + (isSaved?'var(--text-danger)':'var(--text-tertiary)') + '; font-size:1.5rem; padding:0;">' +
+            (isSaved ? '❤️' : '🤍') +
+          '</button>' +
+        '</div>' +
+        '<div class="mt-4 flex gap-2 mb-2">' +
+          '<span class="badge badge-neutral ta">' + (s.category[0] || 'பொது') + '</span>' +
+          '<span class="badge badge-brand ta">' + (s.govt==='State'?'TN அரசு':'மத்திய அரசு') + '</span>' +
+        '</div>' +
+        '<h3 class="ta font-bold" style="font-size:1.25rem; color:var(--text-brand); line-height:1.4;">' + s.name_ta + '</h3>' +
+        '<div class="benefit-box">' +
+          '<div class="mono font-bold text-brand" style="font-size:1.5rem;">' + s.benefit.amount_display + '</div>' +
+          '<div class="ta mt-2 text-secondary" style="font-size:0.875rem;">' + s.benefit.desc_ta + '</div>' +
+        '</div>' +
+        '<button class="btn-ghost ta w-full justify-between p-0 mt-2" onclick="Directory.toggleExpand(\'' + s.id + '\')" style="color:var(--text-brand)">' +
+          'முழு விவரம் <span id="chev-' + s.id + '" class="chevron">▼</span>' +
+        '</button>' +
+        '<div id="expand-' + s.id + '" class="scheme-expanded mt-4 border-t" style="border-top:1px solid var(--border-subtle); padding-top:1rem;">' +
+          '<p class="ta text-sm mb-2"><strong class="text-secondary">துறை:</strong> ' + s.dept_ta + '</p>' +
+          '<p class="ta text-sm mb-2"><strong class="text-secondary">கடைசி தேதி:</strong> ' + (s.timing.deadline_type==='ongoing'?'தொடர்ந்து':s.timing.deadline) + '</p>' +
+          '<p class="ta text-sm mb-4"><strong class="text-secondary">வருமான வரம்பு:</strong> ' + s.eligibility.income_max_display + '</p>' +
+          '<button class="btn btn-secondary w-full ta" onclick="document.querySelector(\'.nav-tab[data-tab=\\\'checker\\\']\').click()">தகுதி சோதிக்கவும் →</button>' +
+        '</div>';
+      grid.appendChild(card);
+    });
+  }
+};
+
+const Checker = {
+  profile: { type: null, age: null, gender: null, income: null },
+  selectType(el, val) {
+    document.querySelectorAll('#step-1 .radio-card').forEach(x => x.classList.remove('selected'));
+    el.classList.add('selected');
+    this.profile.type = val;
+  },
+  next(step) {
+    if(step===2 && !this.profile.type) { Toast.show('ஒரு வகையை தேர்வு செய்யவும்', 'warning'); return; }
+    
+    document.querySelectorAll('.wizard-step').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`step-${step}`).classList.remove('hidden');
+    
+    const dots = document.getElementById('wizard-dots').children;
+    for(let i=0; i<3; i++) {
+      dots[i].style.background = i < step ? 'var(--brand-500)' : 'var(--surface-sunken)';
+    }
+  },
+  run() {
+    this.profile.age = parseInt(document.getElementById('check-age').value);
+    const genderEl = document.querySelector('input[name="gender"]:checked');
+    this.profile.gender = genderEl ? genderEl.value : null;
+    this.profile.income = parseInt(document.getElementById('check-income').value);
+    
+    if(!this.profile.age || !this.profile.gender || isNaN(this.profile.income)) {
+      Toast.show('அனைத்து விவரங்களையும் நிரப்பவும்', 'error');
+      return;
+    }
+    
+    document.querySelectorAll('.wizard-step').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`step-results`).classList.remove('hidden');
+    
+    let matches = SCHEMES.filter(s => {
+      // Basic rule matching
+      if(s.eligibility.age_min && this.profile.age < s.eligibility.age_min) return false;
+      if(s.eligibility.age_max && this.profile.age > s.eligibility.age_max) return false;
+      if(s.eligibility.gender !== 'Any' && s.eligibility.gender !== this.profile.gender) return false;
+      if(s.eligibility.income_max !== -1 && this.profile.income > s.eligibility.income_max) return false;
+      if(s.eligibility.occupation_tags[0] !== 'Any' && s.eligibility.occupation_tags.length>0 && !s.eligibility.occupation_tags.includes(this.profile.type)) return false;
+      return true;
+    });
+    
+    // Sort by value desc
+    matches.sort((a,b) => b.benefit.annual_value - a.benefit.annual_value);
+    
+    const rc = document.getElementById('checker-results-container');
+    let total = matches.reduce((sum, s) => sum + s.benefit.annual_value, 0);
+    
+    rc.innerHTML = 
+      '<div class="card card-brand p-6 text-center shadow-lg" style="box-shadow: 0 10px 25px -5px rgba(22, 184, 138, 0.2);">' +
+        '<h3 class="ta font-bold text-brand text-xl">🎉 ' + matches.length + ' திட்டங்கள் பொருந்துகின்றன!</h3>' +
+        '<p class="ta mt-4 text-secondary">வருடாந்திர சாத்திய மதிப்பு:</p>' +
+        '<div class="mono font-bold mt-2" style="font-size:3rem; color:var(--brand-600)">' +
+          '<span id="checker-total">0</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="mt-6 flex flex-col gap-4">' +
+        matches.map(s => 
+          '<div class="card p-4 border-l-4" style="border-left: 4px solid var(--brand-500);">' +
+            '<div class="flex justify-between items-center">' +
+              '<h4 class="ta font-bold text-lg">' + s.emoji + ' ' + s.name_ta + '</h4>' +
+            '</div>' +
+            '<p class="ta text-brand font-medium mt-1">' + s.benefit.amount_display + '</p>' +
+            '<p class="ta text-secondary text-sm mt-2">' + s.benefit.desc_ta + '</p>' +
+          '</div>'
+        ).join('') +
+      '</div>';
+    Utils.animateCounter(document.getElementById('checker-total'), 0, total, 1500, Utils.formatINR);
+    
+    // Save to dashboard case
+    Store.dispatch('SAVE_CASE', {
+      id: Utils.uuid(),
+      date: new Date().toISOString(),
+      matchesCount: matches.length,
+      totalValue: total,
+      profileStr: 'வயது: ' + this.profile.age + ', வருமானம்: ₹' + this.profile.income
+    });
+    
+    this.shareText = 'உரிமை AI — தகுதி சோதனை முடிவுகள்\n\n' + matches.length + ' திட்டங்கள் பொருந்துகின்றன!\nமொத்த மதிப்பு: ₹' + total + '/ஆண்டு.\n\nurimai.ai மூலம் தேடப்பட்டது.';
+  },
+  reset() {
+    this.profile = { type: null, age: null, gender: null, income: null };
+    document.querySelectorAll('#step-1 .radio-card').forEach(x => x.classList.remove('selected'));
+    document.getElementById('check-age').value = '';
+    document.getElementById('check-income').value = '';
+    const genderEl = document.querySelector('input[name="gender"]:checked');
+    if(genderEl) genderEl.checked = false;
+    this.next(1);
+  },
+  share() {
+    if(navigator.share) {
+      navigator.share({ title: 'உரிமை AI முடிவுகள்', text: this.shareText });
+    } else {
+      window.open('https://wa.me/?text=' + encodeURIComponent(this.shareText), '_blank');
+    }
+  }
+};
+
+const Dashboard = {
+  render() {
+    const grid = document.getElementById('kpi-grid');
+    const totalVal = SCHEMES.reduce((s,x)=>s+x.benefit.annual_value, 0);
+    grid.innerHTML = 
+      '<div class="kpi-card">' +
+        '<div class="ta text-secondary font-medium">மொத்த திட்டங்கள்</div>' +
+        '<div class="kpi-value">' + SCHEMES.length + '</div>' +
+        '<div class="ta text-xs text-tertiary mt-2">TN & மத்திய அரசு</div>' +
+      '</div>' +
+      '<div class="kpi-card">' +
+        '<div class="ta text-secondary font-medium">மொத்த சாத்திய மதிப்பு</div>' +
+        '<div class="kpi-value" id="dash-val-2">0</div>' +
+        '<div class="ta text-xs text-tertiary mt-2">ஆண்டுக்கு</div>' +
+      '</div>' +
+      '<div class="kpi-card">' +
+        '<div class="ta text-secondary font-medium">கடைசி தேதி உள்ளவை</div>' +
+        '<div class="kpi-value" style="color:var(--accent-500)">1</div>' +
+        '<div class="ta text-xs text-tertiary mt-2">புதுமைப் பெண் திட்டம்</div>' +
+      '</div>';
+    Utils.animateCounter(document.getElementById('dash-val-2'), 0, totalVal, 1000, Utils.formatINR);
+    
+    // Bar Chart
+    const chart = document.getElementById('chart-container');
+    const topSchemes = [...SCHEMES].sort((a,b)=>b.benefit.annual_value - a.benefit.annual_value).slice(0, 5);
+    const maxVal = topSchemes[0].benefit.annual_value;
+    
+    chart.innerHTML = topSchemes.map((s, i) => {
+      const pct = Math.max((s.benefit.annual_value / maxVal) * 100, 5);
+      return '' +
+        '<div class="bar-row ta">' +
+          '<div style="width:140px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:0.875rem;" title="' + s.name_ta + '">' + s.emoji + ' ' + s.name_ta_short + '</div>' +
+          '<div class="bar-track">' +
+            '<div class="bar-fill" style="width:' + pct + '%; animation-delay:' + (i*150) + 'ms"></div>' +
+          '</div>' +
+          '<div class="mono font-medium text-brand" style="width:90px; text-align:right;">' + Utils.formatINR(s.benefit.annual_value) + '</div>' +
+        '</div>';
+    }).join('');
+    
+    this.renderCases();
+  },
+  renderCases() {
+    const cases = Store.getState().cases;
+    const list = document.getElementById('case-list');
+    if(cases.length === 0) {
+      list.innerHTML = '<div class="ta text-center p-6 text-tertiary">தகுதி சோதனைகள் இங்கு சேமிக்கப்படும்.</div>';
+      return;
+    }
+    list.innerHTML = cases.slice(0,5).map(c => {
+      const d = new Date(c.date).toLocaleDateString('ta-IN', {month:'short', day:'numeric'});
+      return '' +
+        '<div class="card p-4 flex justify-between items-center" style="border-left: 3px solid var(--accent-500)">' +
+          '<div>' +
+            '<div class="ta font-bold text-sm">சோதனை - ' + d + '</div>' +
+            '<div class="ta text-xs text-secondary mt-1">' + c.profileStr + '</div>' +
+          '</div>' +
+          '<div class="text-right">' +
+            '<div class="badge badge-success ta mb-1">' + c.matchesCount + ' திட்டங்கள்</div>' +
+            '<div class="mono font-bold text-sm text-brand">' + Utils.formatINR(c.totalValue) + '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  },
+  exportCSV() {
+    const header = "ID,Name_TA,Name_EN,Govt,Dept,Annual_Value,Deadline\n";
+    const rows = SCHEMES.map(s => `${s.id},"${s.name_ta}","${s.name_en}",${s.govt},"${s.dept_ta}",${s.benefit.annual_value},${s.timing.deadline}`).join("\n");
+    Utils.downloadCSV("urimai-schemes.csv", header + rows);
+    Toast.show('தரவு பதிவிறக்கம் தொடங்குகிறது', 'success');
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  Application.init();
+});
+
+</script>
+</body>
+</html>

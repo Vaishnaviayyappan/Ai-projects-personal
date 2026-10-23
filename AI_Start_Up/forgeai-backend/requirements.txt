@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langgraph
+langchain-anthropic
+langchain-openai
+langchain-ollama
+pydantic
+python-dotenv
+supabase
+httpx

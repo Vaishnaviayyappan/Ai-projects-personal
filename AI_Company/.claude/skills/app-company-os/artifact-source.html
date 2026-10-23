@@ -1,0 +1,771 @@
+<title>App Company OS</title>
+<style>
+  :root{
+    --ink:#1b2430;
+    --ink-soft:#4a5468;
+    --paper:#f7f5f0;
+    --surface:#ffffff;
+    --line:#e4e0d6;
+    --accent:#c9531f;
+    --accent-soft:#f3e2d4;
+    --build:#2f7a4d;
+    --build-soft:#e3f0e7;
+    --change:#c0392b;
+    --change-soft:#f6e0dd;
+    --validate:#a5720b;
+    --validate-soft:#f4ead0;
+    --shadow: 0 1px 2px rgba(27,36,48,.06), 0 8px 24px rgba(27,36,48,.06);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#ece7dd;
+      --ink-soft:#b3ab9c;
+      --paper:#171410;
+      --surface:#211d17;
+      --line:#3a352b;
+      --accent:#e8894f;
+      --accent-soft:#3a2a1c;
+      --build:#5fb987;
+      --build-soft:#1e3226;
+      --change:#e57368;
+      --change-soft:#3a2220;
+      --validate:#e0b458;
+      --validate-soft:#392e17;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#ece7dd;
+    --ink-soft:#b3ab9c;
+    --paper:#171410;
+    --surface:#211d17;
+    --line:#3a352b;
+    --accent:#e8894f;
+    --accent-soft:#3a2a1c;
+    --build:#5fb987;
+    --build-soft:#1e3226;
+    --change:#e57368;
+    --change-soft:#3a2220;
+    --validate:#e0b458;
+    --validate-soft:#392e17;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    padding: max(24px, env(safe-area-inset-top, 0px)) 20px max(32px, env(safe-area-inset-bottom, 0px));
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', Georgia, serif; font-weight:600; margin:0; text-wrap:balance;}
+  code, .mono, textarea{font-family:'IBM Plex Mono', ui-monospace, monospace;}
+
+  .wrap{max-width:1080px; margin:0 auto; display:flex; flex-direction:column; gap:32px;}
+
+  header{display:flex; flex-direction:column; gap:14px;}
+  .eyebrow{
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent);
+    font-weight:600;
+  }
+  h1{font-size:clamp(28px,4vw,40px); letter-spacing:-.01em;}
+  .sub{color:var(--ink-soft); font-size:15px; max-width:64ch; line-height:1.5;}
+
+  .flow{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12.5px; color:var(--ink-soft);}
+  .flow b{color:var(--ink); font-weight:600;}
+  .flow .arrow{color:var(--line); font-family:'IBM Plex Mono',monospace;}
+
+  .disclaimer{
+    font-size:12px; color:var(--ink-soft); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; background:var(--surface); line-height:1.5;
+  }
+
+  .grid{display:grid; grid-template-columns: 1fr; gap:20px;}
+  @media (min-width:900px){ .grid{grid-template-columns: minmax(0,.9fr) minmax(0,1.2fr);} }
+
+  .panel{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:22px; display:flex; flex-direction:column; gap:16px;
+    min-width:0;
+  }
+  .panel h2{font-size:19px;}
+  .panel-desc{font-size:13px; color:var(--ink-soft); margin-top:-8px;}
+
+  label{font-size:12.5px; font-weight:600; color:var(--ink-soft); display:block; margin-bottom:6px;}
+  .req::after{content:" *"; color:var(--accent);}
+  .field{display:flex; flex-direction:column;}
+  .field input, .field select, .field textarea{
+    width:100%; font-family:inherit; font-size:14px; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line); border-radius:9px;
+    padding:9px 11px; resize:vertical;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);
+  }
+  .field.invalid input, .field.invalid textarea{border-color:var(--change);}
+  .field-row{display:grid; grid-template-columns:1fr; gap:14px;}
+  .optional-tag{font-weight:400; text-transform:none; letter-spacing:0; color:var(--ink-soft); font-size:11.5px;}
+
+  .btn{
+    font-family:inherit; font-size:13.5px; font-weight:600; border-radius:9px; border:1px solid var(--line);
+    padding:9px 14px; background:var(--surface); color:var(--ink); cursor:pointer;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+  .btn:hover{border-color:var(--accent);}
+  .btn.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .btn.primary:hover{filter:brightness(1.06);}
+  .btn:active{transform:translateY(1px);}
+  .btn:disabled{opacity:.55; cursor:not-allowed;}
+  .btn[data-copied="true"]{background:var(--build); border-color:var(--build); color:#fff;}
+  .btn-row{display:flex; gap:10px; flex-wrap:wrap;}
+
+  .status-line{font-size:12.5px; color:var(--ink-soft); display:flex; align-items:center; gap:8px; min-height:18px;}
+  .status-line.error{color:var(--change);}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 1.1s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+  .results-empty{
+    font-size:13.5px; color:var(--ink-soft); border:1px dashed var(--line); border-radius:10px;
+    padding:28px 18px; text-align:center; line-height:1.6;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700;
+    letter-spacing:.03em; text-transform:uppercase; padding:7px 14px; border-radius:99px;
+    width:fit-content;
+  }
+  .badge.build{background:var(--build-soft); color:var(--build);}
+  .badge.change{background:var(--change-soft); color:var(--change);}
+  .badge.validate{background:var(--validate-soft); color:var(--validate);}
+
+  .plan{font-size:14px; line-height:1.6;}
+  .plan h3.stepHead{font-size:16.5px; margin-top:18px; padding-top:14px; border-top:1px solid var(--line);}
+  .plan h3.stepHead:first-child{margin-top:0; padding-top:0; border-top:none;}
+  .plan h4{font-size:14.5px; margin-top:10px; color:var(--accent);}
+  .plan p{margin:8px 0;}
+  .plan ul, .plan ol{margin:6px 0; padding-left:20px;}
+  .plan li{margin:3px 0;}
+  .plan strong{color:var(--ink);}
+  .plan code{background:var(--accent-soft); padding:1px 5px; border-radius:4px; font-size:12.5px;}
+
+  .truncated-note{font-size:12px; color:var(--validate); background:var(--validate-soft); border-radius:8px; padding:8px 12px;}
+
+  .fallback-note{font-size:12.5px; color:var(--ink-soft); background:var(--accent-soft); border-radius:9px; padding:10px 13px; line-height:1.5;}
+
+  #promptOut{
+    width:100%; min-height:220px; font-size:12px; line-height:1.5;
+    background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:12px;
+    color:var(--ink); white-space:pre-wrap;
+  }
+
+  .agents-head{display:flex; flex-direction:column; gap:6px;}
+  .agent-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:14px;}
+  .agent-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px;
+    display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow);
+  }
+  .agent-card .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent); font-weight:600;}
+  .agent-card h3{font-size:15.5px;}
+  .agent-card .persona{font-size:11.5px; color:var(--ink-soft); font-style:italic;}
+  .agent-card p{font-size:12.5px; color:var(--ink-soft); line-height:1.5; margin:0;}
+  .agent-card .out{font-size:11.5px; color:var(--ink); background:var(--accent-soft); border-radius:7px; padding:7px 9px; line-height:1.4;}
+  details.agent-prompt{margin-top:4px;}
+  details.agent-prompt summary{cursor:pointer; font-size:12px; font-weight:600; color:var(--accent); list-style:none;}
+  details.agent-prompt summary::-webkit-details-marker{display:none;}
+  details.agent-prompt summary::before{content:"+ "; }
+  details.agent-prompt[open] summary::before{content:"– ";}
+  details.agent-prompt pre{
+    margin-top:8px; font-size:11px; background:var(--paper); border:1px solid var(--line);
+    border-radius:8px; padding:10px; white-space:pre-wrap; max-height:220px; overflow:auto;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  details.agent-prompt .copyline{margin-top:6px;}
+
+  footer{font-size:11.5px; color:var(--ink-soft); text-align:center; padding:10px 0 4px; border-top:1px solid var(--line);}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Claude App Company OS</div>
+    <h1>App Company OS</h1>
+    <p class="sub">Submit one app idea. Six agent perspectives — Customer, Product, UX, AI
+      Strategy, Monetization, Growth — build on each other right here and hand back a Final App
+      Launch Plan, ending in a BUILD / CHANGE / VALIDATE FIRST call. You still make the actual
+      decision.</p>
+    <div class="flow">
+      <b>IDEA</b><span class="arrow">→</span>
+      <b>CUSTOMER</b><span class="arrow">→</span>
+      <b>PRODUCT</b><span class="arrow">→</span>
+      <b>UX</b><span class="arrow">→</span>
+      <b>AI</b><span class="arrow">→</span>
+      <b>MONETIZATION</b><span class="arrow">→</span>
+      <b>GROWTH</b><span class="arrow">→</span>
+      <b>6-AGENT REVIEW</b><span class="arrow">→</span>
+      <b>LAUNCH PLAN</b><span class="arrow">→</span>
+      <b>YOUR DECISION</b>
+    </div>
+    <div class="disclaimer">"$100M" is branding, not a valuation or a promised result. The six
+      agents are inspired by publicly available ideas and frameworks associated with the
+      people referenced — not affiliated with, endorsed by, or trained by them, and they never
+      speak as or quote them. Treat every number in the plan as <code>DATA NOT PROVIDED</code>,
+      a fact you supplied, or <code>[TO BE MEASURED]</code> — validate with real users before
+      building.</div>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-label="Idea form">
+      <h2>1 · Your idea</h2>
+      <p class="panel-desc">Five required, three optional. This is all any agent sees.</p>
+
+      <div class="field-row">
+        <div class="field" data-field="idea">
+          <label class="req" for="idea">App idea</label>
+          <textarea id="idea" rows="2" placeholder="e.g. Type a destination, dates, and vibe → get a day-by-day itinerary you can edit and share"></textarea>
+        </div>
+        <div class="field" data-field="problem">
+          <label class="req" for="problem">What problem does it solve</label>
+          <textarea id="problem" rows="2" placeholder="e.g. Trip planning is scattered across 30 browser tabs with no single plan"></textarea>
+        </div>
+        <div class="field" data-field="user">
+          <label class="req" for="user">Target user</label>
+          <input id="user" type="text" placeholder="e.g. Solo and couple travelers, 25–40">
+        </div>
+        <div class="field" data-field="goal">
+          <label class="req" for="goal">Main goal</label>
+          <input id="goal" type="text" placeholder="e.g. Get people from idea to a shareable itinerary in one sitting">
+        </div>
+        <div class="field">
+          <label class="req" for="platform">Platform</label>
+          <select id="platform">
+            <option>iOS</option>
+            <option>Android</option>
+            <option>Web</option>
+            <option>iOS + Android</option>
+            <option>iOS + Web</option>
+            <option>iOS + Android + Web</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="features"><span class="optional-tag">Optional ·</span> Existing features</label>
+          <input id="features" type="text" placeholder="Leave blank if this is a new build">
+        </div>
+        <div class="field">
+          <label for="competitors"><span class="optional-tag">Optional ·</span> Competitors</label>
+          <input id="competitors" type="text" placeholder="e.g. TripIt, Wanderlog">
+        </div>
+        <div class="field">
+          <label for="budget"><span class="optional-tag">Optional ·</span> Budget / resources</label>
+          <input id="budget" type="text" placeholder="e.g. Solo builder, nights and weekends">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn primary" id="runBtn" type="button">Build my launch plan →</button>
+        <button class="btn" id="stopBtn" type="button" hidden>Stop</button>
+        <button class="btn" id="sampleBtn" type="button">Load example</button>
+        <button class="btn" id="clearBtn" type="button">Clear</button>
+      </div>
+      <div class="status-line" id="statusLine" aria-live="polite">&nbsp;</div>
+      <p class="hint" style="font-size:11.5px;color:var(--ink-soft);">Fields save in this browser
+        only. Nothing is sent anywhere except to Claude, on your own usage, when you press Build.</p>
+    </section>
+
+    <section class="panel" aria-label="Launch plan output">
+      <h2>2 · Launch plan</h2>
+      <div id="resultsWrap">
+        <div class="results-empty" id="resultsEmpty">Your Final App Launch Plan will appear
+          here — pitch, features, flow, AI features, pricing, growth plan, risks, and the
+          BUILD / CHANGE / VALIDATE FIRST call.</div>
+      </div>
+    </section>
+  </div>
+
+  <section aria-label="The six agents">
+    <div class="agents-head">
+      <h2>3 · Meet the six agents</h2>
+      <p class="panel-desc">Each one also runs standalone for depth — expand a card for its
+        copy/paste prompt to run in any Claude chat, with the Master Input plus whatever prior
+        agent output is relevant as its CONTEXT.</p>
+    </div>
+    <div class="agent-grid" id="agentGrid"></div>
+  </section>
+
+  <footer>Claude App Company OS setup guide, adapted · @seb.ai — inspired by publicly available
+    frameworks, not affiliated with or endorsed by the people referenced.</footer>
+</div>
+
+<script>
+(function(){
+  var REQUIRED_FIELDS = ["idea","problem","user","goal"];
+  var FIELDS = ["idea","problem","user","goal","platform","features","competitors","budget"];
+  var STORE_KEY = "app-company-os:draft";
+
+  var RULES = "Rules: never invent revenue, downloads, users, conversion rates, retention, "+
+    "App Store rankings, growth percentages, market size, customer research, funding, or "+
+    "performance. If data is unavailable write DATA NOT PROVIDED. Never pretend an "+
+    "integration, API, or dataset already exists — mark it [TO BUILD] or [VERIFY]. Tag every "+
+    "line FACT (from my inputs), ASSUMPTION, or IDEA. Short paragraphs, tables where useful, "+
+    "specific over clever.";
+
+  var FORMAT_NOTE = "Formatting: reply in Markdown. Use \"## STEP N — NAME\" for each of the "+
+    "seven steps and \"## FINAL APP LAUNCH PLAN\" for the launch plan heading. Inside the "+
+    "Final App Launch Plan, put each field as its own bullet starting \"- **FIELD:** value\". "+
+    "End with \"## BUILD / CHANGE / VALIDATE FIRST\" followed by one bolded word or phrase "+
+    "(**BUILD**, **CHANGE**, or **VALIDATE FIRST**) and the explanation. Keep every section to "+
+    "short bullets or short paragraphs so the whole reply stays well under 1500 words and "+
+    "finishes in one pass.";
+
+  var MASTER_PROMPT_HEAD =
+"You are my $100M AI APP COMPANY — six specialist agents inspired by publicly available "+
+"product, UX, AI-strategy, monetization, growth, and customer frameworks: CUSTOMER, "+
+"PRODUCT, UX, AI STRATEGY, MONETIZATION, GROWTH. \"$100M\" is branding, not a valuation or "+
+"a result. You are not the people those frameworks are associated with; never speak as, "+
+"quote, or claim endorsement from any real person.\n\n"+
+"Work in this order, each step building on the last, with clear headings:\n"+
+"STEP 1 — CUSTOMER: target user · main problem · current alternatives · pain points · "+
+"desired outcome · why they would use this app. Tag FACT / ASSUMPTION.\n"+
+"STEP 2 — PRODUCT: turn the idea into a focused V1 — core value proposition · 3–5 "+
+"must-have features · features to REMOVE · main user action · product differentiation. "+
+"Prioritize simplicity.\n"+
+"STEP 3 — UX: the user journey DOWNLOAD/OPEN → ONBOARD → INPUT → CORE ACTION → RESULT → "+
+"EDIT → SAVE/SHARE → RETURN, then describe the main screens.\n"+
+"STEP 4 — AI STRATEGY: where AI is actually useful · what should NOT use AI · AI-powered "+
+"features · required data · suggested high-level architecture · human review / safety "+
+"where needed. Do not pretend integrations already exist.\n"+
+"STEP 5 — MONETIZATION: three models — FREE, PRO, ONE-TIME/PREMIUM. For each: what is "+
+"free · what users pay for · why the upgrade has value. Do NOT invent revenue or "+
+"conversion numbers.\n"+
+"STEP 6 — GROWTH: acquisition ideas · activation moment · retention strategy · "+
+"referral/share loop · 5 growth experiments · launch channels.\n"+
+"STEP 7 — 6-AGENT REVIEW: PRODUCT: is it simple and useful? UX: does it feel effortless? "+
+"AI: does AI create meaningful value? MONETIZATION: is there a clear reason to pay? "+
+"GROWTH: why would people return or share? CUSTOMER: does this solve a real problem? Each "+
+"agent gives 3 specific critiques and 1 fix. Disagree where the evidence points different "+
+"ways; do not agree for the sake of it. Then combine the strongest feedback.\n\n"+
+"FINAL APP LAUNCH PLAN — exactly these fields: APP NAME · ONE-SENTENCE PITCH · TARGET "+
+"USER · PROBLEM · SOLUTION · CORE FEATURES · USER FLOW · AI FEATURES · PRICING OPTIONS · "+
+"GROWTH PLAN · LAUNCH STRATEGY · RISKS · WHAT TO TEST FIRST · NEXT 5 ACTIONS.\n"+
+"End with: BUILD / CHANGE / VALIDATE FIRST — and explain the recommendation. The final "+
+"decision is mine.\n\n"+ RULES + "\n\n" + FORMAT_NOTE;
+
+  var AGENTS = [
+    {
+      key:"customer", num:"1", title:"Customer", persona:"Jeff Bezos–inspired",
+      blurb:"Starts from one real person and works backwards: problem, alternatives, pain points, objections.",
+      out:"Target user · problem · alternatives · pain points · objections",
+      context:"[Master Input]",
+      body:"Act as my CUSTOMER AGENT. CONTEXT: {{CONTEXT}}. Work backwards from the customer:\n"+
+        "1. TARGET USER — one specific person: situation, device habits, what they already tried.\n"+
+        "2. MAIN PROBLEM — in their words (from data I gave; otherwise ASSUMPTION).\n"+
+        "3. CURRENT ALTERNATIVES — what they do today (apps, spreadsheets, nothing) and why it's not enough.\n"+
+        "4. PAIN POINTS — 5, ranked by how often and how badly.\n"+
+        "5. DESIRED OUTCOME — what \"solved\" looks like; the feeling behind it.\n"+
+        "6. OBJECTIONS — top 5 reasons they wouldn't download, try, or keep it — each with an honest answer.\n"+
+        "7. LONG-TERM VALUE — what a happy user is still doing in a year; the logic, not a number.\n"+
+        "8. FEEDBACK PLAN — 10 interview questions and where to find 10 people this week.\n"+
+        "End with a 3-line customer summary for the other agents. Keep asking: what does the customer actually want?\n\n"+RULES
+    },
+    {
+      key:"product", num:"2", title:"Product", persona:"Steve Jobs–inspired",
+      blurb:"Turns the idea into one focused V1 that does a single thing extremely well — and cuts everything else.",
+      out:"Focused V1: value prop · 3–5 must-haves · cut list · main action",
+      context:"[Master Input + Customer output]",
+      body:"Act as my PRODUCT AGENT. CONTEXT: {{CONTEXT}}.\n"+
+        "1. THE PRODUCT IN FIVE WORDS — and the one thing it must do perfectly.\n"+
+        "2. CORE VALUE PROPOSITION — for [user], [app] is the [category] that [difference], unlike [alternative].\n"+
+        "3. MUST-HAVE FEATURES — 3 to 5, each tied to the main problem. Anything not on this list is V2.\n"+
+        "4. REMOVE — 5 features, settings, or steps to cut from the idea, and what each cut gains.\n"+
+        "5. MAIN USER ACTION — the single action the whole app exists for; what happens 60 seconds after opening.\n"+
+        "6. DIFFERENTIATION — why this is dramatically simpler or more useful than the alternatives; or an honest \"it isn't yet\" and what would change that.\n"+
+        "Keep asking: what would make this dramatically simpler and more useful?\n\n"+RULES
+    },
+    {
+      key:"ux", num:"3", title:"UX", persona:"Brian Chesky–inspired",
+      blurb:"Designs the journey from first open to habit, so session one feels effortless and the core moment feels delightful.",
+      out:"User journey + main screens + friction fixes",
+      context:"[Product output]",
+      body:"Act as my UX AGENT. CONTEXT: {{CONTEXT}}. PLATFORM: {{PLATFORM}}.\n"+
+        "1. USER JOURNEY — DOWNLOAD/OPEN → ONBOARD → INPUT → CORE ACTION → RESULT → EDIT → SAVE/SHARE → RETURN. For each step: what the user sees, does, and feels; how long it takes.\n"+
+        "2. ONBOARDING — the shortest path to the first result; what to ask, what to skip, what to ask later.\n"+
+        "3. MAIN SCREENS — 4 to 6 screens: purpose, key elements, primary button.\n"+
+        "4. FRICTION — 7 places users would hesitate or quit, and the smallest fix for each.\n"+
+        "5. DELIGHT — the one moment that should feel magical, and how to design it.\n"+
+        "6. RETURN — what makes session two happen.\n"+
+        "Describe interface concepts in words; no invented usability data.\n\n"+RULES
+    },
+    {
+      key:"ai", num:"4", title:"AI Strategy", persona:"Sam Altman–inspired",
+      blurb:"Finds where AI creates real value — and where it's a gimmick — with an honest view of feasibility.",
+      out:"AI feature list · what NOT to automate · data needs · architecture · safety",
+      context:"[Product + UX output]",
+      body:"Act as my AI STRATEGY AGENT. CONTEXT: {{CONTEXT}}.\n"+
+        "1. WHERE AI IS ACTUALLY USEFUL — 3 to 5 places where a model does something simple logic cannot; the user-visible benefit of each.\n"+
+        "2. WHAT SHOULD NOT USE AI — features better served by rules, templates, or the user.\n"+
+        "3. AI-POWERED FEATURES — name · input · output · what happens when the model is wrong.\n"+
+        "4. REQUIRED DATA — what each feature needs; what we have [FACT], what we'd collect [TO BUILD], what we'd license [VERIFY].\n"+
+        "5. ARCHITECTURE (HIGH LEVEL) — app → backend → model API → data store, in plain words; no specific vendors unless I named them.\n"+
+        "6. HUMAN REVIEW / SAFETY — where outputs must be checked, confirmed, or limited; privacy considerations.\n"+
+        "7. DEFENSIBILITY — what gets better with use (data, workflow, distribution) and what any competitor could copy in a week.\n"+
+        "Do not pretend integrations already exist. Keep asking: what becomes possible if models keep improving?\n\n"+RULES
+    },
+    {
+      key:"monetization", num:"5", title:"Monetization", persona:"Alex Hormozi–inspired",
+      blurb:"Makes paying obvious: what's free, what's worth paying for, and why the upgrade is an easy yes.",
+      out:"FREE / PRO / ONE-TIME models with the upgrade logic",
+      context:"[Product + Customer output]",
+      body:"Act as my MONETIZATION AGENT. CONTEXT: {{CONTEXT}}.\n"+
+        "1. VALUE PROPOSITION — the outcome in the user's words; what it replaces, saves, or prevents.\n"+
+        "2. THREE MODELS — FREE (what's free and why), PRO (subscription: what's paid, price ideas as IDEA), ONE-TIME / PREMIUM (what, price idea). For each: what users pay for and why the upgrade has value.\n"+
+        "3. FREE VS. PAID LINE — the rule for where free ends; what must stay free for growth.\n"+
+        "4. OFFERS — 3 launch offers (founder pricing, annual, bundle) marked IDEA until tested.\n"+
+        "5. REASONS TO PAY — 5, ranked; 5 objections with honest answers.\n"+
+        "6. RECOMMENDATION — which model to launch with and the one metric that will tell us if pricing works [TO BE MEASURED].\n"+
+        "Do NOT invent revenue or conversion numbers. Keep asking: why would someone pay for this?\n\n"+RULES
+    },
+    {
+      key:"growth", num:"6", title:"Growth", persona:"Sean Ellis–inspired",
+      blurb:"Builds the engine that brings users in, gets them to value fast, keeps them, and turns them into referrers.",
+      out:"Activation moment, loops, 5 experiments, launch channels",
+      context:"[Product + UX + Customer output]. GOAL: [MAIN GOAL]",
+      body:"Act as my GROWTH AGENT. CONTEXT: {{CONTEXT}}. GOAL: {{GOAL}}.\n"+
+        "1. ACQUISITION — 5 ideas ranked by fit with this user and this budget; organic first if the budget is small.\n"+
+        "2. ACTIVATION MOMENT — the action that means \"they got it\"; how to get 100% of new users there in session one.\n"+
+        "3. RETENTION — why they come back in week 1 and month 1; the habit or trigger.\n"+
+        "4. REFERRAL / SHARE LOOP — the natural moment to share and what the recipient gets.\n"+
+        "5. GROWTH LOOPS — 2 loops where usage creates more users.\n"+
+        "6. FIVE EXPERIMENTS — hypothesis · what we change · metric · how long · what we learn. Targets are [TO BE MEASURED], not predicted.\n"+
+        "7. LAUNCH CHANNELS — the 3 to 5 places to launch and the order.\n"+
+        "No growth percentages or benchmarks unless I gave them.\n\n"+RULES
+    }
+  ];
+
+  var els = {};
+  FIELDS.forEach(function(id){ els[id] = document.getElementById(id); });
+  var runBtn = document.getElementById("runBtn");
+  var stopBtn = document.getElementById("stopBtn");
+  var sampleBtn = document.getElementById("sampleBtn");
+  var clearBtn = document.getElementById("clearBtn");
+  var statusLine = document.getElementById("statusLine");
+  var resultsWrap = document.getElementById("resultsWrap");
+  var resultsEmpty = document.getElementById("resultsEmpty");
+
+  var sampleFn = null, downloadsFn = null, controller = null, mode = "checking";
+  var lastRawText = "";
+
+  function esc(s){ return (s || "").trim(); }
+
+  function fieldValues(){
+    var f = {};
+    FIELDS.forEach(function(id){ f[id] = esc(els[id].value); });
+    return f;
+  }
+
+  function buildMasterInput(f){
+    return [
+      "APP IDEA: " + (f.idea || "______"),
+      "WHAT PROBLEM DOES IT SOLVE: " + (f.problem || "______"),
+      "TARGET USER: " + (f.user || "______"),
+      "MAIN GOAL: " + (f.goal || "______"),
+      "PLATFORM: " + (f.platform || "iOS / Android / Web"),
+      "EXISTING FEATURES (OPTIONAL): " + (f.features || "none"),
+      "COMPETITORS (OPTIONAL): " + (f.competitors || "none given"),
+      "BUDGET/RESOURCES (OPTIONAL): " + (f.budget || "none given")
+    ].join("\n");
+  }
+
+  function buildFullPrompt(){
+    return MASTER_PROMPT_HEAD + "\n\nMASTER INPUT:\n" + buildMasterInput(fieldValues());
+  }
+
+  function save(){
+    try{
+      var data = {};
+      FIELDS.forEach(function(id){ data[id] = els[id].value; });
+      localStorage.setItem(STORE_KEY, JSON.stringify(data));
+    }catch(e){}
+  }
+  function load(){
+    try{
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return;
+      var data = JSON.parse(raw);
+      FIELDS.forEach(function(id){ if(data[id]) els[id].value = data[id]; });
+    }catch(e){}
+  }
+  FIELDS.forEach(function(id){ els[id].addEventListener("input", save); });
+
+  var SAMPLE = {
+    idea:"Type a destination, dates, and vibe → get a day-by-day itinerary you can edit and share.",
+    problem:"Trip planning is scattered across 30 browser tabs with no single plan to follow.",
+    user:"Solo and couple travelers, 25–40, who plan 2–3 trips a year.",
+    goal:"Get someone from a blank idea to a shareable day-by-day plan in one sitting.",
+    platform:"iOS + Web",
+    features:"",
+    competitors:"TripIt, Wanderlog",
+    budget:"Solo builder, nights and weekends"
+  };
+  sampleBtn.addEventListener("click", function(){
+    FIELDS.forEach(function(id){ els[id].value = SAMPLE[id] || ""; });
+    save();
+    clearValidation();
+  });
+  clearBtn.addEventListener("click", function(){
+    FIELDS.forEach(function(id){ els[id].value = ""; });
+    save();
+    clearValidation();
+  });
+
+  function clearValidation(){
+    REQUIRED_FIELDS.forEach(function(id){
+      document.querySelector('[data-field="'+id+'"]').classList.remove("invalid");
+    });
+  }
+  function validate(){
+    var ok = true;
+    REQUIRED_FIELDS.forEach(function(id){
+      var field = document.querySelector('[data-field="'+id+'"]');
+      if(!esc(els[id].value)){ field.classList.add("invalid"); ok = false; }
+      else field.classList.remove("invalid");
+    });
+    if(!ok) setStatus("Fill in the required fields marked with *.", "error");
+    return ok;
+  }
+
+  // ---- markdown-lite renderer (escapes HTML first; safe against injected tags) ----
+  function renderMarkdownLite(raw){
+    var escd = raw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    var lines = escd.split("\n");
+    var html = "", inList = false;
+    function closeList(){ if(inList){ html += inList === "ul" ? "</ul>" : "</ol>"; inList = false; } }
+    function inline(s){
+      s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      s = s.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+      s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+      return s;
+    }
+    lines.forEach(function(line){
+      var h2 = line.match(/^##\s+(.*)/);
+      var h3 = line.match(/^###\s+(.*)/);
+      var bullet = line.match(/^[-*]\s+(.*)/);
+      var num = line.match(/^\d+\.\s+(.*)/);
+      if(h2){ closeList(); html += "<h3 class=\"stepHead\">" + inline(h2[1]) + "</h3>"; }
+      else if(h3){ closeList(); html += "<h4>" + inline(h3[1]) + "</h4>"; }
+      else if(bullet){ if(inList !== "ul"){ closeList(); html += "<ul>"; inList = "ul"; } html += "<li>" + inline(bullet[1]) + "</li>"; }
+      else if(num){ if(inList !== "ol"){ closeList(); html += "<ol>"; inList = "ol"; } html += "<li>" + inline(num[1]) + "</li>"; }
+      else if(line.trim() === ""){ closeList(); }
+      else { closeList(); html += "<p>" + inline(line) + "</p>"; }
+    });
+    closeList();
+    return html;
+  }
+
+  function recommendationBadge(raw){
+    var idx = raw.search(/build\s*\/\s*change\s*\/\s*validate first/i);
+    if(idx === -1) return null;
+    var tail = raw.slice(idx + 40, idx + 400);
+    var m = tail.match(/build|change|validate first/i);
+    if(!m) return null;
+    var word = m[0].toUpperCase();
+    if(word === "BUILD") return {cls:"build", label:"Recommendation: BUILD"};
+    if(word === "CHANGE") return {cls:"change", label:"Recommendation: CHANGE"};
+    return {cls:"validate", label:"Recommendation: VALIDATE FIRST"};
+  }
+
+  function appNameSlug(raw){
+    var m = raw.match(/app name[:\-]?\**\s*\**\s*(.+)/i);
+    var name = m ? m[1].split("\n")[0].replace(/[*_]/g,"").trim() : "launch-plan";
+    return name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"") || "launch-plan";
+  }
+
+  function setStatus(msg, kind){
+    statusLine.className = "status-line" + (kind === "error" ? " error" : "");
+    statusLine.innerHTML = kind === "running" ? '<span class="dot"></span>' + msg : msg;
+  }
+
+  function renderStreaming(text){
+    resultsWrap.innerHTML = '<div class="plan" id="planBody"></div>';
+    document.getElementById("planBody").innerHTML = renderMarkdownLite(text);
+  }
+
+  function renderFinal(text, truncated){
+    lastRawText = text;
+    var badge = recommendationBadge(text);
+    var html = "";
+    if(badge) html += '<div class="badge ' + badge.cls + '">' + badge.label + "</div>";
+    html += '<div class="plan">' + renderMarkdownLite(text) + "</div>";
+    if(truncated) html += '<div class="truncated-note">Cut short by length — press Regenerate, or trim a field and try again.</div>';
+    html += '<div class="btn-row" style="margin-top:14px;">' +
+      '<button class="btn primary" id="downloadBtn" type="button">Download as Markdown</button>' +
+      '<button class="btn" id="regenBtn" type="button">Regenerate</button>' +
+      "</div>";
+    resultsWrap.innerHTML = html;
+    var dl = document.getElementById("downloadBtn");
+    if(downloadsFn){
+      dl.addEventListener("click", function(){
+        downloadsFn.save({ filename: appNameSlug(text) + "-launch-plan.md", data: text })
+          .then(function(){ setStatus("Saved.", ""); })
+          .catch(function(e){
+            if(e && e.code === "declined") return;
+            setStatus("Couldn't save the file — copy the text instead.", "error");
+          });
+      });
+    } else {
+      dl.disabled = true;
+      dl.title = "Downloads aren't available in this context.";
+    }
+    document.getElementById("regenBtn").addEventListener("click", function(){ run(true); });
+  }
+
+  function resetToIdle(){
+    stopBtn.hidden = true;
+    runBtn.disabled = false;
+    runBtn.textContent = "Build my launch plan →";
+  }
+
+  function run(regenerate){
+    if(!validate()) return;
+    if(!sampleFn){ runFallback(); return; }
+
+    controller = new AbortController();
+    runBtn.disabled = true;
+    runBtn.textContent = "Building…";
+    stopBtn.hidden = false;
+    setStatus("Thinking…", "running");
+    resultsWrap.innerHTML = "";
+
+    var opts = {
+      modelTier: "complex",
+      signal: controller.signal,
+      onText: function(u){ setStatus("Writing…", "running"); renderStreaming(u.text); }
+    };
+    if(regenerate) opts.cache = { gcTime: 300000, refresh: true };
+
+    sampleFn(buildFullPrompt(), opts).then(function(res){
+      resetToIdle();
+      setStatus("Done.", "");
+      renderFinal(res.text, res.truncated);
+    }).catch(function(e){
+      resetToIdle();
+      handleError(e);
+    });
+  }
+
+  function handleError(e){
+    var code = (e && e.code) || "upstream_error";
+    if(code === "cancelled"){
+      setStatus("Stopped.", "");
+      if(e.text) renderStreaming(e.text);
+      return;
+    }
+    var msgMap = {
+      not_granted: "You declined access to Claude for this page. Reload the page to be asked again, or use the standalone prompts below in a Claude chat instead.",
+      sampling_disabled: "Claude isn't available for this account here. Use the standalone prompts below in a Claude chat instead.",
+      not_declared: "This app lost live access. Use the standalone prompts below instead.",
+      capability_disabled: "Live generation isn't available in this view. Use the standalone prompts below instead.",
+      capability_removed: "Live generation isn't available in this view. Use the standalone prompts below instead.",
+      rate_limited: "Too many requests right now — wait a moment and try again.",
+      session_expired: "You'll need to sign in again, then retry.",
+      refused: "Claude declined to answer that particular idea — try rephrasing a field.",
+      empty_completion: "No answer came back. Try again with a bit more detail.",
+      invalid_json: "Got an unreadable answer. Try again.",
+      prompt_too_large: "That's too much text — trim a field and try again.",
+      invalid_request: "Something in the form confused the request — try again.",
+      transform_error: "Something in the form confused the request — try again.",
+      queue_overflow: "Too many requests queued — wait a moment and try again."
+    };
+    var msg = msgMap[code] || "Something went wrong reaching Claude — try again.";
+    setStatus(msg, "error");
+    if(e && e.text) renderStreaming(e.text);
+    else resultsWrap.innerHTML = '<div class="results-empty">' + resultsEmpty.textContent + "</div>";
+  }
+
+  stopBtn.addEventListener("click", function(){ if(controller) controller.abort(); });
+  runBtn.addEventListener("click", function(){ run(false); });
+
+  // ---- fallback mode: copy-the-prompt, for when live sampling isn't available ----
+  function copyText(text, btn){
+    function done(ok){
+      var original = btn.dataset.label || btn.textContent;
+      btn.dataset.label = original;
+      btn.textContent = ok ? "Copied ✓" : "Copy failed — select manually";
+      setTimeout(function(){ btn.textContent = original; }, 1800);
+    }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); });
+    }catch(err){
+      try{
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        var ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        done(ok);
+      }catch(err2){ done(false); }
+    }
+  }
+
+  function runFallback(){
+    var text = buildFullPrompt();
+    resultsWrap.innerHTML =
+      '<div class="fallback-note">Live generation isn\'t available in this context, so here\'s ' +
+      "the same prompt, ready to paste into a Claude chat (or this project's <code>app-company-os</code> skill).</div>" +
+      '<textarea id="promptOut" readonly spellcheck="false"></textarea>' +
+      '<div class="btn-row" style="margin-top:10px;"><button class="btn primary" id="copyPromptBtn" type="button">Copy prompt</button></div>';
+    document.getElementById("promptOut").value = text;
+    document.getElementById("copyPromptBtn").addEventListener("click", function(){
+      copyText(text, this);
+    });
+    setStatus("", "");
+  }
+
+  function updateAvailability(){
+    if(sampleFn){
+      mode = "live";
+    } else {
+      mode = "fallback";
+      runBtn.textContent = "Generate prompt to copy →";
+    }
+  }
+
+  (async function init(){
+    load();
+    try{
+      if(window.claude && typeof window.claude.use === "function"){
+        sampleFn = await window.claude.use("sample");
+        downloadsFn = await window.claude.use("downloads");
+      }
+    }catch(e){}
+    updateAvailability();
+  })();
+
+  var grid = document.getElementById("agentGrid");
+  AGENTS.forEach(function(a){
+    var card = document.createElement("div");
+    card.className = "agent-card";
+    var promptId = "prompt-" + a.key;
+    card.innerHTML =
+      '<div class="num">AGENT ' + a.num + '</div>' +
+      "<h3>" + a.title + "</h3>" +
+      '<div class="persona">' + a.persona + "</div>" +
+      "<p>" + a.blurb + "</p>" +
+      '<div class="out">Outputs: ' + a.out + "</div>" +
+      '<details class="agent-prompt">' +
+        "<summary>Standalone prompt</summary>" +
+        '<pre id="' + promptId + '"></pre>' +
+        '<div class="copyline"><button class="btn" type="button" data-copy-target="' + promptId + '">Copy agent prompt</button></div>' +
+      "</details>";
+    grid.appendChild(card);
+    card.querySelector("#" + promptId).textContent =
+      a.body.replace("{{CONTEXT}}", a.context).replace("{{GOAL}}", "[MAIN GOAL]").replace("{{PLATFORM}}", "[PLATFORM]");
+  });
+  grid.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-copy-target]");
+    if(!btn) return;
+    var pre = document.getElementById(btn.getAttribute("data-copy-target"));
+    if(pre) copyText(pre.textContent, btn);
+  });
+})();
+</script>

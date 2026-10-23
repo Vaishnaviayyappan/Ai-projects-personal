@@ -160,7 +160,7 @@ Also generate: README.md, setup instructions, deployment steps."""
         output = "(Mock) MVP Generation completed."
     
     project_id = state.get("project_id", "default")
-    save_dir = os.path.join(os.getcwd(), "generated_startups", project_id)
+    save_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "generated_startups", project_id)
     os.makedirs(save_dir, exist_ok=True)
 
     if llm:

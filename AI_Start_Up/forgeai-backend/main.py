@@ -65,7 +65,7 @@ async def deploy_project(project_id: str):
         return {"error": "page.tsx not found in generated code path."}
         
     # Copy to frontend's preview route
-    frontend_dir = os.path.abspath(os.path.join(os.getcwd(), "..", "forgeai-frontend"))
+    frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "forgeai-frontend"))
     preview_dir = os.path.join(frontend_dir, "src", "app", "preview")
     os.makedirs(preview_dir, exist_ok=True)
     

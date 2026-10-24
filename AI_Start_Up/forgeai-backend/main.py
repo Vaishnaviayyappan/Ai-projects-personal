@@ -6,6 +6,7 @@ import asyncio
 import os
 import shutil
 from agents.graph import forge_agent_pipeline
+from agents.tsx_check import check_tsx
 
 app = FastAPI(title="ForgeAI Orchestrator API")
 
@@ -63,7 +64,13 @@ async def deploy_project(project_id: str):
     source_file = os.path.join(code_path, "page.tsx")
     if not os.path.exists(source_file):
         return {"error": "page.tsx not found in generated code path."}
-        
+
+    # Never copy code that won't compile: it would break the frontend's /preview route.
+    with open(source_file, encoding="utf-8") as f:
+        ok, check_msg = await asyncio.to_thread(check_tsx, f.read())
+    if not ok:
+        return {"error": f"Generated page.tsx does not compile, so it was not deployed. Run the pipeline again.\n\n{check_msg}"}
+
     # Copy to frontend's preview route
     frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "forgeai-frontend"))
     preview_dir = os.path.join(frontend_dir, "src", "app", "preview")

@@ -1,10 +1,36 @@
 import os
+import re
 from .state import ProjectState
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 from dotenv import load_dotenv
+from .tsx_check import check_tsx, repair_imports
 
 load_dotenv()
+
+MAX_CODE_ATTEMPTS = 3
+MAX_REPAIR_ROUNDS = 5
+
+def extract_page_code(raw: str) -> str:
+    raw_content = raw.strip()
+
+    # Robust extraction: if the model used markdown, take only the content inside
+    if "```" in raw_content:
+        code_blocks = re.findall(r"```(?:tsx|jsx|javascript|js|typescript|ts)?\n([\s\S]*?)```", raw_content)
+        if code_blocks:
+            code_output = code_blocks[0].strip()
+        else:
+            code_output = raw_content.replace("```", "").strip()
+    else:
+        code_output = raw_content
+
+    # Remove side-effect imports (CSS etc.; Tailwind is loaded globally by the layout) and blank lines
+    lines = [l for l in code_output.splitlines() if l.strip() and not re.match(r"""\s*import\s+['"][^'"]+['"];?\s*$""", l)]
+
+    # Drop any existing 'use client' so it appears exactly once, at the top
+    lines = [l for l in lines if l.strip().replace("'", "").replace('"', "").replace(";", "") != "use client"]
+
+    return "'use client';\n" + "\n".join(lines)
 
 def get_llm():
     api_key = os.getenv("OPENAI_API_KEY")
@@ -14,7 +40,8 @@ def get_llm():
     # Fallback to local Ollama
     try:
         from langchain_ollama import ChatOllama
-        return ChatOllama(model="llama3.2", temperature=0.7)
+        # num_ctx 8192 so a fix-up prompt (previous page.tsx + errors) is not truncated
+        return ChatOllama(model=os.getenv("OLLAMA_MODEL") or "llama3.2", temperature=0.7, num_ctx=8192)
     except ImportError:
         return None
 
@@ -147,6 +174,49 @@ Generate: Backend architecture, API routes, AI orchestration logic, Database que
     
     return {"backend_architecture": arch_output, "generated_backend_code": backend_output, "logs": [f"[{state.get('project_id')}] Backend Engineering and API code completed."], "status": "backend_completed"}
 
+PAGE_SYSTEM_PROMPT = """You are a world-class Senior Product Engineer. Your response must consist ONLY of a single-file raw React code for a 100% Single Page Application (SPA).
+
+CORE REQUIREMENTS:
+1. DO NOT use Next.js routing. Use React state (e.g., [view, setView]) to handle navigation between 'Home', 'Dashboard', 'Features', and 'Pricing'.
+2. DESIGN AESTHETIC: Premium, Dark-mode, Apple/Linear inspired. Use rich gradients, glassmorphism (backdrop-blur), and deep shadows.
+3. DYNAMIC UI: Every element should feel alive. Use Tailwind's 'animate-pulse', 'hover:scale-105', and 'transition-all' extensively.
+4. CONTENT: Include high-fidelity sections (Hero, Feature Grid with icons, Interactive Pricing table, Dashboard mockup with stat cards and a chart using CSS/SVG).
+5. IMPORTS: Import ONLY from 'react' and 'lucide-react' (icons such as Sparkles, Zap, Shield, BarChart3, Users, Check, ArrowRight, Menu, Star, Rocket). No other packages, no CSS files, no relative imports.
+6. CODE STRUCTURE: Start with 'use client'; followed by imports. Ensure all components are in this single file and end with a default export.
+7. NO PLACEHOLDERS: Use real-sounding copy tailored to the startup idea.
+
+FAILURE TO MAKE IT LOOK STUNNING AND DYNAMIC IS UNACCEPTABLE."""
+
+def generate_page_code(llm, state: ProjectState, project_id: str) -> tuple[str, list[str]]:
+    """Generates page.tsx, compile-checks it, and asks the model to fix its own errors."""
+    logs = []
+    human = build_human_message(state)
+    code_output = ""
+    for attempt in range(1, MAX_CODE_ATTEMPTS + 1):
+        if attempt == 1:
+            prompt = human
+        else:
+            prompt = (f"{human}\n\nHere is your previous code:\n```tsx\n{code_output}\n```\n"
+                      f"It fails to compile with these errors:\n{check_msg}\n\n"
+                      "Fix these errors and return the full corrected file.")
+        response = llm.invoke([SystemMessage(content=PAGE_SYSTEM_PROMPT), HumanMessage(content=prompt)])
+        code_output = extract_page_code(response.content)
+        ok, check_msg = check_tsx(code_output)
+        # The check reports a limited number of errors, so repair repeatedly while it makes progress
+        for _ in range(MAX_REPAIR_ROUNDS):
+            if ok:
+                break
+            repaired = repair_imports(code_output, check_msg)
+            if repaired == code_output:
+                break
+            code_output = repaired
+            ok, check_msg = check_tsx(code_output)
+        if ok:
+            logs.append(f"[{project_id}] MVP page.tsx passed compile check (attempt {attempt})." + (f" {check_msg}" if check_msg else ""))
+            break
+        logs.append(f"[{project_id}] MVP page.tsx failed compile check (attempt {attempt}/{MAX_CODE_ATTEMPTS}): {check_msg.splitlines()[0]}")
+    return code_output, logs
+
 def mvp_generation_agent(state: ProjectState) -> dict:
     llm = get_llm()
     sys_msg = """You are AGENT 7 — MVP GENERATION AGENT.
@@ -163,54 +233,9 @@ Also generate: README.md, setup instructions, deployment steps."""
     save_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "generated_startups", project_id)
     os.makedirs(save_dir, exist_ok=True)
 
+    code_logs = []
     if llm:
-        code_response = llm.invoke([
-            SystemMessage(content="""You are a world-class Senior Product Engineer. Your response must consist ONLY of a single-file raw React code for a 100% Single Page Application (SPA).
-            
-            CORE REQUIREMENTS:
-            1. DO NOT use Next.js routing. Use React state (e.g., [view, setView]) to handle navigation between 'Home', 'Dashboard', 'Features', and 'Pricing'.
-            2. DESIGN AESTHETIC: Premium, Dark-mode, Apple/Linear inspired. Use rich gradients, glassmorphism (backdrop-blur), and deep shadows.
-            3. DYNAMIC UI: Every element should feel alive. Use Tailwind's 'animate-pulse', 'hover:scale-105', and 'transition-all' extensively.
-            4. CONTENT: Include high-fidelity sections (Hero, Feature Grid with icons, Interactive Pricing table, Dashboard mockup with stat cards and a chart using CSS/SVG).
-            5. IMPORTS: Use 'lucide-react' for icons. Assume it is available.
-            6. CODE STRUCTURE: Start with 'use client'; followed by imports. Ensure all components are in this single file.
-            7. NO PLACEHOLDERS: Use real-sounding copy tailored to the startup idea.
-            
-            FAILURE TO MAKE IT LOOK STUNNING AND DYNAMIC IS UNACCEPTABLE."""),
-            HumanMessage(content=build_human_message(state))
-        ])
-        raw_content = code_response.content.strip()
-        
-        # Robust extraction: if the model used markdown, take only the content inside
-        if "```" in raw_content:
-            import re
-            code_blocks = re.findall(r"```(?:tsx|jsx|javascript|js)?\n([\s\S]*?)```", raw_content)
-            if code_blocks:
-                code_output = code_blocks[0].strip()
-            else:
-                code_output = raw_content.replace("```", "").strip()
-        else:
-            code_output = raw_content
-
-        # Force 'use client' at the absolute top
-        lines = code_output.splitlines()
-        # Remove CRA imports and conversational lines
-        filtered_lines = [l for l in lines if l.strip() and not (
-            l.strip().startswith("import './App.css'") or 
-            l.strip().startswith('import "./App.css"') or
-            l.strip().startswith("import './index.css'") or
-            l.strip().startswith('import "./index.css"')
-        )]
-        
-        # Check if any line starts with use client, if so remove it to avoid duplicates
-        final_lines = []
-        for l in filtered_lines:
-            clean = l.strip().replace("'", "").replace('"', "").replace(";", "")
-            if clean == "use client":
-                continue
-            final_lines.append(l)
-            
-        code_output = "'use client';\n" + "\n".join(final_lines)
+        code_output, code_logs = generate_page_code(llm, state, project_id)
     else:
         # (This block shouldn't be reached now, but keeping for safety)
         code_output = f"'use client';\nexport default function MVP() {{ return <div>{state.get('idea')}</div>; }}"
@@ -230,7 +255,7 @@ Also generate: README.md, setup instructions, deployment steps."""
     with open(os.path.join(save_dir, "PRD.md"), "w", encoding="utf-8") as f:
         f.write(state.get("prd", "No PRD generated"))
 
-    return {"mvp_plan": output, "generated_code_path": save_dir, "logs": [f"[{project_id}] Full Tech Stack (Next.js, FastAPI, SQL) generated and saved to {save_dir}."], "status": "mvp_completed"}
+    return {"mvp_plan": output, "generated_code_path": save_dir, "logs": code_logs + [f"[{project_id}] Full Tech Stack (Next.js, FastAPI, SQL) generated and saved to {save_dir}."], "status": "mvp_completed"}
 
 def pitch_deck_agent(state: ProjectState) -> dict:
     sys_msg = """You are AGENT 8 — PITCH DECK AGENT.

@@ -54,4 +54,6 @@ Open http://localhost:3000.
 - Run state is held in memory and is lost when the backend restarts.
 - Generated output is written to `forgeai-backend/generated_startups/<project_id>/`.
 - "Deploy" copies the generated `page.tsx` to `forgeai-frontend/src/app/preview/` and serves it at http://localhost:3000/preview.
+- Generated `page.tsx` is compile-checked with the frontend's TypeScript (syntax, imports, default export). The MVP agent retries up to 3 times with the errors fed back, and Deploy refuses a page that still fails. This needs `npm ci` to have been run in `forgeai-frontend`.
+- Small local models (llama3.2 3B) sometimes need all 3 attempts or still fail; a larger model or `OPENAI_API_KEY` gives better pages.
 - The frontend expects the backend at `http://localhost:8000`, and the backend only allows CORS from `http://localhost:3000`.

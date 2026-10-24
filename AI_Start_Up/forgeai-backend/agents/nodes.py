@@ -179,7 +179,7 @@ PAGE_SYSTEM_PROMPT = """You are a world-class Senior Product Engineer. Your resp
 CORE REQUIREMENTS:
 1. DO NOT use Next.js routing. Use React state (e.g., [view, setView]) to handle navigation between 'Home', 'Dashboard', 'Features', and 'Pricing'.
 2. DESIGN AESTHETIC: Premium, Dark-mode, Apple/Linear inspired. Use rich gradients, glassmorphism (backdrop-blur), and deep shadows.
-3. DYNAMIC UI: Every element should feel alive. Use Tailwind's 'animate-pulse', 'hover:scale-105', and 'transition-all' extensively.
+3. DYNAMIC UI: Use smooth hover effects ('hover:scale-105', 'transition-all'). Use 'animate-pulse' only on small accents (badges, status dots), never on large sections or backgrounds.
 4. CONTENT: Include high-fidelity sections (Hero, Feature Grid with icons, Interactive Pricing table, Dashboard mockup with stat cards and a chart using CSS/SVG).
 5. IMPORTS: Import ONLY from 'react' and 'lucide-react' (icons such as Sparkles, Zap, Shield, BarChart3, Users, Check, ArrowRight, Menu, Star, Rocket). No other packages, no CSS files, no relative imports.
 6. CODE STRUCTURE: Start with 'use client'; followed by imports. Ensure all components are in this single file and end with a default export.

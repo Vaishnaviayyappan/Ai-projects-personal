@@ -73,11 +73,13 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("blueprint");
   const [isDeploying, setIsDeploying] = useState(false);
 
-  const logEndRef = useRef<HTMLDivElement>(null);
+  const logContainerRef = useRef<HTMLDivElement>(null);
 
+  // Scroll only the log panel (not the window) and only when new lines arrive
   useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [logs]);
+    const el = logContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [logs.length]);
 
   const startBuild = async () => {
     if (!idea.trim()) return;
@@ -119,7 +121,7 @@ export default function Home() {
         try {
           const res = await fetch(`http://localhost:8000/api/status/${projectId}`);
           const data = await res.json();
-          if (data.logs) setLogs(data.logs);
+          if (data.logs) setLogs((prev) => (prev.length === data.logs.length ? prev : data.logs));
           if (data.status) setStatus(data.status);
           setResults((prev) => ({
             ...prev,
@@ -228,9 +230,9 @@ export default function Home() {
     <div className="min-h-screen bg-[#020202] text-[#EDEDED] font-sans selection:bg-purple-500/30 overflow-x-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full animate-pulse delay-700" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        {/* Static glows: animating large blurred layers forces full repaints and flickers */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
       <nav className="fixed top-0 inset-x-0 h-16 border-b border-white/5 bg-black/50 backdrop-blur-md z-50 flex items-center justify-between px-8">
@@ -463,7 +465,7 @@ export default function Home() {
                       <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/30" />
                     </div>
                   </div>
-                  <div className="flex-1 overflow-y-auto p-6 font-mono text-[13px] leading-relaxed space-y-2 scrollbar-hide">
+                  <div ref={logContainerRef} className="flex-1 overflow-y-auto p-6 font-mono text-[13px] leading-relaxed space-y-2 scrollbar-hide">
                     {logs.map((log, idx) => (
                       <motion.div
                         initial={{ opacity: 0, x: -5 }}
@@ -487,7 +489,6 @@ export default function Home() {
                         </div>
                       </motion.div>
                     ))}
-                    <div ref={logEndRef} />
                   </div>
                 </div>
 
